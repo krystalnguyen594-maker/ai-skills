@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "ai-skills-collection",
+  "description": "Curated collection of agentic skills for Product, Engineering, QA, Cognitive Learning, and Automation.",
+  "version": "1.0.0",
+  "domains": [
+    {
+      "id": "product-strategy",
+      "name": "Product Strategy & Specification",
+      "description": "Strategic product thinking, critical questioning, specification writing, and review processes."
+    },
+    {
+      "id": "design-prototyping",
+      "name": "UX & Interactive Prototyping",
+      "description": "Visual aesthetics, UI tokens, modern frontend components, and rapid interactive prototyping."
+    },
+    {
+      "id": "quality-engineering",
+      "name": "Quality Engineering & Testing",
+      "description": "Automated testing, API validation, UI E2E test suites, and software quality gates."
+    },
+    {
+      "id": "cognitive-learning",
+      "name": "Cognitive Science & People Development",
+      "description": "Communication scaffolding, Feynman technique, competency assessment, and active learning curriculum design."
+    },
+    {
+      "id": "tooling-automation",
+      "name": "Document Engine & Tooling",
+      "description": "Document generation, PDF rendering engine, layout formatting, and automated publishing."
+    }
+  ],
+  "skills": [
+    {
+      "id": "pm-questioning",
+      "name": "PM Questioning & Risk Assessment",
+      "domain": "product-strategy",
+      "path": "skills/product-strategy/pm-questioning",
+      "author": "Antigravity & DuyHo",
+      "version": "1.0.0",
+      "tags": ["product-management", "mental-models", "pre-mortem", "first-principles"]
+    },
+    {
+      "id": "documentation-analysis",
+      "name": "Documentation Analysis & Specs",
+      "domain": "product-strategy",
+      "path": "skills/product-strategy/documentation-analysis",
+      "author": "Antigravity & DuyHo",
+      "version": "1.0.0",
+      "tags": ["brd", "prd", "frd", "notion", "traceability"]
+    },
+    {
+      "id": "doc-writing-process",
+      "name": "Phase-Gated Document Writing Process",
+      "domain": "product-strategy",
+      "path": "skills/product-strategy/doc-writing-process",
+      "author": "Antigravity & DuyHo",
+      "version": "1.0.0",
+      "tags": ["governance", "sign-off-gates", "doc-writing", "sub-agent-review"]
+    },
+    {
+      "id": "ui-ux-design",
+      "name": "UI/UX Design & Aesthetic Tokens",
+      "domain": "design-prototyping",
+      "path": "skills/design-prototyping/ui-ux-design",
+      "author": "Antigravity & DuyHo",
+      "version": "1.0.0",
+      "tags": ["design-tokens", "glassmorphism", "typography", "micro-animations"]
+    },
+    {
+      "id": "web-prototyping",
+      "name": "Rapid Web Prototyping",
+      "domain": "design-prototyping",
+      "path": "skills/design-prototyping/web-prototyping",
+      "author": "Antigravity & DuyHo",
+      "version": "1.0.0",
+      "tags": ["react", "angular", "html-css", "poc", "components"]
+    },
+    {
+      "id": "testing-quality",
+      "name": "Automated Testing & Quality Gates",
+      "domain": "quality-engineering",
+      "path": "skills/quality-engineering/testing-quality",
+      "author": "Antigravity & DuyHo",
+      "version": "1.0.0",
+      "tags": ["playwright", "cypress", "api-testing", "e2e"]
+    },
+    {
+      "id": "cognitive-scaffolding",
+      "name": "Cognitive Scaffolding & Bridging",
+      "domain": "cognitive-learning",
+      "path": "skills/cognitive-learning/cognitive-scaffolding",
+      "author": "Antigravity & DuyHo",
+      "version": "1.0.0",
+      "tags": ["minto-pyramid", "golden-circle", "cognitive-bridge", "communication"]
+    },
+    {
+      "id": "feynman-explainer",
+      "name": "Feynman Concept Explainer",
+      "domain": "cognitive-learning",
+      "path": "skills/cognitive-learning/feynman-explainer",
+      "author": "Antigravity & DuyHo",
+      "version": "1.0.0",
+      "tags": ["feynman-technique", "first-principles", "eli5", "learning"]
+    },
+    {
+      "id": "ai-curriculum-designer",
+      "name": "Active Learning Curriculum Designer",
+      "domain": "cognitive-learning",
+      "path": "skills/cognitive-learning/ai-curriculum-designer",
+      "author": "Antigravity & DuyHo",
+      "version": "1.0.0",
+      "tags": ["talk-show", "curriculum", "active-learning", "ba-qc-training"]
+    },
+    {
+      "id": "ai-agile-evaluator",
+      "name": "Agile Competency Evaluator & Interviewer",
+      "domain": "cognitive-learning",
+      "path": "skills/cognitive-learning/ai-agile-evaluator",
+      "author": "Antigravity & DuyHo",
+      "version": "1.0.0",
+      "tags": ["agile", "competency-matrix", "rubric", "scenario-interview"]
+    },
+    {
+      "id": "pdf-creator",
+      "name": "Professional PDF Publishing Engine",
+      "domain": "tooling-automation",
+      "path": "skills/tooling-automation/pdf-creator",
+      "author": "Antigravity & DuyHo",
+      "version": "1.0.0",
+      "tags": ["pdf-generation", "mermaid", "katex", "page-break-prevention"]
+    }
+  ]
+}
