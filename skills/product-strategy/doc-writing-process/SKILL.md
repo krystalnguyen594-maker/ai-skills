@@ -70,15 +70,37 @@ Draft the detailed content section by section. **Apply Cognitive Scaffolding ($A
 
 Fix issues before moving to the next section.
 
-### 2b. Whole-document review & Mandatory Sub-agent Testing
+### 2b. Whole-document internal review
 
-Run a comprehensive whole-document review pass:
+Run a comprehensive whole-document review pass before sending to external review:
 - **Traceability Check**: Ensure every functional requirement, user story, and task maps back to an intaken business goal or input requirement.
 - **Thought Experiment / Pre-Mortem**: Simulate how target audiences (e.g., Developers, QC, Business Stakeholders) will read and execute the document. Identify any ambiguities, hidden assumptions, or unaddressed failure modes.
-- **Guardrails & Compliance Check**: Verify compliance with domain-specific rules (e.g. 8 Guardrails of PCM/BOD INCONS) and data immutability/security constraints.
-- **Mandatory Fresh-Context Sub-agent Testing**: MUST explicitly invoke independent sub-agents (via `invoke_subagent` tool) with fresh context representing target roles (e.g., Frontend Reviewer, Backend Reviewer, QC Auditor). Never fake or simulate this internally.
+- **Guardrails & Compliance Check**: Verify compliance with domain-specific rules (e.g., 8 Guardrails of PCM/BOD INCONS) and data immutability/security constraints.
+
+### 2c. Mandatory Two-Tier Sub-agent Testing (Red-Teaming First, Stakeholder Audit Second)
+
+To eliminate the "Polite Assistant Bias" (sub-agents being too agreeable or easily issuing superficial conditional passes), sub-agent testing MUST follow a rigorous two-tier framework:
+
+#### Tier 1: Hostile Red-Teaming (The "Project Killer" / Devil's Advocate)
+Before presenting to friendly stakeholders, the document must undergo an adversarial stress-test:
+1. **Mandatory Adversarial Persona**: Sub-agent must be explicitly assigned a hostile, hyper-critical persona (e.g., *Hostile Special Auditor, Skeptical Executive seeking reasons to cancel the project, or Ruthless Procurement Controller hunting for hidden vendor traps*).
+2. **Strict Anti-Leading Prompt Rules**: 
+   - **FORBIDDEN**: Never ask polite leading questions (e.g., *"Is this document clear?", "Is this feasible?", "Is this pricing transparent?"*).
+   - **MANDATORY**: MUST ask hostile discovery prompts (e.g., *"Identify 3–5 fatal physical, operational, or legal scenarios where this proposal collapses in reality", "What hidden costs, unfeasible physics, or vendor traps are buried in this text?", "If you must convince the Board of Directors to REJECT or HALT disbursement for this project, what are your top 3 killer arguments?"*).
+3. **Ban the "Conditional Approval" Cop-out**: The Red-Team sub-agent is strictly prohibited from granting a polite "Conditional Pass" if fatal flaws, physical impossibilities, or safety/cost traps exist. The verdict MUST be **BÁC BỎ (REJECT)** or **ĐÌNH CHỈ GIẢI NGÂN (SUSPEND)** with a strict **Ultimatum (Tối hậu thư)** of non-negotiable fixes.
+4. **Hardening Loop**: The author AI must systematically resolve 100% of the fatal flaws identified by Tier 1. Update the document to a hardened version before moving to Tier 2.
+
+#### Tier 2: Multi-Stakeholder Rigorous Audit
+Invoke independent fresh-context sub-agents representing the true operational and executive stakeholders:
+- **End-User / Operations Lead** (e.g., Site Commander, Field HSE Director, Operations Manager): Tests real-world usability, workflow friction, and physical feasibility.
+- **Financial & Procurement Auditor**: Audits cost structure, Capex/Opex segregation, mathematical consistency between formulas and worked examples, and contract risk clauses (e.g., Escrow, Maintenance Freeze).
+- **Technical / Architecture Lead**: Audits optical/hardware limits, data protocols, SLA metric definitions (e.g., enforcing Precision $\ge 90\%$ instead of misleading mathematical ratios like FPR).
+
+#### Transparency Requirement: Mandatory Raw Logs Artifact
+To prevent hallucinated reviews or cherry-picked summaries, the AI MUST save 100% of the prompts and unedited raw responses of all sub-agents into a dedicated Markdown log file in the project folder (e.g., `PHASE_2_SUBAGENT_TESTING_LOGS.md`).
 
 **Gate:** Present the finalized document and the self-critique/review log to the user:
-- Show exact sub-agent Conversation IDs, their questions, critiques, and resolutions.
-- Explain key design rationale and highlight any open items requiring user confirmation.
+- Provide direct clickable links to the finalized document and the raw sub-agent testing logs.
+- Highlight the major flaws caught by the Hostile Red-Team and how they were resolved.
 - Obtain explicit user sign-off.
+
