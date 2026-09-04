@@ -1,0 +1,9 @@
+{
+  "name": "pm-engineering-suite",
+  "version": "1.0.0",
+  "description": "Curated suite of agent skills for Product, Engineering, QA, Cognitive Learning, and Automation.",
+  "author": {
+    "name": "Antigravity & DuyHo"
+  },
+  "license": "MIT"
+}

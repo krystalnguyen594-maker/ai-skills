@@ -5,7 +5,7 @@ description: |
 
   Trigger immediately for:
   - Drafting, editing, or auditing BRD, PRD, or FRD specifications.
-  - Translating business problems into technical user stories or API contracts.
+  - Translating business problems into functional user stories, state workflows, and acceptance criteria.
   - Uploading documentation or summaries to Notion databases/pages.
 ---
 
@@ -34,13 +34,14 @@ This skill guides the agent in writing industry-standard product and business do
   - Release Criteria & Milestone Schedule
 
 ### Functional Requirements Document (FRD)
-*Focus: The "How" of system execution. Written for developers and QA engineers.*
+*Focus: System-level functional behavior and business rules. Written for developers and QA engineers.*
 - **Core Sections**:
-  - System Architecture & Data Model Diagrams
-  - API Contracts (Endpoints, Request payloads, Response bodies, HTTP status mappings)
-  - Detailed Logical Workflows & State Machines
-  - Error Handling matrices
-  - Third-party Integration specs
+  - Logical Data Dictionary & Data Field Requirements (Business level)
+  - Detailed Logical Workflows & State Machines (FSM)
+  - Business Validation & Error Handling matrices
+  - External Integration Touchpoints (Business-level behavior)
+- **Separation of Concerns Note**:
+  - Technical architecture, physical database schemas (DDL/indexes), and API contracts (Endpoints, HTTP methods, Headers, JSON payloads) belong strictly to the **Technical Design Document (TDD) / API Specs** owned by the Lead Architect and Dev Team, NOT by Product/BA.
 
 ## 2. Requirements Traceability
 When reviewing or writing documents:
