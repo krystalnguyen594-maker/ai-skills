@@ -47,7 +47,7 @@ html, body {
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Arial", "Helvetica", sans-serif !important;
   font-size: 8.2pt;
   line-height: 1.46;
   color: #1e293b;
@@ -58,24 +58,53 @@ html, body {
 @page {
   size: A4 portrait;
   margin: 10mm 12mm 10mm 12mm;
-  @top-left { content: "TÊN DỰ ÁN / TỔNG THẦU"; font-size: 7pt; font-weight: 600; color: #64748b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-  @top-right { content: "TÀI LIỆU DỰ ÁN"; font-size: 7pt; color: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-  @bottom-left { content: "Người nhận / Đơn vị thực hiện"; font-size: 7pt; color: #64748b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-  @bottom-right { content: "Trang " counter(page) " / " counter(pages); font-size: 7.5pt; font-weight: 500; color: #475569; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  @top-left { content: "TÊN DỰ ÁN / TỔNG THẦU"; font-size: 7pt; font-weight: bold; color: #64748b; font-family: "Arial", sans-serif; }
+  @top-right { content: "TÀI LIỆU DỰ ÁN"; font-size: 7pt; color: #94a3b8; font-family: "Arial", sans-serif; }
+  @bottom-left { content: "Người nhận / Đơn vị thực hiện"; font-size: 7pt; color: #64748b; font-family: "Arial", sans-serif; }
+  @bottom-right { content: "Trang " counter(page) " / " counter(pages); font-size: 7.5pt; font-weight: bold; color: #475569; font-family: "Arial", sans-serif; }
 }
 
 /* 4. Typography & Khoảng thở thị giác (Vertical Rhythm & Breathing Room) */
-h1, h2, h3, h4 { color: #0f3d6e; page-break-after: avoid; }
-h1 { font-size: 12pt; font-weight: 800; border-bottom: 1.5px solid #0f3d6e; padding-bottom: 3px; margin-top: 0; margin-bottom: 6px; text-transform: uppercase; }
-h2 { font-size: 9.8pt; font-weight: 700; border-bottom: 1px solid #cbd5e1; padding-bottom: 3px; margin-top: 12px; margin-bottom: 5px; }
-h3 { font-size: 8.8pt; font-weight: 700; color: #1e3a8a; margin-top: 9px; margin-bottom: 3px; }
-h4 { font-size: 8.2pt; font-weight: 700; color: #2563eb; margin-top: 7px; margin-bottom: 2px; }
+h1, h2, h3, h4 { font-family: "Arial", sans-serif !important; color: #0f3d6e; page-break-after: avoid; }
+h1 { font-size: 12pt; font-weight: bold; border-bottom: 1.5px solid #0f3d6e; padding-bottom: 3px; margin-top: 0; margin-bottom: 6px; text-transform: uppercase; }
+h2 { font-size: 9.8pt; font-weight: bold; border-bottom: 1px solid #cbd5e1; padding-bottom: 3px; margin-top: 12px; margin-bottom: 5px; }
+h3 { font-size: 8.8pt; font-weight: bold; color: #1e3a8a; margin-top: 9px; margin-bottom: 3px; }
+h4 { font-size: 8.2pt; font-weight: bold; color: #2563eb; margin-top: 7px; margin-bottom: 2px; }
 
 /* Đoạn văn và danh sách có khoảng cách rõ ràng, chống dính chùm */
-p { font-size: 8pt; color: #334155; margin-top: 0; margin-bottom: 5px; orphans: 3; widows: 3; }
-ul, ol { margin-top: 2px; margin-bottom: 6px; padding-left: 18px; }
-li { font-size: 8pt; color: #334155; margin-bottom: 2.5px; }
-strong { color: #0f172a; font-weight: 600; }
+p { font-family: "Arial", sans-serif !important; font-size: 8pt; color: #334155; margin-top: 0; margin-bottom: 5px; orphans: 3; widows: 3; }
+ul, ol { font-family: "Arial", sans-serif !important; margin-top: 2px; margin-bottom: 6px; padding-left: 18px; }
+li { font-family: "Arial", sans-serif !important; font-size: 8pt; color: #334155; margin-bottom: 2.5px; }
+strong { font-family: "Arial", sans-serif !important; color: #0f172a !important; font-weight: bold !important; }
+em { font-family: "Arial", sans-serif !important; font-style: italic !important; }
+
+/* Triệt tiêu font monospace làm vỡ font tiếng Việt của thẻ code */
+code {
+  font-family: "Arial", sans-serif !important;
+  font-size: inherit !important;
+  font-weight: bold !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #0f172a !important;
+}
+
+/* Tiêu đề có số phân cấp (1.1, 1.2) không mang bullet */
+li.sec-header {
+  list-style-type: none !important;
+  margin-left: -12px !important;
+  margin-top: 3px !important;
+  margin-bottom: 2px !important;
+}
+
+/* Chú thích định vị ảnh thanh lịch */
+li.photo-note, .photo-note {
+  list-style-type: none !important;
+  color: #0284c7 !important;
+  font-style: italic !important;
+  font-size: 7.2pt !important;
+  margin: 2px 0 3px 0 !important;
+}
 
 /* 5. Khối Metadata Đầu Trang (Executive Header Card) */
 body > p:first-of-type {
@@ -169,18 +198,44 @@ Khi Markdown chứa ````mermaid````:
 
 ---
 
-## 5. BƯỚC BẮT BUỘC: Soi Trực Quan PDF Trước Khi Bàn Giao (Visual Inspection Gate)
+## 5. 4 Quy Tắc Vàng Layout & Typography Tiếng Việt (Vietnamese Executive PDF Standards)
+
+### Quy tắc 1: Font-Stack An Toàn Tuyệt Đối (Zero-Glitch Font Stack)
+- **Cấm hoàn toàn:** `-apple-system, BlinkMacSystemFont, "Segoe UI"` khi render bằng WeasyPrint/Pango vì sẽ gây lỗi font chắp vá (Font Fallback), khiến các ký tự tiếng Việt có dấu (`ệ`, `ứ`, `ử`, `ờ`, `đ`) bị vỡ nét và lệch kích thước.
+- **Chuẩn an toàn:** Luôn dùng `"Arial", "Helvetica", sans-serif` với bộ mã Unicode hoàn chỉnh 100%.
+- **Khống chế thẻ `<code>`:** Ép CSS `code { font-family: "Arial", sans-serif !important; font-size: inherit !important; font-weight: bold; background: none; border: none; padding: 0; color: #0f172a; }` để khi người viết bọc backticks vào text tiếng Việt không bị trình duyệt đẩy sang font Monospace (Courier) gây lỗi font.
+
+### Quy tắc 2: Tiền Xử Lý DOM Trước Khi Render (DOM Sanitization Pipeline)
+- **Xóa sạch thẻ ảnh lỗi/thiếu file:** Nếu tài liệu có ảnh screenshot chưa chụp hoặc đường dẫn ảnh không tồn tại, **bắt buộc bóc tách và xóa sạch (`img.decompose()`)** qua BeautifulSoup/script trước khi đẩy sang WeasyPrint. Tuyệt đối không dựa vào CSS `display: none` vì engine vẫn cố dựng layout box sinh ra các icon ảnh lỗi ở lề trang.
+- **Xóa bỏ Emoji trong văn bản điều hành:** Loại bỏ các icon như 📸, 👉... để tránh lỗi bounding-box quá khổ hoặc lệch baseline văn bản in ấn.
+
+### Quy tắc 3: Mục Lục Điều Hành Tuyến Tính (Linear Zero-Friction TOC)
+- **Cấm khối code ASCII tree (`├──`, `│`):** Tránh tạo cảm giác màn hình debug của lập trình viên.
+- **Cấm chia layout 2 cột phức tạp hoặc gắn banner rườm rà cho TOC:** Không bắt mắt người đọc phải đảo qua lại để liên kết các phần.
+- **Luôn dùng cấu trúc danh mục tuyến tính 1 chiều (Phần ➔ Mục ➔ Tiểu mục):** Tận dụng thụt dòng (Indentation) và in đậm cấp bậc (`PHẦN 1`, `1.1.`, `2.1.`) để người đọc quét mắt 3 giây là nắm trọn cấu trúc tài liệu.
+
+### Quy tắc 4: Chuẩn Hóa Cấp Bậc Văn Bản & Triệt Tiêu Thừa Thãi (Hierarchy without Redundancy)
+- **Triệt tiêu dấu bullet trước mục có số phân cấp:** Không dùng `• 1.1.` (bullet biểu thị danh sách không thứ tự, đi kèm số `1.1.` gây xung đột thị giác). Bỏ bullet cho các mục số, chỉ dùng bullet cho các ý con bên dưới (`• Tác nghiệp thực tế:`, `• Điểm nghẽn nghiệp vụ:`).
+- **Tách biệt rõ ràng:** Nhãn nội dung dùng chữ Bold tự nhiên (`**Tác nghiệp thực tế:**`), chú thích định vị ảnh dùng text nghiêng nhẹ nhàng (`[Vị trí ảnh: ...]`), không đóng khung nét đứt làm rối mắt người đọc.
+
+---
+
+## 6. BƯỚC BẮT BUỘC: Soi Trực Quan PDF Trước Khi Bàn Giao (Visual Inspection Gate)
 
 > [!CRITICAL]
 > **AI KHÔNG ĐƯỢC PHÉP báo hoàn thành chỉ dựa trên lệnh chạy hay byte `b'%PDF'`.**  
 > **AI BẮT BUỘC phải gọi tool `view_file` mở trực tiếp file `.pdf` vừa tạo để "soi mắt" toàn bộ trang:**
 
 1. **Chiều rộng trang (Full-Width Check):** Nội dung có bị bóp hẹp sang trái và để lại mảng trắng rỗng bên phải không? (Đảm bảo đã xóa `max-width: 36em`).
-2. **Trang 1 (Header & Alert Check):** 
+2. **Trang 1 (Header, Alert & TOC Check):** 
    - Khối metadata đầu trang có được đóng khung gọn gàng không?
    - Các khối Alert (`Important`, `Note`, `Warning`...) có bị lộ chữ `.title` thô không? Viền và màu nền có sang trọng, dịu mắt không?
-3. **Sơ đồ / Chart (Mermaid & Font Readability Check):** Sơ đồ có sắc nét không? Chữ trong node có đủ to và dễ đọc không?
-4. **Bảng biểu (Table Check):** Có bị dồn chữ, tràn lề phải, hay mất cột nào không? Header cột có lặp lại khi sang trang không?
-5. **Phân bổ trang (Page Balance Check):** Trang cuối cùng có bị "mồ côi" 2–3 dòng không? Nếu có, phải điều chỉnh lề `@page` (từ `14mm` xuống `10mm`) và font-size (từ `8.8pt` xuống `8pt`) để gom trang cân đối.
+   - Mục lục có rõ ràng, tuyến tính, dễ quét mắt không?
+3. **Lỗi font tiếng Việt & Icon rác (Font & Asset Integrity Check):**
+   - Chữ tiếng Việt có bị giật font, to nhỏ cọc cạch (nhất là ở các từ bọc code) không?
+   - Có bị icon ảnh vỡ (broken image) hoặc emoji rác ở mép trang không?
+4. **Sơ đồ / Chart (Mermaid & Font Readability Check):** Sơ đồ có sắc nét không? Chữ trong node có đủ to và dễ đọc không?
+5. **Bảng biểu (Table Check):** Có bị dồn chữ, tràn lề phải, hay mất cột nào không? Header cột có lặp lại khi sang trang không?
+6. **Phân bổ trang (Page Balance Check):** Trang cuối cùng có bị "mồ côi" 2–3 dòng không? Nếu có, phải điều chỉnh lề `@page` (từ `14mm` xuống `10mm`) và font-size (từ `8.8pt` xuống `8pt`) để gom trang cân đối.
 
 Chỉ khi AI tự kiểm tra qua `view_file` và thấy file thực sự đẹp, chuyên nghiệp thì mới gửi link cho user.
