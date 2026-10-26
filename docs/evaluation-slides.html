@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Skills Evaluation System - Hướng Dẫn Sử Dụng & Setup Chi Tiết</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #f1f5f9;
+      --bg-slide: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-sub: #475569;
+      --border-color: #e2e8f0;
+      --border-subtle: #f1f5f9;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --success: #16a34a;
+      --success-light: #f0fdf4;
+      --success-border: #bbf7d0;
+      --warning: #d97706;
+      --warning-light: #fffbeb;
+      --warning-border: #fef3c7;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --danger-border: #fecaca;
+      --purple: #7c3aed;
+      --purple-light: #f5f3ff;
+      --code-bg: #f8fafc;
+      --code-border: #cbd5e1;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Navigation Bar */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 52px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-main);
+    }
+
+    .brand-badge {
+      background: var(--primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .top-center {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .slide-jump-select {
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-main);
+      cursor: pointer;
+      outline: none;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-action {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-sub);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-action:hover {
+      background: var(--bg-page);
+      color: var(--primary);
+      border-color: var(--primary-border);
+    }
+
+    /* Presentation Deck Viewport */
+    .deck-container {
+      width: 100%;
+      max-width: 1180px;
+      height: 664px; /* 16:9 aspect ratio standard */
+      margin-top: 64px;
+      margin-bottom: 72px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-slide);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 40px 48px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+      z-index: 10;
+    }
+
+    /* Slide Elements */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+    }
+
+    .slide-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .slide-category {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .slide-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+    }
+
+    .slide-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .slide-tag {
+      background: var(--bg-page);
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-sub);
+      white-space: nowrap;
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Grids & Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.15s ease;
+    }
+
+    .card:hover {
+      border-color: var(--primary-border);
+    }
+
+    .card-primary {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+    }
+
+    .card-success {
+      background: var(--success-light);
+      border-color: var(--success-border);
+    }
+
+    .card-warning {
+      background: var(--warning-light);
+      border-color: var(--warning-border);
+    }
+
+    .card-danger {
+      background: var(--danger-light);
+      border-color: var(--danger-border);
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-main);
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    /* Comparison Box */
+    .compare-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .compare-box {
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 1px solid;
+    }
+
+    .compare-before {
+      background: #fffafa;
+      border-color: var(--danger-border);
+    }
+
+    .compare-after {
+      background: #f8fafc;
+      border-color: var(--primary-border);
+    }
+
+    .compare-header {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .compare-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      color: var(--text-sub);
+    }
+
+    /* Step Sequence */
+    .steps-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      position: relative;
+    }
+
+    .step-item {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .step-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .step-detail {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.45;
+    }
+
+    /* Code & Terminal Snippets */
+    .code-block {
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #1e293b;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .cmd-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      margin: 4px 0;
+    }
+
+    .cmd-prompt {
+      color: #38bdf8;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    /* Tables */
+    .table-custom {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      background: #ffffff;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .table-custom th, .table-custom td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .table-custom th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 12.5px;
+    }
+
+    .table-custom tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-green { background: #dcfce7; color: #166534; }
+    .badge-amber { background: #fef3c7; color: #92400e; }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+    .badge-purple { background: #ede9fe; color: #5b21b6; }
+
+    /* Highlight Key Terms */
+    .kw {
+      color: #2563eb;
+      font-weight: 600;
+    }
+
+    .kw-pass {
+      color: #16a34a;
+      font-weight: 700;
+    }
+
+    .kw-fail {
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    /* Bottom Controller */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 58px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 100;
+    }
+
+    .controls-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-nav:hover:not(:disabled) {
+      background: var(--bg-page);
+      border-color: var(--primary-border);
+      color: var(--primary);
+    }
+
+    .btn-nav:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-nav-primary {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .btn-nav-primary:hover:not(:disabled) {
+      background: #1d4ed8;
+      color: #ffffff;
+      border-color: #1d4ed8;
+    }
+
+    .progress-bar-container {
+      width: 280px;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin: 0 16px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 8.33%;
+      transition: width 0.25s ease;
+    }
+
+    .shortcuts-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    kbd {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+      padding: 2px 6px;
+      font-size: 11px;
+      font-family: monospace;
+      color: #334155;
+    }
+
+    /* Print Styles (Cmd+P) */
+    @media print {
+      body {
+        background: #ffffff;
+        color: #000000;
+        padding: 0;
+        margin: 0;
+      }
+
+      .top-bar, .bottom-bar {
+        display: none !important;
+      }
+
+      .deck-container {
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+      }
+
+      .slide {
+        display: flex !important;
+        opacity: 1 !important;
+        position: relative !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 0 !important;
+        page-break-after: always !important;
+        page-break-inside: avoid !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        margin-bottom: 0 !important;
+        padding: 32px 40px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-bar">
+    <div class="brand">
+      <span>AI SKILLS</span>
+      <span class="brand-badge">Evaluation Deck</span>
+    </div>
+
+    <div class="top-center">
+      <span>Slide</span>
+      <select id="slideSelect" class="slide-jump-select" title="Nhảy đến slide"></select>
+      <span id="slideCounterText">/ 12</span>
+    </div>
+
+    <div class="top-actions">
+      <button class="btn-action" onclick="toggleFullscreen()" title="Toàn màn hình (F)">
+        <span>⛶ Toàn Màn Hình</span>
+      </button>
+      <button class="btn-action" onclick="window.print()" title="In ra PDF (Cmd+P)">
+        <span>🖨 Xuất PDF</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Presentation Deck Viewport -->
+  <main class="deck-container">
+
+    <!-- SLIDE 1: TITLE SLIDE -->
+    <section class="slide active" id="slide-1" data-title="Giới thiệu & Tổng quan">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ Presentation & Setup Guide</div>
+          <h1 class="slide-title">Hệ Thống Đánh Giá Tự Động Cho Kho AI Skills</h1>
+          <p class="slide-subtitle">AI Skills Evaluation System: Kiến Trúc, Quy Trình Chuẩn Hóa & Hướng Dẫn Setup Chi Tiết</p>
+        </div>
+        <span class="slide-tag">Phiên bản 1.0.0</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card card-primary" style="padding: 24px;">
+            <div class="card-title" style="font-size: 18px; color: var(--primary);">
+              🎯 Mục Tiêu Buổi Trình Bày
+            </div>
+            <div class="card-desc" style="font-size: 14px; gap: 8px; display: flex; flex-direction: column;">
+              <p>• Trả lời dứt khoát câu hỏi: <strong>"Làm sao biết một AI Skill xài tốt hay chưa?"</strong> bằng số liệu định lượng.</p>
+              <p>• Giới thiệu kiến trúc 4 trụ cột: Rubric Quality Gates, Benchmark Suite, CLI Runner và Central Ingestion Server.</p>
+              <p>• Hướng dẫn chi tiết từng bước (End-to-End Hands-on Walkthrough) để bất kỳ dev nào cũng có thể cài đặt và mở rộng.</p>
+            </div>
+          </div>
+
+          <div class="card" style="padding: 24px; justify-content: space-between;">
+            <div>
+              <div class="card-title" style="font-size: 16px; margin-bottom: 8px;">
+                👥 Thành Phần Tham Dự & Đối Tượng
+              </div>
+              <div class="card-desc" style="font-size: 13.5px; line-height: 1.6;">
+                <strong>• Tech Leads & Repo Owners:</strong> Nắm bắt ma trận sức khỏe kỹ năng, tỷ lệ đạt (Pass Rate), tỷ lệ phải sửa lại (Rework Rate) và cơ chế báo cáo định kỳ.<br>
+                <strong>• Developers & Skill Contributors:</strong> Thực thi bộ lệnh CLI, cấu hình rubric, viết test case chuẩn và tích hợp vào CI/CD.
+              </div>
+            </div>
+            <div style="background: var(--bg-page); padding: 10px 14px; border-radius: 6px; font-size: 12.5px; color: var(--text-sub); border: 1px solid var(--border-color);">
+              📍 <strong>Repo GitHub:</strong> <code>https://github.com/krystalnguyen594-maker/ai-skills</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-title"><span class="badge badge-green">100% Khách Quan</span></div>
+            <div class="card-desc">Chấm điểm tự động qua Rules & Rubric, không phụ thuộc cảm tính cá nhân.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="badge badge-blue">Zero Prompt Overhead</span></div>
+            <div class="card-desc">Thẩm định qua telemetry và benchmark offline, không làm tăng độ dài context prompt.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="badge badge-purple">20 Skills Ready</span></div>
+            <div class="card-desc">Đã phủ sẵn 100% bộ rubric và baseline benchmark cho toàn bộ 20 kỹ năng trong kho.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Repo Owner & AI Core Team</span>
+        <span>Slide 1 / 12</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: PROBLEM STATEMENT -->
+    <section class="slide" id="slide-2" data-title="Bối cảnh: Tại sao cần Evaluation?">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ Bối Cảnh & Giá Trị</div>
+          <h2 class="slide-title">Tại Sao Phải Có Phân Hệ Evaluation?</h2>
+          <p class="slide-subtitle">So sánh hiện trạng trước và sau khi chuẩn hóa hệ thống thẩm định chất lượng</p>
+        </div>
+        <span class="slide-tag">Business & Tech Value</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="compare-container">
+          <div class="compare-box compare-before">
+            <div class="compare-header" style="color: var(--danger);">
+              ❌ Trước Khi Có Evaluation (Đánh Giá Thủ Công)
+            </div>
+            <div class="compare-item">
+              <span>⚠️</span>
+              <span><strong>Đánh giá định tính:</strong> Mỗi người nhận xét một kiểu ("thấy prompt này hay", "output tạm được"), không có thước đo thống nhất.</span>
+            </div>
+            <div class="compare-item">
+              <span>⚠️</span>
+              <span><strong>Rủi ro hồi quy (Prompt Regression):</strong> Sửa prompt để phục vụ task A vô tình làm hỏng chất lượng của task B mà không hề hay biết.</span>
+            </div>
+            <div class="compare-item">
+              <span>⚠️</span>
+              <span><strong>Mù mờ về chất lượng thực tế:</strong> Repo Owner không biết skill nào trong 20 skills đang được dùng hiệu quả, skill nào người dùng phải sửa lại nhiều lần (rework).</span>
+            </div>
+            <div class="compare-item">
+              <span>⚠️</span>
+              <span><strong>Không có Quality Gate:</strong> Ai sửa PR vào repo cũng merge được nếu không có lỗi syntax, chất lượng suy giảm theo thời gian.</span>
+            </div>
+          </div>
+
+          <div class="compare-box compare-after">
+            <div class="compare-header" style="color: var(--primary);">
+              ✅ Sau Khi Có Phân Hệ Evaluation (Chuẩn Hóa Số Liệu)
+            </div>
+            <div class="compare-item">
+              <span>✔</span>
+              <span><strong>Thước đo định lượng 100%:</strong> Có điểm số rõ ràng (0 - 100), ngưỡng Pass Rate, tỷ lệ Rework Rate và phân tích từng tiêu chí.</span>
+            </div>
+            <div class="compare-item">
+              <span>✔</span>
+              <span><strong>Bảo vệ chống hồi quy (Regression Shield):</strong> Chạy bộ benchmark tự động trước khi merge code; bắt 100% các lỗi nghiêm trọng.</span>
+            </div>
+            <div class="compare-item">
+              <span>✔</span>
+              <span><strong>Ma trận sức khỏe (Health Matrix):</strong> Báo cáo tự động tổng hợp tỷ lệ pass của toàn bộ 20 kỹ năng theo chu kỳ tuần/tháng.</span>
+            </div>
+            <div class="compare-item">
+              <span>✔</span>
+              <span><strong>Tự động đề xuất cải tiến:</strong> Phân tích lỗi chi tiết (thiếu Gherkin, thiếu ma trận kiểm thử, rò rỉ mã nguồn) để tinh chỉnh prompt chuẩn xác.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Khẳng định: Giải quyết triệt để bài toán đo lường chất lượng AI Skill</span>
+        <span>Slide 2 / 12</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: ARCHITECTURE OVERVIEW -->
+    <section class="slide" id="slide-3" data-title="Kiến trúc tổng quan">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ System Architecture</div>
+          <h2 class="slide-title">Kiến Trúc Tổng Quan: 4 Trụ Cột Vận Hành</h2>
+          <p class="slide-subtitle">Thiết kế tách rời giữa Quá trình thực thi prompt và Quá trình chấm điểm thẩm định</p>
+        </div>
+        <span class="slide-tag">Core Components</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-4">
+          <div class="card">
+            <div class="card-title">
+              <span class="badge badge-blue">Trụ Cột 1</span>
+              <span>Rubric Gate</span>
+            </div>
+            <div class="card-desc">
+              File <code>evaluation.yaml</code> tại mỗi skill. Quy định ngưỡng đạt, 4 chiều đánh giá, các phần bắt buộc và mẫu chống chỉ định (prohibited patterns).
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <span class="badge badge-purple">Trụ Cột 2</span>
+              <span>Benchmark Suite</span>
+            </div>
+            <div class="card-desc">
+              Thư mục <code>benchmarks/</code> chứa test cases thực tế. Luôn gồm 2 biến thể: <code>sample_good_output</code> (mẫu chuẩn) và <code>sample_flawed_output</code> (mẫu lỗi cố tình).
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <span class="badge badge-green">Trụ Cột 3</span>
+              <span>CLI Engine</span>
+            </div>
+            <div class="card-desc">
+              Bộ công cụ dòng lệnh <code>evaluation/src/cli.ts</code>. Chạy thẩm định cục bộ tốc độ cao, tính điểm có trọng số, hiển thị kết quả ANSI màu và gửi telemetry nếu bật cờ.
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <span class="badge badge-amber">Trụ Cột 4</span>
+              <span>Ingestion Server</span>
+            </div>
+            <div class="card-desc">
+              Máy chủ <code>server/src/index.ts</code> lắng nghe telemetry port 3456. Tự động lưu trữ và xuất báo cáo trực quan <code>reports/weekly-*.html</code>.
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-primary" style="padding: 16px;">
+          <div class="card-title" style="font-size: 14px;">🔄 Luồng Vận Hành Dữ Liệu Khép Kín (Closed-Loop Workflow)</div>
+          <div style="font-size: 13px; color: var(--text-sub); display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+            <div style="background: #fff; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); text-align: center; flex: 1;">
+              <strong>1. Skill Output</strong><br><small>Agent sinh kết quả</small>
+            </div>
+            <span style="font-weight: 800; color: var(--primary); margin: 0 10px;">➔</span>
+            <div style="background: #fff; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); text-align: center; flex: 1;">
+              <strong>2. Rubric Evaluator</strong><br><small>Kiểm tra cấu trúc & ngữ nghĩa</small>
+            </div>
+            <span style="font-weight: 800; color: var(--primary); margin: 0 10px;">➔</span>
+            <div style="background: #fff; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); text-align: center; flex: 1;">
+              <strong>3. Telemetry Dispatch</strong><br><small>Gửi event (Zero Prompt Overhead)</small>
+            </div>
+            <span style="font-weight: 800; color: var(--primary); margin: 0 10px;">➔</span>
+            <div style="background: #fff; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); text-align: center; flex: 1;">
+              <strong>4. Health Dashboard</strong><br><small>Xuất báo cáo định kỳ</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Nguyên tắc: Tách biệt hoàn toàn logic kiểm thử khỏi prompt của người dùng</span>
+        <span>Slide 3 / 12</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: STEP-BY-STEP SETUP WALKTHROUGH -->
+    <section class="slide" id="slide-4" data-title="Hướng dẫn setup môi trường">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ Setup Walkthrough</div>
+          <h2 class="slide-title">Hướng Dẫn Thiết Lập Môi Trường Từ Đầu (End-to-End)</h2>
+          <p class="slide-subtitle">Các bước chuẩn bị môi trường chạy Evaluation nhanh chóng và chính xác</p>
+        </div>
+        <span class="slide-tag">Prerequisites & Run</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">1. Yêu Cầu Môi Trường (Prerequisites)</div>
+            <div class="card-desc" style="display: flex; flex-direction: column; gap: 8px;">
+              <div>• <strong>Node.js:</strong> Phiên bản <strong>v22.0.0 trở lên</strong> (Hỗ trợ cờ <code>--experimental-strip-types</code> để chạy trực tiếp file TypeScript không cần build qua <code>tsc</code>).</div>
+              <div>• <strong>Package Manager:</strong> npm hoặc pnpm tiêu chuẩn.</div>
+              <div>• <strong>Dependencies:</strong> Thư viện <code>yaml</code> đã khai báo trong <code>package.json</code>.</div>
+            </div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">$</span>
+              <span>node -v  # Đảm bảo >= v22.0.0</span>
+            </div>
+            <div class="cmd-line">
+              <span class="cmd-prompt">$</span>
+              <span>npm install</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">2. Cấu Trúc Thư Mục Thực Thi</div>
+            <div class="card-desc">
+              Repo hỗ trợ thực thi từ thư mục con <code>ai-skills/</code> hoặc thư mục root thông qua proxy scripts:
+            </div>
+            <div class="code-block">ai-skills/
+├── evaluation/          # CLI Runner & Rubric Judge Engine
+│   └── src/cli.ts       # Điểm vào chính của evaluation
+├── server/              # Central Ingestion Server
+│   ├── src/index.ts     # REST API port 3456
+│   └── src/cli-report.ts# Trình xuất báo cáo định kỳ
+├── skills/              # 20 AI Skills độc lập
+└── reports/             # Báo cáo HTML/JSON đã kết xuất</div>
+          </div>
+        </div>
+
+        <div class="card card-success">
+          <div class="card-title" style="color: var(--success);">3. Khởi Động Server Thu Thập Telemetry (Khuyến Nghị Chạy Nền)</div>
+          <div class="grid-2" style="align-items: center;">
+            <div class="card-desc">
+              Chạy lệnh sau trên terminal để khởi động Central Ingestion Server tiếp nhận số liệu đánh giá:
+              <div class="cmd-line" style="margin-top: 6px;">
+                <span class="cmd-prompt">$</span>
+                <span>npm run server</span>
+              </div>
+            </div>
+            <div style="font-size: 12.5px; color: var(--text-sub); border-left: 2px solid var(--success-border); padding-left: 12px;">
+              ✔ Server sẽ lắng nghe tại: <code>http://localhost:3456</code><br>
+              ✔ Sẵn sàng nhận dữ liệu tại endpoint: <code>POST /api/telemetry</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Zero Compiler Setup: Chạy trực tiếp native TypeScript nhờ Node.js v22</span>
+        <span>Slide 4 / 12</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: DEEP DIVE RUBRIC SPEC -->
+    <section class="slide" id="slide-5" data-title="Deep Dive: Cấu trúc Rubric">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ Specification Deep Dive</div>
+          <h2 class="slide-title">Giải Phẫu Cấu Trúc Rubric (evaluation.yaml)</h2>
+          <p class="slide-subtitle">Quy tắc thẩm định cấu trúc, trọng số điểm và các điều kiện trượt trực tiếp (Quality Gates)</p>
+        </div>
+        <span class="slide-tag">Rubric Architecture</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="code-block" style="font-size: 11.5px; max-height: 340px;"># skills/work-breakdown/evaluation.yaml
+skill_id: work-breakdown
+skill_version: "1.0.0"
+task_types:
+  - id: wbs_planning
+    name: "Work Breakdown & Story Slicing"
+    required_sections:
+      - pattern: "epic|tổng quan dự án"
+        name: "Epic Scope Definition"
+        severity: major
+      - pattern: "user stor|stories|story slicing"
+        name: "Vertical User Story Slicing"
+        severity: critical
+      - pattern: "dependencies|phụ thuộc"
+        name: "Cross-team Dependencies"
+        severity: critical
+
+prohibited_patterns:
+  wbs_planning:
+    - pattern: "cắt theo tầng|story chỉ làm fe|story chỉ làm be"
+      issue_code: "horizontal_slicing_anti_pattern"
+      severity: critical
+
+rubric_dimensions:
+  - dimension: completeness
+    weight: 0.30
+  - dimension: soundness
+    weight: 0.35
+  - dimension: actionability
+    weight: 0.20
+  - dimension: clarity
+    weight: 0.15
+
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: "instant_fail"</div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="card">
+              <div class="card-title" style="font-size: 14px;">1. Required Sections & Regex</div>
+              <div class="card-desc">Sử dụng Regular Expressions để kiểm tra sự hiện diện của các đề mục kỹ thuật bắt buộc mà không câu nệ cách đặt tên chi tiết.</div>
+            </div>
+
+            <div class="card card-danger">
+              <div class="card-title" style="font-size: 14px; color: var(--danger);">2. Prohibited Anti-Patterns</div>
+              <div class="card-desc">Phát hiện lỗi nguy hiểm ngay lập tức. Ví dụ: Rò rỉ code DDL/SQL vào FRD, hoặc cắt story theo tầng ngang (Horizontal Slicing).</div>
+            </div>
+
+            <div class="card card-warning">
+              <div class="card-title" style="font-size: 14px; color: var(--warning);">3. Cơ Chế Instant Fail</div>
+              <div class="card-desc">Dù điểm tính toán có trên 80, nếu dính bất kỳ lỗi <code>critical</code> nào thì kết quả vẫn bị đánh dấu là <span class="badge badge-red">FAIL</span> và yêu cầu Rework.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Quy chuẩn: 100% 20 skills đều tuân thủ đúng cấu trúc rubric schema này</span>
+        <span>Slide 5 / 12</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: DEEP DIVE BENCHMARKS -->
+    <section class="slide" id="slide-6" data-title="Deep Dive: Benchmark Suite">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ Test Suite Deep Dive</div>
+          <h2 class="slide-title">Giải Phẫu Cấu Trúc Benchmark (benchmarks/*.json)</h2>
+          <p class="slide-subtitle">Bộ test case chuẩn với cơ chế đối chiếu kép: Good Baseline vs Flawed Anti-Pattern</p>
+        </div>
+        <span class="slide-tag">Benchmark Schema</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="code-block" style="font-size: 11.5px; max-height: 340px;">// skills/work-breakdown/benchmarks/tc-01-baseline.json
+{
+  "id": "tc-01",
+  "name": "User Onboarding Epic Breakdown",
+  "task_type": "wbs_planning",
+  "prompt": "Phân rã Epic Đăng ký và Xác thực người dùng mới thành các User Story triển khai được.",
+  "expected_sections": [
+    "Epic Scope Definition",
+    "Vertical User Story Slicing",
+    "Cross-team Dependencies",
+    "Complexity / Sizing Estimates"
+  ],
+  "sample_good_output": "# WBS: Epic User Registration\n## 1. Epic Definition\nCung cấp luồng đăng ký tài khoản tự phục vụ...\n## 2. Vertical Sliced Stories\n- Story 1 (P0): Đăng ký Email (Trọn gói UI + API)...\n## 3. Dependencies & Risks\nPhụ thuộc tài khoản SendGrid...\n## 4. Estimates & Milestones\n13 Story Points trong Sprint 24.",
+
+  "sample_flawed_output": "# Chia task\nTask 1: Dev làm database. Task 2: Dev làm backend. Task 3: Làm frontend."
+}</div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div class="card card-primary">
+              <div class="card-title">💡 Tại Sao Cần Hai Mẫu Output Đối Chiếu?</div>
+              <div class="card-desc">
+                Một bộ test chuẩn không chỉ kiểm tra "đầu ra tốt có đạt không", mà còn phải chứng minh "hệ thống có bắt được đầu ra lỗi hay không":
+              </div>
+            </div>
+
+            <div class="card card-success">
+              <div class="card-title" style="color: var(--success);">
+                <span>✔ <code>sample_good_output</code> (Golden Baseline)</span>
+              </div>
+              <div class="card-desc">
+                Mẫu đầu ra lý tưởng thỏa mãn 100% rubric. Điểm đánh giá phải đạt từ <strong>85 - 100 điểm</strong> (<span class="kw-pass">PASS</span>).
+              </div>
+            </div>
+
+            <div class="card card-danger">
+              <div class="card-title" style="color: var(--danger);">
+                <span>✖ <code>sample_flawed_output</code> (Flawed Anti-Pattern)</span>
+              </div>
+              <div class="card-desc">
+                Mẫu đầu ra cố tình mắc lỗi (thiếu mục, vi phạm anti-pattern). Bộ chấm điểm <strong>bắt buộc phải đánh trượt</strong> (<span class="kw-fail">FAIL</span>) để chứng minh tính nhạy bén.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Mục đích: Đảm bảo bộ đánh giá không biến thành "bù nhìn" luôn cho qua mọi kết quả</span>
+        <span>Slide 6 / 12</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: CLI COMMANDS & MODES -->
+    <section class="slide" id="slide-7" data-title="Bộ lệnh CLI Runner">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ Developer CLI</div>
+          <h2 class="slide-title">Bộ Lệnh CLI Runner & Các Chế Độ Đánh Giá</h2>
+          <p class="slide-subtitle">Cách chạy kiểm thử offline cục bộ và gửi telemetry lên Central Server</p>
+        </div>
+        <span class="slide-tag">Terminal Ops</span>
+      </div>
+
+      <div class="slide-body">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th style="width: 28%;">Lệnh Thực Thi (Command)</th>
+              <th style="width: 18%;">Chế Độ</th>
+              <th style="width: 16%;">Telemetry</th>
+              <th>Mục Đích Sử Dụng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>npm run eval</code></td>
+              <td>Single Skill</td>
+              <td><span class="badge badge-amber">Offline Local</span></td>
+              <td>Đánh giá nhanh skill mặc định (<code>documentation-analysis</code>).</td>
+            </tr>
+            <tr>
+              <td><code>npm run eval &lt;skill-id&gt;</code></td>
+              <td>Single Skill</td>
+              <td><span class="badge badge-amber">Offline Local</span></td>
+              <td>Chạy kiểm thử cho 1 skill bất kỳ (vd: <code>npm run eval work-breakdown</code>).</td>
+            </tr>
+            <tr>
+              <td><code>npm run eval:send</code></td>
+              <td>Single Skill</td>
+              <td><span class="badge badge-green">Opt-in Server</span></td>
+              <td>Chạy kiểm thử và tự động gửi kết quả lên Ingestion Server qua port 3456.</td>
+            </tr>
+            <tr>
+              <td><code>npm run eval:all</code></td>
+              <td>Batch (20 Skills)</td>
+              <td><span class="badge badge-amber">Offline Local</span></td>
+              <td>Quét toàn bộ 20 kỹ năng trong kho, xuất bảng tổng hợp ANSI trực quan.</td>
+            </tr>
+            <tr>
+              <td><code>npm run eval:all:send</code></td>
+              <td>Batch (20 Skills)</td>
+              <td><span class="badge badge-green">Opt-in Server</span></td>
+              <td>Đánh giá 100% kho skills và đồng bộ toàn bộ telemetry phục vụ báo cáo.</td>
+            </tr>
+            <tr>
+              <td><code>npm run report</code></td>
+              <td>Report Engine</td>
+              <td>-</td>
+              <td>Kết xuất báo cáo định kỳ ra file <code>reports/weekly-*.html</code>.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Cờ Tùy Biến Nâng Cao (CLI Flags)</div>
+            <div class="card-desc" style="font-size: 12.5px;">
+              • <code>--opt-in</code>: Kích hoạt gửi event telemetry lên server.<br>
+              • <code>--benchmark=&lt;tên_file&gt;</code>: Lọc chạy duy nhất 1 test case cụ thể.<br>
+              • <code>--server-url=&lt;url&gt;</code>: Trỏ đến server staging hoặc production khác.
+            </div>
+          </div>
+          <div class="card card-primary">
+            <div class="card-title">💡 Mẹo Cho Dev Khi Viết Prompt</div>
+            <div class="card-desc" style="font-size: 12.5px;">
+              Trước khi commit thay đổi prompt mới vào file <code>SKILL.md</code>, hãy chạy <code>npm run eval &lt;skill-name&gt;</code> để đảm bảo prompt mới không làm giảm điểm benchmark!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Trực quan: Terminal hiển thị bảng ANSI màu phân định rõ PASS (Xanh) / FAIL (Đỏ)</span>
+        <span>Slide 7 / 12</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: TELEMETRY & INGESTION SERVER -->
+    <section class="slide" id="slide-8" data-title="Telemetry & Ingestion Server">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ Telemetry Architecture</div>
+          <h2 class="slide-title">Cơ Chế Telemetry & Central Ingestion Server</h2>
+          <p class="slide-subtitle">Thu thập số liệu phi tập trung, bảo vệ quyền riêng tư và tối ưu ngữ cảnh prompt</p>
+        </div>
+        <span class="slide-tag">REST & Data Schema</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">REST API Telemetry Endpoint</div>
+            <div class="card-desc">
+              Central Server tiếp nhận dữ liệu qua HTTP POST payload JSON:
+            </div>
+            <div class="cmd-line">
+              <span style="color: #4ade80;">POST</span>
+              <span>http://localhost:3456/api/telemetry</span>
+            </div>
+            <div class="code-block" style="font-size: 11px; max-height: 220px;">{
+  "eventId": "a7b8c9d0-1234-4567-89ab-cdef01234567",
+  "skillId": "documentation-analysis",
+  "skillVersion": "1.0.0",
+  "taskType": "prd_analysis",
+  "result": "pass",
+  "score": 92,
+  "reworkRequired": false,
+  "dimensionScores": {
+    "completeness": 95,
+    "businessSoundness": 90,
+    "gherkinAndTraceability": 90,
+    "clarityAndFormat": 95
+  },
+  "issues": []
+}</div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div class="card card-success">
+              <div class="card-title" style="color: var(--success);">🔒 Nguyên Tắc Bảo Mật Quyền Riêng Tư (Privacy-First)</div>
+              <div class="card-desc">
+                Event telemetry <strong>KHÔNG lưu trữ nội dung prompt bí mật hay thông tin nhạy cảm của khách hàng</strong>. Server chỉ lưu trữ metadata, điểm số và mã lỗi (issue codes) để phục vụ phân tích kỹ thuật.
+              </div>
+            </div>
+
+            <div class="card card-primary">
+              <div class="card-title">⚡ Zero Context Window Penalty</div>
+              <div class="card-desc">
+                Quá trình gửi telemetry chạy nền bất đồng bộ (non-blocking). Token ngữ cảnh của model AI được bảo toàn 100% cho công việc chuyên môn của người dùng.
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">💾 Lưu Trữ & Backup</div>
+              <div class="card-desc">
+                Telemetry được lưu trữ tại file log JSON Lines an toàn, sẵn sàng tích hợp ingest vào Datadog, Prometheus hoặc Elasticsearch khi lên môi trường Enterprise.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Kiến trúc mở: Sẵn sàng kết nối với bất kỳ Data Pipeline hoặc Monitoring stack nào</span>
+        <span>Slide 8 / 12</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: HEALTH MATRIX & WEEKLY REPORTING -->
+    <section class="slide" id="slide-9" data-title="Báo cáo sức khỏe kỹ năng">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ Observability & Reporting</div>
+          <h2 class="slide-title">Ma Trận Sức Khỏe & Báo Cáo Định Kỳ</h2>
+          <p class="slide-subtitle">Quan sát trực quan toàn bộ kho kỹ năng qua HTML Dashboard tự động</p>
+        </div>
+        <span class="slide-tag">Metrics & Analytics</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card card-primary" style="text-align: center; padding: 20px;">
+            <div style="font-size: 13px; font-weight: 700; color: var(--primary);">TỔNG SỐ TÁC VỤ ĐO LƯỜNG</div>
+            <div style="font-size: 36px; font-weight: 800; color: var(--primary); margin: 6px 0;">57+</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Trải đều trên 20 AI Skills</div>
+          </div>
+
+          <div class="card card-warning" style="text-align: center; padding: 20px;">
+            <div style="font-size: 13px; font-weight: 700; color: var(--warning);">TỶ LỆ ĐẠT (PASS RATE)</div>
+            <div style="font-size: 36px; font-weight: 800; color: var(--warning); margin: 6px 0;">56%</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Mẫu chuẩn 100% Pass, Mẫu lỗi bị chặn 100%</div>
+          </div>
+
+          <div class="card card-danger" style="text-align: center; padding: 20px;">
+            <div style="font-size: 13px; font-weight: 700; color: var(--danger);">TỶ LỆ CẦN SỬA LẠI (REWORK)</div>
+            <div style="font-size: 36px; font-weight: 800; color: var(--danger); margin: 6px 0;">49%</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Cảnh báo sớm các skill có output chưa tối ưu</div>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 16px;">
+          <div class="card-title" style="font-size: 14px;">📄 Báo Cáo Định Kỳ Tự Động: <code>reports/weekly-YYYY-MM-DD.html</code></div>
+          <div class="grid-2" style="margin-top: 8px; align-items: center;">
+            <div class="card-desc" style="font-size: 13px;">
+              Chỉ cần chạy lệnh <code>npm run report</code>, hệ thống sẽ đọc telemetry trong 7 ngày gần nhất và render dashboard HTML độc lập tuyệt đẹp:
+              <br>• Phân tích điểm trung bình của từng skill.
+              <br>• Nhận diện Top 3 lỗi phổ biến nhất cần điều chỉnh prompt.
+              <br>• Báo cáo trực tiếp cho ban điều hành và Repo Owner.
+            </div>
+            <div style="background: var(--bg-page); border: 1px dashed var(--border-color); border-radius: 6px; padding: 12px; font-size: 12px; text-align: center;">
+              Xem file báo cáo thực tế đã tạo tại:<br>
+              <strong style="color: var(--primary);">reports/weekly-2026-10-23.html</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Dữ liệu thực tế: Minh bạch và có thể kiểm chứng tại mọi thời điểm</span>
+        <span>Slide 9 / 12</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: 4-STEP DEVELOPER WORKFLOW -->
+    <section class="slide" id="slide-10" data-title="Quy trình 4 bước cho Dev">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ Contributor Guide</div>
+          <h2 class="slide-title">Quy Trình 4 Bước: Thêm Evaluation Cho Một Skill Mới</h2>
+          <p class="slide-subtitle">Hướng dẫn từng bước thực chiến khi phát triển hoặc đóng góp một kỹ năng mới vào repo</p>
+        </div>
+        <span class="slide-tag">Actionable Steps</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="steps-flow">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-name">Tạo Rubric YAML</div>
+            <div class="step-detail">
+              Tạo file <code>skills/&lt;skill-name&gt;/evaluation.yaml</code>. Khai báo <code>required_sections</code>, <code>prohibited_patterns</code> và trọng số 4 chiều.
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-name">Viết Benchmark JSON</div>
+            <div class="step-detail">
+              Tạo thư mục <code>benchmarks/</code> và file <code>tc-01-baseline.json</code>. Điền đầy đủ prompt thực tế, <code>sample_good_output</code> và <code>sample_flawed_output</code>.
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-name">Test Cục Bộ Bằng CLI</div>
+            <div class="step-detail">
+              Chạy <code>npm run eval &lt;skill-name&gt;</code>. Kiểm tra output: Mẫu Good phải đạt ≥ 80đ (<span class="kw-pass">PASS</span>), Mẫu Flawed phải bị bắt lỗi (<span class="kw-fail">FAIL</span>).
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-name">Gửi PR & Telemetry</div>
+            <div class="step-detail">
+              Chạy <code>npm run eval:send</code> để đồng bộ dữ liệu lên Ingestion Server. Tạo Pull Request trên GitHub với đầy đủ bộ test cases.
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-warning" style="margin-top: 6px;">
+          <div class="card-title" style="color: var(--warning); font-size: 13.5px;">⚠️ Lưu Ý Quan Trọng Dành Cho Contributors</div>
+          <div class="card-desc" style="font-size: 12.5px;">
+            Khi viết <code>sample_good_output</code>, hãy sử dụng kết quả markdown thực tế và chất lượng cao nhất mà bạn mong đợi AI tạo ra. Tránh dùng nội dung placeholder sơ sài vì hệ thống có bộ lọc kiểm tra độ dài tối thiểu (> 50 ký tự) và ma trận nghiệp vụ.
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Chuẩn hóa đóng góp: Giữ vững chất lượng kho kỹ năng khi có nhiều người cùng phát triển</span>
+        <span>Slide 10 / 12</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: CI/CD QUALITY GATES -->
+    <section class="slide" id="slide-11" data-title="Quality Gates & CI/CD">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ Automation & CI/CD</div>
+          <h2 class="slide-title">Thiết Lập Quality Gates Trong Pipeline CI/CD</h2>
+          <p class="slide-subtitle">Tự động chặn Pull Request vi phạm chất lượng ngay trên GitHub Actions</p>
+        </div>
+        <span class="slide-tag">DevOps & Quality Gate</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">GitHub Actions Workflow Mẫu</div>
+            <div class="card-desc">Cấu hình file <code>.github/workflows/eval.yml</code>:</div>
+            <div class="code-block" style="font-size: 11px; max-height: 240px;">name: AI Skills Quality Gate
+on: [push, pull_request]
+
+jobs:
+  evaluate-skills:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Global Evaluation
+        run: npm run eval:all</div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="card card-primary">
+              <div class="card-title" style="font-size: 14px;">Quy Tắc Merge Pull Request (Merge Policies)</div>
+              <div class="card-desc" style="font-size: 13px;">
+                <strong>1. 100% Pass Rate trên Mẫu Chuẩn:</strong> Toàn bộ <code>sample_good_output</code> của skill được sửa đổi phải đạt điểm qua bài kiểm tra.<br><br>
+                <strong>2. Zero Critical Issues:</strong> Không được xuất hiện các lỗi nghiêm trọng như rò rỉ mã nguồn, thiếu Gherkin criteria hay vi phạm anti-pattern.<br><br>
+                <strong>3. Không Hồi Quy Toàn Cục:</strong> Lệnh <code>npm run eval:all</code> phải vượt qua toàn bộ các skill khác trong hệ thống.
+              </div>
+            </div>
+
+            <div class="card card-success">
+              <div class="card-title" style="font-size: 14px; color: var(--success);">Lợi Ích Cho Repo Owner</div>
+              <div class="card-desc" style="font-size: 12.5px;">
+                Tự tin review và merge code trong 30 giây mà không cần phải tự mình ngồi test lại từng prompt thủ công!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>DevOps Ready: Tích hợp hoàn hảo với GitHub Actions, GitLab CI hoặc Jenkins</span>
+        <span>Slide 11 / 12</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: SUMMARY & Q&A -->
+    <section class="slide" id="slide-12" data-title="Tổng kết & Hỏi đáp (Q&A)">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">✦ Summary & Next Steps</div>
+          <h2 class="slide-title">Tổng Kết & Hỏi Đáp (Q&A)</h2>
+          <p class="slide-subtitle">Sẵn sàng đưa vào áp dụng thực tế và chuyển giao cho toàn bộ đội ngũ</p>
+        </div>
+        <span class="slide-tag">Action Items</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card card-primary">
+            <div class="card-title" style="color: var(--primary);">1. Tài Liệu Đi Kèm</div>
+            <div class="card-desc" style="font-size: 13px;">
+              • <strong>Guide chi tiết:</strong> <code>docs/evaluation-guide.md</code><br>
+              • <strong>File PDF chuyển giao:</strong> <code>docs/evaluation-guide.pdf</code> (Định dạng chuẩn 3 trang in ấn)<br>
+              • <strong>Infographic trực quan:</strong> <code>docs/evaluation-infographic.md</code>
+            </div>
+          </div>
+
+          <div class="card card-success">
+            <div class="card-title" style="color: var(--success);">2. Kho Mã Nguồn Sẵn Sàng</div>
+            <div class="card-desc" style="font-size: 13px;">
+              • Đã cấu hình và kiểm thử thành công trên <strong>100% 20 kỹ năng</strong>.<br>
+              • Đã đồng bộ lên GitHub: <code>krystalnguyen594-maker/ai-skills</code>.<br>
+              • Central Server & Telemetry đã sẵn sàng phục vụ.
+            </div>
+          </div>
+
+          <div class="card card-warning">
+            <div class="card-title" style="color: var(--warning);">3. Kế Hoạch Tiếp Theo</div>
+            <div class="card-desc" style="font-size: 13px;">
+              • Workshop thực hành 30 phút cho toàn bộ dev trong team.<br>
+              • Thêm các edge-case benchmark cases dựa trên phản hồi thực tế của người dùng.<br>
+              • Thiết lập cronjob gửi email báo cáo tuần tự động.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="text-align: center; padding: 24px; background: #ffffff;">
+          <h3 style="font-size: 20px; color: var(--text-main); margin-bottom: 6px;">🎉 Cảm ơn các bạn đã lắng nghe!</h3>
+          <p style="font-size: 14px; color: var(--text-muted);">Mời các thành viên trong team đặt câu hỏi thảo luận về cách setup và vận hành phân hệ Evaluation.</p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Liên hệ Repo Owner / AI Core Team để được hỗ trợ trực tiếp</span>
+        <span>Slide 12 / 12</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation & Controls -->
+  <footer class="bottom-bar">
+    <div class="controls-left">
+      <button id="btnPrev" class="btn-nav" onclick="prevSlide()" title="Slide trước (←)">
+        <span>← Trước</span>
+      </button>
+      <button id="btnNext" class="btn-nav btn-nav-primary" onclick="nextSlide()" title="Slide kế tiếp (→ / Space)">
+        <span>Tiếp Theo →</span>
+      </button>
+
+      <div class="progress-bar-container">
+        <div id="progressBar" class="progress-bar-fill"></div>
+      </div>
+    </div>
+
+    <div class="shortcuts-hint">
+      <span>Điều hướng: <kbd>←</kbd> <kbd>→</kbd> <kbd>Space</kbd></span>
+      <span>Toàn màn hình: <kbd>F</kbd></span>
+      <span>In PDF: <kbd>Cmd</kbd> + <kbd>P</kbd></span>
+    </div>
+  </footer>
+
+  <!-- Interactive Slide Controller Script -->
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let currentSlide = 0;
+
+    const slideSelect = document.getElementById('slideSelect');
+    const slideCounterText = document.getElementById('slideCounterText');
+    const progressBar = document.getElementById('progressBar');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+
+    // Populate Jump-to-Slide Dropdown
+    slides.forEach((slide, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx;
+      opt.textContent = `${idx + 1}. ${slide.getAttribute('data-title') || 'Slide ' + (idx + 1)}`;
+      slideSelect.appendChild(opt);
+    });
+
+    slideCounterText.textContent = `/ ${totalSlides}`;
+
+    function updateSlideView() {
+      slides.forEach((slide, idx) => {
+        if (idx === currentSlide) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      slideSelect.value = currentSlide;
+      btnPrev.disabled = currentSlide === 0;
+      btnNext.disabled = currentSlide === totalSlides - 1;
+
+      const progress = ((currentSlide + 1) / totalSlides) * 100;
+      progressBar.style.width = `${progress}%`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlideView();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlideView();
+      }
+    }
+
+    function goToSlide(idx) {
+      if (idx >= 0 && idx < totalSlides) {
+        currentSlide = idx;
+        updateSlideView();
+      }
+    }
+
+    slideSelect.addEventListener('change', (e) => {
+      goToSlide(parseInt(e.target.value, 10));
+    });
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToSlide(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goToSlide(totalSlides - 1);
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+      }
+    });
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.warn(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Touch Swipe Support for Mobile/Tablet
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleGesture();
+    }, false);
+
+    function handleGesture() {
+      if (touchEndX < touchStartX - 50) {
+        nextSlide();
+      }
+      if (touchEndX > touchStartX + 50) {
+        prevSlide();
+      }
+    }
+
+    // Initialize View
+    updateSlideView();
+  </script>
+</body>
+</html>
