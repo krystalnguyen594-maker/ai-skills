@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Skill Evaluation Event Schema",
+  "description": "Standardized schema for recording AI skill task execution and evaluation results.",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique identifier for this evaluation event (UUIDv4) used for idempotency."
+    },
+    "task_id": {
+      "type": "string",
+      "description": "Pseudonymous identifier for the task instance."
+    },
+    "skill_id": {
+      "type": "string",
+      "description": "The identifier of the AI skill being evaluated."
+    },
+    "skill_version": {
+      "type": "string",
+      "description": "Semantic version of the skill (e.g. 1.0.0)."
+    },
+    "task_type": {
+      "type": "string",
+      "description": "Category/type of task (e.g. prd_analysis, frd_analysis, brd_analysis)."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when the evaluation event occurred."
+    },
+    "evaluation_status": {
+      "type": "string",
+      "enum": ["evaluated", "not_evaluable"],
+      "description": "Whether the output could be evaluated."
+    },
+    "result": {
+      "type": "string",
+      "enum": ["pass", "fail", "not_evaluable"],
+      "description": "Evaluation outcome based on rubric thresholds."
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Aggregated evaluation score out of 100."
+    },
+    "evaluation_method": {
+      "type": "string",
+      "enum": ["rubric", "rule_based", "hybrid", "human", "other"],
+      "description": "Methodology used to grade this event."
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of structured issue codes detected (e.g. missing_gherkin_acceptance_criteria)."
+    },
+    "rework_required": {
+      "type": "boolean",
+      "description": "Indicates if the output required notable revisions."
+    },
+    "feedback": {
+      "type": ["string", "null"],
+      "description": "Optional high-level feedback or note without raw user content."
+    },
+    "client_info": {
+      "type": "object",
+      "properties": {
+        "client_id": { "type": "string" },
+        "runtime": { "type": "string" },
+        "opt_in": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "event_id",
+    "task_id",
+    "skill_id",
+    "skill_version",
+    "task_type",
+    "timestamp",
+    "evaluation_status",
+    "result",
+    "evaluation_method",
+    "issues",
+    "rework_required"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,14 @@
+{
+  "id": "tc-01",
+  "name": "SOP Document Writing Pipeline",
+  "task_type": "doc_process",
+  "prompt": "Quy trình soạn thảo tài liệu 3 bước có cổng duyệt chất lượng.",
+  "expected_sections": [
+    "Phased Workflow Definition",
+    "Discovery & Input Gate",
+    "Sub-agent Peer Review",
+    "Sign-off & Quality Gate"
+  ],
+  "sample_good_output": "# Quy Trình Soạn Thảo Tài Liệu Kỹ Thuật (Doc Writing Pipeline)\n\n## Phase 1: Discovery & Cognitive Baseline\nXác định rõ đối tượng độc giả (Executive hay Dev) và neo nhận thức (Minto Pyramid).\n\n## Phase 2: Drafting & Structured Content\nSoạn thảo sườn chính, tách bạch yêu cầu chức năng và yêu cầu phi chức năng.\n\n## Phase 3: Sub-agent Peer Review & Red Teaming\nChuyển bản thảo cho Sub-agent đóng vai QC/Lead Dev để bới lông tìm vết, bắt các điểm mơ hồ.\n\n## Phase 4: Sign-off & Final Acceptance Gate\nKiểm tra lại toàn bộ Traceability Matrix trước khi chính thức bàn giao.",
+  "sample_flawed_output": "# Viết tài liệu\nCứ ngồi gõ 1 lèo cho xong rồi nộp luôn."
+}

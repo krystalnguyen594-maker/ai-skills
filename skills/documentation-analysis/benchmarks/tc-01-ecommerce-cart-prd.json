@@ -1,0 +1,20 @@
+{
+  "id": "tc-01",
+  "name": "E-Commerce Shopping Cart & Voucher Application (PRD)",
+  "task_type": "prd_analysis",
+  "prompt": "Viết một tài liệu Product Requirements Document (PRD) hoàn chỉnh cho tính năng 'Áp dụng mã giảm giá (Voucher) trong Giỏ hàng' của sàn thương mại điện tử. Tài liệu cần đầy đủ User Personas, User Stories kèm Acceptance Criteria định dạng Gherkin (Given-When-Then), Non-Functional Requirements, và Ma trận truy vết (Traceability Matrix).",
+  "expected_sections": [
+    "User Personas",
+    "User Stories",
+    "Acceptance Criteria",
+    "Non-Functional Requirements",
+    "Traceability Matrix"
+  ],
+  "expected_business_rules": [
+    "Một đơn hàng chỉ được áp dụng tối đa 1 voucher giảm giá sản phẩm và 1 voucher freeship.",
+    "Không cho phép áp mã khi đơn hàng chưa đạt giá trị tối thiểu.",
+    "Xử lý khi voucher hết lượt dùng ngay tại thời điểm bấm thanh toán."
+  ],
+  "sample_good_output": "# PRD: Tính Năng Áp Dụng Voucher Giỏ Hàng\n\n## 1. User Personas & Pain Points\n- **Persona:** Nguyễn Thu Hà (26 tuổi, Nhân viên văn phòng, chuyên săn deal).\n- **Pain Point:** Thường xuyên thu thập nhiều mã giảm giá nhưng không biết mã nào tối ưu nhất cho đơn hàng hiện tại; khó chịu khi mã bị hủy bất ngờ ở bước thanh toán.\n\n## 2. User Stories & Acceptance Criteria\n\n### Story 1: Chọn và áp dụng Voucher trong giỏ hàng\n*Là một người mua hàng, tôi muốn chọn voucher có sẵn trong ví để giảm số tiền cần thanh toán cho đơn hàng.*\n\n#### Acceptance Criteria (Gherkin)\n```gherkin\nScenario: Áp dụng voucher hợp lệ thành công\n  Given người dùng có voucher 'GIAM20K' trong ví (đơn tối thiểu 100.000đ)\n  And tổng giá trị giỏ hàng hiện tại là 150.000đ\n  When người dùng tích chọn voucher 'GIAM20K' và nhấn 'Áp dụng'\n  Then hệ thống trừ 20.000đ vào tổng tiền thanh toán\n  And hiển thị thông báo 'Áp dụng mã giảm 20.000đ thành công'\n\nScenario: Đơn hàng chưa đạt giá trị tối thiểu\n  Given người dùng có voucher 'GIAM50K' (đơn tối thiểu 300.000đ)\n  And tổng giá trị giỏ hàng hiện tại là 200.000đ\n  When người dùng cố gắng chọn voucher 'GIAM50K'\n  Then hệ thống vô hiệu hóa nút áp dụng\n  And hiển thị dòng nhắc: 'Mua thêm 100.000đ để sử dụng voucher này'\n\nScenario: Voucher hết lượt dùng tại thời điểm checkout\n  Given người dùng đã chọn voucher 'FLASHDEAL' hợp lệ\n  When người dùng bấm 'Đặt hàng' nhưng voucher vừa hết số lượng trên hệ thống\n  Then hệ thống chặn giao dịch và hiển thị cảnh báo: 'Voucher vừa hết lượt dùng, vui lòng chọn voucher khác'\n  And tự động cập nhật lại tổng tiền đơn hàng\n```\n\n## 3. Non-Functional Requirements (NFR)\n- **Performance:** Thời gian tính toán và áp voucher < 300ms với giỏ hàng tối đa 50 mặt hàng.\n- **Concurrency:** Đảm bảo concurrency lock chính xác, không để vượt quá số lượng quota voucher phát hành.\n\n## 4. Traceability Matrix\n| ID Yêu Cầu PRD | Mục Tiêu Kinh Doanh (BRD) | Chức Năng FRD Tương Ứng | Trạng Thái |\n| :--- | :--- | :--- | :--- |\n| PRD-VOUCHER-01 | Tăng tỷ lệ chuyển đổi giỏ hàng lên 15% | FRD-CALC-DISCOUNT | Sẵn sàng |\n| PRD-VOUCHER-02 | Tăng giá trị trung bình đơn hàng (AOV) | FRD-VOUCHER-VALIDATION | Sẵn sàng |\n",
+  "sample_flawed_output": "# PRD: Tính Năng Mã Giảm Giá\n\n## Người dùng\nNgười mua hàng muốn có mã giảm giá để mua hàng rẻ hơn.\n\n## Yêu cầu chức năng\n1. Người dùng vào giỏ hàng chọn voucher.\n2. Bấm áp dụng thì trừ tiền.\n3. Nếu mã lỗi thì báo lỗi.\n\n## Yêu cầu kỹ thuật\n- Viết bằng React Native và Node.js.\n- Dùng Redis để cache mã.\n"
+}

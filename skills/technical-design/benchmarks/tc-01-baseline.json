@@ -1,0 +1,16 @@
+{
+  "id": "tc-01",
+  "name": "High Throughput Notification Queue Design",
+  "task_type": "tech_design",
+  "prompt": "Thiết kế kỹ thuật cho hệ thống gửi thông báo Push Notification 10.000 req/s.",
+  "expected_sections": [
+    "Problem Definition",
+    "Constraints",
+    "Non-Functional Requirements",
+    "Trade-off Matrix & Options",
+    "Selected Decision & Rationale",
+    "Rollout & Rollback Plan"
+  ],
+  "sample_good_output": "# Design: High-Throughput Notification Queue Service\n\n## Problem\nHệ thống hiện tại gửi thông báo đồng bộ qua REST API khiến thread pool bị nghẽn khi có flash sale.\n\n## Constraints\nNgân sách hạ tầng cố định, độ trễ gửi thông báo < 2 giây, thời gian hoàn thành 2 tuần.\n\n## Non-functional requirements\nThroughput >= 10,000 msg/sec, 99.9% delivery SLA, Zero message loss on server restart.\n\n## Options considered\n| Tiêu chí | Phương án A (RabbitMQ) | Phương án B (Redis Streams) |\n| :--- | :--- | :--- |\n| Throughput | 25,000 msg/s | 50,000 msg/s |\n| Độ phức tạp | Cần cụm cluster riêng | Dùng chung Redis có sẵn |\n\n## Decision\nChọn Phương án B (Redis Streams) do tận dụng được hạ tầng Redis có sẵn và đáp ứng dư thừa throughput.\n\n## Design\nProducer đẩy message vào Stream `notif_events`. Worker pool gồm 8 consumers đọc theo consumer group.\n\n## Rollout & Rollback\nCanary deploy 10% traffic ngày 1. Rollback bằng cách tắt feature flag `use_redis_queue`.",
+  "sample_flawed_output": "# Thiết kế hệ thống\nCài Redis rồi bắn message qua là xong."
+}

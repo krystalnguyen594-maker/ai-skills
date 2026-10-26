@@ -1,0 +1,50 @@
+skill_id: bug-reporting
+skill_version: 1.0.0
+title: Bug Reporting Quality Rubric
+description: Evaluates bug reports for actionable reproduction steps,
+  environment details, expected vs actual behavior, and severity ranking.
+task_types:
+  - id: bug_report
+    name: Defect & Bug Report
+    required_sections:
+      - pattern: SEV-\d|severity|mức độ
+        name: Severity Header
+        severity: critical
+      - pattern: environment|môi trường
+        name: Environment Details
+        severity: major
+      - pattern: steps to reproduce|các bước tái hiện
+        name: Steps to Reproduce
+        severity: critical
+      - pattern: expected|kết quả mong đợi
+        name: Expected Behavior
+        severity: critical
+      - pattern: actual|thực tế
+        name: Actual Behavior
+        severity: critical
+      - pattern: evidence|bằng chứng
+        name: Evidence / Logs / Screenshots
+        severity: major
+prohibited_patterns:
+  bug_report:
+    - pattern: không chạy|bị lỗi|hỏng|doesn't work|not working
+      issue_code: vague_defect_description
+      description: Báo cáo lỗi không được chỉ ghi mơ hồ không chạy mà phải có chi tiết.
+      severity: critical
+rubric_dimensions:
+  - dimension: completeness
+    name: Độ Đầy Đủ (Completeness)
+    weight: 0.3
+  - dimension: soundness
+    name: Tính Chặt Chẽ & Đúng Đắn (Soundness)
+    weight: 0.35
+  - dimension: actionability
+    name: Tính Khả Thi & Hành Động (Actionability)
+    weight: 0.2
+  - dimension: clarity
+    name: Định Dạng & Rõ Ràng (Clarity)
+    weight: 0.15
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: instant_fail

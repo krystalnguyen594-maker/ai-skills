@@ -1,0 +1,14 @@
+{
+  "id": "tc-01",
+  "name": "User Onboarding Epic Breakdown",
+  "task_type": "wbs_planning",
+  "prompt": "Phân rã Epic Đăng ký và Xác thực người dùng mới thành các User Story triển khai được.",
+  "expected_sections": [
+    "Epic Scope Definition",
+    "Vertical User Story Slicing",
+    "Cross-team Dependencies",
+    "Complexity / Sizing Estimates"
+  ],
+  "sample_good_output": "# WBS: Epic User Registration & Verification\n\n## 1. Epic Definition\nCung cấp luồng đăng ký tài khoản tự phục vụ và xác thực email trong vòng 2 phút.\n\n## 2. Vertical Sliced Stories\n- **Story 1 (P0): Đăng ký bằng Email & Mật khẩu cơ bản** (Trọn gói UI + API + Lưu DB).\n- **Story 2 (P1): Gửi mã OTP kích hoạt qua Email** (Tích hợp SendGrid + Validate OTP).\n- **Story 3 (P2): Đăng ký nhanh qua Google OAuth**.\n\n## 3. Dependencies & Risks\nPhụ thuộc tài khoản dịch vụ SendGrid đã duyệt SPF/DKIM.\n\n## 4. Estimates & Milestones\nTổng dung lượng: 13 Story Points, bàn giao trong Sprint 24.",
+  "sample_flawed_output": "# Chia task\nTask 1: Dev làm database. Task 2: Dev làm backend. Task 3: Làm frontend."
+}

@@ -1,0 +1,116 @@
+skill_id: documentation-analysis
+skill_version: "1.0.0"
+title: "Evaluation Rubric & Quality Gates for Documentation Analysis"
+description: "Rubric and structural validation rules for auditing and assessing BRD, PRD, and FRD documents."
+
+task_types:
+  - id: brd_analysis
+    name: "Business Requirements Document (BRD)"
+    required_sections:
+      - pattern: "(?i)executive summary|tổng quan dự án"
+        name: "Executive Summary & Objectives"
+        severity: critical
+      - pattern: "(?i)scope|phạm vi"
+        name: "Project Scope (In-Scope vs Out-of-Scope)"
+        severity: critical
+      - pattern: "(?i)business rules|quy tắc nghiệp vụ"
+        name: "High-level Business Rules & Compliance"
+        severity: major
+      - pattern: "(?i)kpi|mục tiêu|business goals"
+        name: "Business Goals & KPIs"
+        severity: major
+      - pattern: "(?i)risk|rủi ro"
+        name: "Financial & Operational Risks"
+        severity: minor
+
+  - id: prd_analysis
+    name: "Product Requirements Document (PRD)"
+    required_sections:
+      - pattern: "(?i)persona|người dùng|user pain points"
+        name: "User Personas & Pain Points"
+        severity: major
+      - pattern: "(?i)user stor|câu chuyện người dùng"
+        name: "User Stories"
+        severity: critical
+      - pattern: "(?i)given.+when.+then|tiêu chí chấp nhận|acceptance criteria"
+        name: "Acceptance Criteria (Gherkin format)"
+        severity: critical
+      - pattern: "(?i)non-functional|phi chức năng"
+        name: "Non-Functional Requirements"
+        severity: minor
+      - pattern: "(?i)traceability|truy vết"
+        name: "Traceability Matrix"
+        severity: major
+
+  - id: frd_analysis
+    name: "Functional Requirements Document (FRD)"
+    required_sections:
+      - pattern: "(?i)data dictionary|từ điển dữ liệu|danh mục dữ liệu"
+        name: "Logical Data Dictionary"
+        severity: major
+      - pattern: "(?i)workflow|luồng xử lý|state machine|trạng thái"
+        name: "Logical Workflows & State Machines"
+        severity: critical
+      - pattern: "(?i)validation|error handling|xử lý lỗi"
+        name: "Business Validation & Error Handling Matrix"
+        severity: critical
+      - pattern: "(?i)integration|tích hợp"
+        name: "External Integration Touchpoints"
+        severity: minor
+
+prohibited_patterns:
+  frd_analysis:
+    - pattern: 'CREATE TABLE|ALTER TABLE|INDEX ON'
+      issue_code: "technical_leakage_in_frd"
+      description: "Physical DDL/SQL belongs strictly to Technical Design (TDD), not FRD."
+      severity: critical
+    - pattern: 'function\s+\w+\s*\(|class\s+\w+\s*\{'
+      issue_code: "raw_code_leakage_in_frd"
+      description: "Raw programming source code should not be mixed into business FRD."
+      severity: major
+
+rubric_dimensions:
+  - dimension: completeness
+    name: "Độ Đầy Đủ (Completeness)"
+    weight: 0.25
+    levels:
+      5: "Đầy đủ 100% các phần bắt buộc, chi tiết đến từng edge case và kịch bản biên."
+      4: "Đầy đủ các phần cốt lõi, thiếu sót không đáng kể ở các trường hợp phụ."
+      3: "Đủ sườn chính nhưng thiếu chi tiết nghiệp vụ hoặc bỏ sót kịch bản lỗi."
+      2: "Bỏ sót 1-2 phần quan trọng (thiếu Business Rules hoặc thiếu Gherkin)."
+      1: "Tài liệu sơ sài, thiếu phần lớn nội dung quy định."
+
+  - dimension: business_soundness
+    name: "Tính Chặt Chẽ Nghiệp Vụ (Business Soundness)"
+    weight: 0.35
+    levels:
+      5: "Luồng nghiệp vụ chặt chẽ, state machine hoàn chỉnh, ma trận validation rõ ràng."
+      4: "Nghiệp vụ logic, có ma trận validation, chỉ thiếu vài điều kiện biên hiếm gặp."
+      3: "Nghiệp vụ cơ bản đúng nhưng còn kẽ hở logic có thể gây tranh cãi khi dev."
+      2: "Luồng xử lý có mâu thuẫn hoặc không nêu rõ cách xử lý khi bên thứ ba lỗi."
+      1: "Sai lệch logic nghiệp vụ hoặc không có cơ chế kiểm soát dữ liệu."
+
+  - dimension: gherkin_and_traceability
+    name: "Chuẩn Gherkin & Truy Vết (Gherkin & Traceability)"
+    weight: 0.25
+    levels:
+      5: "100% User Stories có Given-When-Then chuẩn chỉ, có bảng Traceability Matrix liên kết chặt chẽ."
+      4: "Có Given-When-Then và bảng Traceability, một vài case chưa tối ưu câu chữ."
+      3: "Có tiêu chí chấp nhận nhưng viết dạng văn xuôi hoặc thiếu bảng Traceability."
+      2: "Chỉ có User Story dạng 'Là... tôi muốn... để...' mà không có tiêu chí nghiệm thu cụ thể."
+      1: "Hoàn toàn không có Acceptance Criteria hoặc không liên kết được với mục tiêu bài toán."
+
+  - dimension: clarity_and_format
+    name: "Độ Rõ Ràng & Chuẩn Format (Clarity & Format)"
+    weight: 0.15
+    levels:
+      5: "Markdown chuẩn đẹp, bảng biểu rõ ràng, ngôn từ nhất quán, dễ đọc theo Minto Pyramid."
+      4: "Trình bày rõ ràng, dễ theo dõi, format chuẩn."
+      3: "Format chấp nhận được nhưng bảng biểu lộn xộn hoặc dùng thuật ngữ không đồng nhất."
+      2: "Khó đọc, tường thuật dài dòng, thiếu bảng tóm tắt."
+      1: "Format hỏng, cấu trúc lộn xộn."
+
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: "instant_fail"

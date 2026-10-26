@@ -1,0 +1,44 @@
+skill_id: feynman-explainer
+skill_version: 1.0.0
+title: Feynman Technique Explanation Rubric
+description: Evaluates clear, jargon-free explanations using vivid analogies and
+  simple everyday language.
+task_types:
+  - id: feynman_explanation
+    name: Feynman Technique Explanation
+    required_sections:
+      - pattern: ngôn ngữ bình dân|plain language|khái niệm
+        name: Jargon-free Core Concept
+        severity: critical
+      - pattern: ví von|ẩn dụ|analogy
+        name: Real-world Relatable Analogy
+        severity: critical
+      - pattern: gỡ rối|lỗ hổng|misconception
+        name: Addressing Common Misconceptions
+        severity: major
+      - pattern: tóm tắt 1 câu|takeaway
+        name: One-sentence Simple Takeaway
+        severity: major
+prohibited_patterns:
+  feynman_explanation:
+    - pattern: dùng thuật ngữ khó hiểu mà không giải thích
+      issue_code: unexplained_academic_jargon
+      description: Cấm ném thuật ngữ học thuật phức tạp mà không cắt nghĩa bình dân.
+      severity: critical
+rubric_dimensions:
+  - dimension: completeness
+    name: Độ Đầy Đủ (Completeness)
+    weight: 0.3
+  - dimension: soundness
+    name: Tính Chặt Chẽ & Đúng Đắn (Soundness)
+    weight: 0.35
+  - dimension: actionability
+    name: Tính Khả Thi & Hành Động (Actionability)
+    weight: 0.2
+  - dimension: clarity
+    name: Định Dạng & Rõ Ràng (Clarity)
+    weight: 0.15
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: instant_fail

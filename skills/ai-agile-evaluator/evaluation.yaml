@@ -1,0 +1,44 @@
+skill_id: ai-agile-evaluator
+skill_version: 1.0.0
+title: Agile Competency Evaluation Rubric
+description: Evaluates Agile competency scenarios, rubric-based grading for
+  BA/QC candidates, and anti-theory testing.
+task_types:
+  - id: agile_evaluation
+    name: Agile Scenario & Competency Assessment
+    required_sections:
+      - pattern: candidate|level|fresher|junior|middle|senior
+        name: Target Candidate Role & Level
+        severity: critical
+      - pattern: scenario|tình huống thực tế
+        name: Realistic Dilemma Scenario
+        severity: critical
+      - pattern: scorecard|rubric|thang điểm
+        name: Structured Scorecard & Rubric Breakdown
+        severity: critical
+      - pattern: actionable feedback|nhận xét cụ thể
+        name: Actionable Feedback
+        severity: major
+prohibited_patterns:
+  agile_evaluation:
+    - pattern: invest là gì|user story là gì|định nghĩa scrum
+      issue_code: theoretical_copy_paste_question
+      description: Cấm hỏi định nghĩa lý thuyết suông, bắt buộc dùng tình huống thực chiến.
+      severity: critical
+rubric_dimensions:
+  - dimension: completeness
+    name: Độ Đầy Đủ (Completeness)
+    weight: 0.3
+  - dimension: soundness
+    name: Tính Chặt Chẽ & Đúng Đắn (Soundness)
+    weight: 0.35
+  - dimension: actionability
+    name: Tính Khả Thi & Hành Động (Actionability)
+    weight: 0.2
+  - dimension: clarity
+    name: Định Dạng & Rõ Ràng (Clarity)
+    weight: 0.15
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: instant_fail

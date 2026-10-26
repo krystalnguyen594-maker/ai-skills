@@ -1,0 +1,19 @@
+{
+  "id": "tc-02",
+  "name": "Multi-tier Leave Approval Workflow (FRD)",
+  "task_type": "frd_analysis",
+  "prompt": "Viết tài liệu Functional Requirements Document (FRD) cho quy trình 'Phê duyệt đơn xin nghỉ phép nhiều cấp' (Nhân viên -> Trưởng phòng -> HR). Tài liệu phải có Từ điển dữ liệu nghiệp vụ (Data Dictionary), Luồng xử lý & Máy trạng thái (State Machine: Draft, Pending_Manager, Pending_HR, Approved, Rejected), Ma trận Validation & Xử lý lỗi (khi API HR timeout hoặc số dư ngày phép không đủ), Điểm tích hợp bên ngoài, và tuyệt đối tuân thủ phân tách trách nhiệm (không chứa code DDL vật lý của Dev).",
+  "expected_sections": [
+    "Logical Data Dictionary",
+    "Logical Workflows & State Machines",
+    "Business Validation & Error Handling Matrix",
+    "External Integration Touchpoints"
+  ],
+  "expected_business_rules": [
+    "Nghỉ từ 3 ngày trở lên bắt buộc qua Trưởng phòng và HR duyệt.",
+    "Không cho phép submit đơn nếu số dư phép năm còn lại < số ngày xin nghỉ.",
+    "Xử lý timeout khi đồng bộ sang hệ thống HR bên thứ ba."
+  ],
+  "sample_good_output": "# FRD: Quy Trình Phê Duyệt Đơn Nghỉ Phép Đa Cấp\n\n## 1. Logical Data Dictionary (Từ Điển Dữ Liệu Nghiệp Vụ)\n| Trường Dữ Liệu | Kiểu Dữ Liệu Nghiệp Vụ | Bắt Buộc | Mô Tả & Ràng Buộc Nghiệp Vụ |\n| :--- | :--- | :--- | :--- |\n| `request_id` | Mã định danh chuỗi | Có | Mã đơn nghỉ phép duy nhất (VD: LEAVE-2026-001) |\n| `employee_id` | Mã định danh nhân viên | Có | Người tạo đơn |\n| `leave_type` | Danh mục lựa chọn | Có | Phép năm (Annual), Phép ốm (Sick), Không lương (Unpaid) |\n| `start_date` / `end_date` | Ngày tháng | Có | `end_date` >= `start_date` |\n| `total_days` | Số thực (bước nhảy 0.5) | Có | Tổng số ngày tính theo ca làm việc |\n| `approval_status` | Trạng thái FSM | Có | Draft, Pending_Manager, Pending_HR, Approved, Rejected |\n\n## 2. Logical Workflows & State Machine (FSM)\n```mermaid\nstateDiagram-v2\n    [*] --> Draft : Tạo mới đơn\n    Draft --> Pending_Manager : Gửi phê duyệt\n    Pending_Manager --> Pending_HR : Trưởng phòng duyệt (>2 ngày)\n    Pending_Manager --> Approved : Trưởng phòng duyệt (<=2 ngày)\n    Pending_Manager --> Rejected : Trưởng phòng từ chối\n    Pending_HR --> Approved : HR duyệt cuối\n    Pending_HR --> Rejected : HR từ chối\n    Approved --> [*]\n    Rejected --> [*]\n```\n\n## 3. Business Validation & Error Handling Matrix\n| Mã Lỗi | Tình Huống Kích Hoạt | Hành Vi Hệ Thống | Thông Báo Hiển Thị Người Dùng |\n| :--- | :--- | :--- | :--- |\n| `ERR_INSUFFICIENT_BALANCE` | `total_days` > số dư phép còn lại | Chặn submit, highlight ô số ngày | 'Số dư phép năm không đủ (còn lại: X ngày).' |\n| `ERR_DATE_OVERLAP` | Trùng khoảng ngày với đơn đã duyệt khác | Chặn submit đơn mới | 'Khoảng thời gian này bạn đã có đơn xin nghỉ khác.' |\n| `ERR_HR_API_TIMEOUT` | Gọi API HR bên ngoài bị timeout (>5s) | Đưa vào hàng đợi retry (tối đa 3 lần) | 'Hệ thống đang đồng bộ dữ liệu với HR, vui lòng chờ trong giây lát.' |\n\n## 4. External Integration Touchpoints\n- **HR Balance Service:** Endpoint đồng bộ số dư phép thực tế của nhân viên. Giao thức REST, cơ chế cache 5 phút, timeout 5s kèm retry.\n- **Notification Service:** Bắn tin nhắn qua Slack và Email cho Manager khi có đơn mới cần duyệt.\n",
+  "sample_flawed_output": "# FRD Đơn Nghỉ Phép\n\n## Database Table DDL\n```sql\nCREATE TABLE leave_requests (\n  id INT PRIMARY KEY AUTO_INCREMENT,\n  user_id INT NOT NULL,\n  status VARCHAR(20)\n);\nCREATE INDEX idx_user ON leave_requests(user_id);\n```\n\n## Code xử lý\n```javascript\nfunction approveLeave(reqId) {\n  db.query('UPDATE leave_requests SET status = approved');\n}\n```\n"
+}

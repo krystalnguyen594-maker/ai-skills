@@ -1,0 +1,14 @@
+{
+  "id": "tc-01",
+  "name": "Explain Database Indexing to a 10-year-old",
+  "task_type": "feynman_explanation",
+  "prompt": "Giải thích cơ chế Index trong cơ sở dữ liệu theo kỹ thuật Feynman.",
+  "expected_sections": [
+    "Jargon-free Core Concept",
+    "Real-world Relatable Analogy",
+    "Addressing Common Misconceptions",
+    "One-sentence Simple Takeaway"
+  ],
+  "sample_good_output": "# Giải Thích Cơ Chế Database Index Theo Kỹ Thuật Feynman\n\n## 1. Khái Niệm Bình Dân\nIndex trong cơ sở dữ liệu giống hệt như **Mục Lục ở cuối cuốn từ điển dày 1000 trang**.\n\n## 2. Ẩn Dụ Trực Quan\nNếu không có mục lục, muốn tìm từ 'Mèo', bạn phải lật từng trang từ trang 1 đến trang 1000 (gọi là Full Table Scan). Nhờ có mục lục xếp theo chữ cái A-Z, bạn chỉ cần 3 giây để biết từ 'Mèo' nằm ở trang 450.\n\n## 3. Gỡ Rối Nhầm Lẫn\nTại sao không đánh index cho tất cả các cột? Vì mỗi lần bạn thêm 1 từ mới vào sách, bạn phải viết lại mục lục. Quá nhiều mục lục sẽ làm chậm việc ghi sách (tốn bộ nhớ và chậm lệnh Insert/Update).\n\n## 4. Tóm Tắt 1 Câu\nIndex là chiếc bản đồ phím tắt giúp tìm dữ liệu trong chớp mắt mà không phải lật từng trang.",
+  "sample_flawed_output": "# Database Index\nIndex là cấu trúc dữ liệu B-Tree lưu trữ các con trỏ trỏ tới khối dữ liệu vật lý trên ổ đĩa SSD."
+}

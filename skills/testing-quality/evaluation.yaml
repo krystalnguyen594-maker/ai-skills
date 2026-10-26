@@ -1,0 +1,44 @@
+skill_id: testing-quality
+skill_version: 1.0.0
+title: Quality Engineering & Test Automation Rubric
+description: Evaluates automated API/UI test suites, Playwright/Cypress
+  patterns, test fixtures, and teardown cleanup.
+task_types:
+  - id: test_automation
+    name: Test Automation Spec & Quality Gates
+    required_sections:
+      - pattern: test case|tc-|kịch bản|test execution|test spec
+        name: Structured Test Cases
+        severity: critical
+      - pattern: assertion|expect|kiểm tra kết quả
+        name: Deterministic Assertions
+        severity: critical
+      - pattern: fixture|setup|data seed
+        name: Test Fixture & Dynamic Data Seed
+        severity: major
+      - pattern: teardown|cleanup|dọn dẹp
+        name: Teardown & Cleanup Mechanism
+        severity: critical
+prohibited_patterns:
+  test_automation:
+    - pattern: hardcode id|sleep\(10000\)|chờ bừa
+      issue_code: flaky_test_pattern
+      description: Cấm hardcode ID tĩnh và sleep vô tội vạ gây flaky test.
+      severity: critical
+rubric_dimensions:
+  - dimension: completeness
+    name: Độ Đầy Đủ (Completeness)
+    weight: 0.3
+  - dimension: soundness
+    name: Tính Chặt Chẽ & Đúng Đắn (Soundness)
+    weight: 0.35
+  - dimension: actionability
+    name: Tính Khả Thi & Hành Động (Actionability)
+    weight: 0.2
+  - dimension: clarity
+    name: Định Dạng & Rõ Ràng (Clarity)
+    weight: 0.15
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: instant_fail

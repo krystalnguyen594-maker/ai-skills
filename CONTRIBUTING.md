@@ -12,17 +12,19 @@ Cảm ơn bạn đã quan tâm đóng góp kỹ năng (Skills) vào kho lưu tr�
 
 ---
 
-## 2. Cấu trúc một Skill chuẩn
+## 2. Cấu trúc một Skill chuẩn (Standard Skill Structure)
 
-Mỗi skill bắt buộc phải là một thư mục riêng biệt nằm trong đúng Domain tương ứng:
+Mỗi skill bắt buộc phải là một thư mục riêng biệt nằm trong `skills/<skill-name>/` và tích hợp sẵn bộ kiểm thử:
 
 ```text
-skills/<domain-name>/<skill-name>/
-├── SKILL.md          # [Bắt buộc] File hướng dẫn chính kèm YAML frontmatter
-├── scripts/          # [Tùy chọn] Các script tự động hóa (Python, Bash, JS)
-├── examples/         # [Tùy chọn] File ví dụ mẫu, test case tham chiếu
-├── resources/        # [Tùy chọn] Assets, templates tĩnh
-└── references/       # [Tùy chọn] Hướng dẫn chuyên sâu, cẩm nang nghiệp vụ
+skills/<skill-name>/
+├── SKILL.md             # [Bắt buộc] File hướng dẫn chính kèm YAML frontmatter
+├── evaluation.yaml      # [Bắt buộc] Bộ tiêu chí thẩm định chất lượng tự động (Rubric & Quality Gates)
+├── benchmarks/          # [Bắt buộc] Bộ kịch bản kiểm thử đối chứng hồi quy
+│   └── tc-01-baseline.json  # Tối thiểu 1 case gồm cả sample_good_output và sample_flawed_output
+├── scripts/             # [Tùy chọn] Các script tự động hóa (Python, Bash, JS)
+├── examples/            # [Tùy chọn] File ví dụ mẫu, test case tham chiếu
+└── references/          # [Tùy chọn] Hướng dẫn chuyên sâu, cẩm nang nghiệp vụ
 ```
 
 Bạn có thể copy template mẫu tại [`templates/skill-template/`](./templates/skill-template/) để bắt đầu.
@@ -48,20 +50,27 @@ metadata:
 
 ---
 
-## 4. Các bước gửi đóng góp (Pull Request)
+## 4. Tiêu chuẩn Thẩm định Tự động (`evaluation.yaml` & `benchmarks/`)
 
-1. **Chọn đúng Domain**:
-   - `skills/product-strategy/`: Chiến lược, phân tích yêu cầu, tài liệu BRD/PRD.
-   - `skills/design-prototyping/`: Thiết kế UI/UX, tokens, prototype web.
-   - `skills/quality-engineering/`: Kiểm thử tự động API/E2E, tiêu chuẩn chất lượng.
-   - `skills/cognitive-learning/`: Khung nhận thức, giải thích khái niệm, đào tạo & đánh giá năng lực.
-   - `skills/tooling-automation/`: Tool xuất bản, scripts biên dịch, tự động hóa dữ liệu.
-2. **Khởi tạo skill** theo template tại `templates/skill-template/`.
-3. **Cập nhật `registry.json`**: Thêm thông tin skill mới vào mảng `"skills"` trong file `registry.json`.
-4. **Cập nhật `README.md`**: Bổ sung skill vào bảng mục lục tra cứu.
-5. **Tự kiểm tra (Self-Check)**:
-   - File `SKILL.md` có đầy đủ YAML frontmatter hợp lệ không?
-   - Không chứa thông tin nhạy cảm (API keys, credentials, secret token).
-   - Đã test thử nghiệm prompt kích hoạt với Antigravity chưa?
+Từ phiên bản hiện tại, mọi skill mới nộp vào kho lưu trữ đều phải đi kèm bộ đánh giá tự động:
+1. **File `evaluation.yaml`**: Định nghĩa các mục bắt buộc (`required_sections`), các phản mẫu bị cấm (`prohibited_patterns`), thang điểm Rubric và ngưỡng đạt chuẩn `pass_threshold: 80`.
+2. **File `benchmarks/tc-01-baseline.json`**: Chứa ít nhất 1 kịch bản kiểm thử gồm:
+   - `sample_good_output`: Đầu ra mẫu chuẩn chỉ (phải đạt điểm $\ge 80$).
+   - `sample_flawed_output`: Đầu ra mẫu cố tình vi phạm (phải bị đánh rớt $< 80$ và phát hiện đúng mã lỗi).
+
+---
+
+## 5. Các bước gửi đóng góp (Pull Request Checklist)
+
+1. **Khởi tạo thư mục skill**: Tạo tại `skills/<skill-name>/`.
+2. **Soạn thảo `SKILL.md`**: Viết hướng dẫn chuẩn xác, actionable, tuân thủ nguyên tắc độc lập theo nhu cầu (*Independent On-demand*).
+3. **Tạo `evaluation.yaml` & `benchmarks/`**: Thiết lập bộ rubric và bài test mẫu.
+4. **Tự kiểm tra (Self-Check qua CLI)**:
+   ```bash
+   # Chạy thẩm định cục bộ cho skill mới của bạn:
+   npm run eval <skill-name>
+   ```
+   *Yêu cầu nghiệm thu:* Mẫu Good phải đạt `PASS` ($\ge 80$), mẫu Flawed phải đạt `FAIL` ($< 80$) với lỗi được phát hiện rõ ràng.
+5. **Cập nhật `README.md` & `registry.json`**: Bổ sung skill vào bảng mục lục tra cứu.
 6. **Tạo Git Commit & Pull Request**:
-   - Commit message rõ ràng: `feat(skill): add <skill-name> to <domain>`
+   - Commit message: `feat(skill): add <skill-name> with automated evaluation rubric`

@@ -1,0 +1,44 @@
+skill_id: debugging-rca
+skill_version: 1.0.0
+title: Root Cause Analysis (RCA) & Debugging Rubric
+description: Evaluates incident debugging, 5 Whys analysis, timeline
+  reconstruction, and preventative action items.
+task_types:
+  - id: rca_analysis
+    name: Incident Root Cause Analysis
+    required_sections:
+      - pattern: timeline|dòng thời gian|diễn biến
+        name: Incident Timeline
+        severity: major
+      - pattern: symptom vs cause|triệu chứng|nguyên nhân
+        name: Symptom vs Cause Separation
+        severity: critical
+      - pattern: 5 whys|tại sao
+        name: 5 Whys Analysis
+        severity: critical
+      - pattern: action items|phòng ngừa|remedy
+        name: Preventative Action Items (CAPA)
+        severity: critical
+prohibited_patterns:
+  rca_analysis:
+    - pattern: do người dùng dùng sai|lỗi do sơ suất cá nhân
+      issue_code: blaming_individual_anti_pattern
+      description: RCA phải phân tích lỗi hệ thống, không đổ lỗi cá nhân.
+      severity: major
+rubric_dimensions:
+  - dimension: completeness
+    name: Độ Đầy Đủ (Completeness)
+    weight: 0.3
+  - dimension: soundness
+    name: Tính Chặt Chẽ & Đúng Đắn (Soundness)
+    weight: 0.35
+  - dimension: actionability
+    name: Tính Khả Thi & Hành Động (Actionability)
+    weight: 0.2
+  - dimension: clarity
+    name: Định Dạng & Rõ Ràng (Clarity)
+    weight: 0.15
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: instant_fail

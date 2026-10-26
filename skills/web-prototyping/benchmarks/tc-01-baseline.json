@@ -1,0 +1,14 @@
+{
+  "id": "tc-01",
+  "name": "Baseline Test for web-prototyping",
+  "task_type": "web_prototyping_task",
+  "prompt": "Thực hiện một kịch bản chuẩn cho kỹ năng web-prototyping.",
+  "expected_sections": [
+    "Context & Objectives",
+    "Core Principles & Guidelines",
+    "Step-by-step Execution",
+    "Standard Deliverable Output"
+  ],
+  "sample_good_output": "# Kế Hoạch Thực Thi Kỹ Năng: web-prototyping\n\n## 1. Bối Cảnh & Mục Tiêu\nXác định rõ ràng phạm vi bài toán và tiêu chí thành công.\n\n## 2. Nguyên Tắc Cốt Lõi\nTuân thủ nghiêm ngặt các hướng dẫn và rào cản chất lượng.\n\n## 3. Quy Trình Các Bước Thực Hiện\n1. Bước 1: Tiếp nhận và phân tích thông tin đầu vào.\n2. Bước 2: Thực thi theo khung tiêu chuẩn.\n3. Bước 3: Rà soát kiểm tra chất lượng trước khi bàn giao.\n\n## 4. Kết Quả Bàn Giao Hoàn Chỉnh\nĐầy đủ bằng chứng, dữ liệu và tài liệu bàn giao cụ thể.",
+  "sample_flawed_output": "# Làm việc\nCứ làm đại khái là được."
+}

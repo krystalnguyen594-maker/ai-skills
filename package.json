@@ -1,0 +1,31 @@
+{
+  "name": "ai-skills",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Kho lưu trữ kỹ năng AI chuyên biệt tích hợp hệ thống đánh giá tự động (AI Skills Evaluation System)",
+  "scripts": {
+    "eval": "node --experimental-strip-types evaluation/src/cli.ts",
+    "eval:all": "node --experimental-strip-types evaluation/src/cli.ts --all",
+    "eval:send": "node --experimental-strip-types evaluation/src/cli.ts documentation-analysis --opt-in",
+    "eval:all:send": "node --experimental-strip-types evaluation/src/cli.ts --all --opt-in",
+    "server": "node --experimental-strip-types server/src/index.ts",
+    "report": "node --experimental-strip-types server/src/cli-report.ts",
+    "test:e2e": "node --experimental-strip-types evaluation/src/cli.ts documentation-analysis --opt-in && node --experimental-strip-types server/src/cli-report.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krystalnguyen594-maker/ai-skills.git"
+  },
+  "keywords": [
+    "ai-skills",
+    "evaluation",
+    "rubric",
+    "benchmarks",
+    "antigravity"
+  ],
+  "author": "Antigravity & DuyHo",
+  "license": "MIT",
+  "dependencies": {
+    "yaml": "^2.7.0"
+  }
+}

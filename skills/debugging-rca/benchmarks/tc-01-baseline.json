@@ -1,0 +1,14 @@
+{
+  "id": "tc-01",
+  "name": "Payment Gateway Timeout Incident RCA",
+  "task_type": "rca_analysis",
+  "prompt": "Viết báo cáo RCA cho sự cố nghẽn cổng thanh toán giờ cao điểm.",
+  "expected_sections": [
+    "Incident Timeline",
+    "Symptom vs Cause Separation",
+    "5 Whys Analysis",
+    "Preventative Action Items (CAPA)"
+  ],
+  "sample_good_output": "# RCA: Sự Cố Nghẽn Cổng Thanh Toán Ngày 15/10\n\n## 1. Incident Timeline\n- 11:45: Lưu lượng checkout tăng gấp 4 lần.\n- 11:50: Tỷ lệ timeout tăng lên 35%.\n- 12:15: Tăng pool kết nối database, hệ thống ổn định trở lại.\n\n## 2. Symptom vs. Cause\n- Triệu chứng: Người dùng nhận mã lỗi 504 Gateway Timeout.\n- Nguyên nhân gốc: Connection pool của database bị cạn kiệt do query đối soát thiếu index.\n\n## 3. 5 Whys Analysis\nTại sao timeout? -> Cạn pool DB. Tại sao cạn? -> Query chạy mất 8s. Tại sao mất 8s? -> Full table scan. Tại sao full table scan? -> Thiếu index cột `order_status`.\n\n## 4. Preventative Action Items\n1. Tạo index `idx_orders_status` (Hoàn thành ngay).\n2. Thiết lập alert Prometheus khi pool đạt ngưỡng 80%.",
+  "sample_flawed_output": "# Báo cáo lỗi\nHôm qua web bị chậm. Chắc do mạng lag thôi."
+}

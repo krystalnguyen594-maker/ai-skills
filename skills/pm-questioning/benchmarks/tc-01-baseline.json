@@ -1,0 +1,15 @@
+{
+  "id": "tc-01",
+  "name": "Feature Proposal Critique: AI Chatbot in Checkout",
+  "task_type": "pm_critique",
+  "prompt": "Phản biện đề xuất đưa AI Chatbot tư vấn trực tiếp vào trang thanh toán checkout.",
+  "expected_sections": [
+    "First Principles Deconstruction",
+    "Pre-Mortem Failure Analysis",
+    "5 Whys Deep Dive",
+    "Second-Order Consequences",
+    "Constructive Pushback & Alternative"
+  ],
+  "sample_good_output": "# PM Critical Analysis: Đề Xuất Tích Hợp AI Chatbot Trong Trang Checkout\n\n## 1. First Principles Deconstruction\nMục tiêu tối thượng của trang Checkout là tối thiểu hóa sự phân tâm để người dùng hoàn tất thanh toán nhanh nhất. Việc thêm chatbot làm phân tán chú ý và tăng thời gian dừng (friction).\n\n## 2. 5 Whys Deep Dive\nTại sao cần chatbot ở checkout? -> Khách hỏi phí ship. Tại sao khách hỏi phí ship? -> Vì trang checkout không hiển thị bảng tính phí ship tự động. Gốc rễ: Cần hiển thị rõ phí ship, không phải cần chatbot.\n\n## 3. Pre-Mortem Failure Simulation\nGiả định 6 tháng nữa tính năng này thất bại thảm hại: Tỷ lệ bỏ giỏ hàng tăng 15% vì khách mải chat với bot hoặc bot hallucinate đưa ra mã giảm giá sai khiến khách khiếu nại.\n\n## 4. Second-Order Consequences\nPhát sinh chi phí token LLM cho mỗi lượt thanh toán, tăng tải server và phát sinh rủi ro bảo mật lộ thông tin đơn hàng.\n\n## 5. Constructive Pushback & Simpler Alternative\nKhông nên nhúng bot vào checkout. Thay vào đó, thiết kế widget FAQ thu gọn và tự động hiển thị phí ship + chính sách đổi trả minh bạch.",
+  "sample_flawed_output": "# Đồng ý\nTính năng này hay, bắt trend AI. Cứ làm luôn đi."
+}

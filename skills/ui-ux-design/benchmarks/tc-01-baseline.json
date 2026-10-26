@@ -1,0 +1,14 @@
+{
+  "id": "tc-01",
+  "name": "SaaS Analytics Dashboard UI Tokens",
+  "task_type": "ui_ux_spec",
+  "prompt": "Thiết kế hệ thống Design Tokens và bảng màu cao cấp cho SaaS Analytics Dashboard.",
+  "expected_sections": [
+    "Curated Design Tokens & Palette",
+    "Typography Scale (Google Fonts)",
+    "Rich Visual Aesthetics & Depth",
+    "Dynamic Micro-animations & States"
+  ],
+  "sample_good_output": "# UI/UX Design Spec: SaaS Analytics Dashboard\n\n## 1. Curated Color Palette (Dark Mode First)\n- **Background Primary:** `hsl(222, 47%, 11%)` (Deep Slate)\n- **Card Surface:** `rgba(30, 41, 59, 0.7)` kèm `backdrop-filter: blur(12px)` (Glassmorphism)\n- **Primary Accent:** `hsl(217, 91%, 60%)` gradient sang `hsl(270, 95%, 65%)` (Electric Violet)\n\n## 2. Typography Scale\nFont: Inter (Google Fonts), scale rõ ràng từ 12px (Caption) đến 32px (Header Display).\n\n## 3. Micro-animations & Interactions\nHover card: `transform: translateY(-2px)`, transition `cubic-bezier(0.4, 0, 0.2, 1) 200ms`.\nLoading skeleton: Shimmer gradient mượt mà.",
+  "sample_flawed_output": "# Thiết kế giao diện\nDùng màu đỏ và xanh lá cây. Nền trắng chữ đen cơ bản."
+}

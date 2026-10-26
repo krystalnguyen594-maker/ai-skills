@@ -1,0 +1,50 @@
+skill_id: technical-design
+skill_version: 1.0.0
+title: Technical Design & Architecture Document Rubric
+description: Evaluates technical architecture proposals, ADRs, trade-off
+  matrices, and non-functional requirements.
+task_types:
+  - id: tech_design
+    name: Technical Architecture & Design
+    required_sections:
+      - pattern: problem|vấn đề
+        name: Problem Definition
+        severity: critical
+      - pattern: constraints|ràng buộc
+        name: Constraints
+        severity: major
+      - pattern: non-functional|phi chức năng
+        name: Non-Functional Requirements
+        severity: major
+      - pattern: options|phương án|trade-off
+        name: Trade-off Matrix & Options
+        severity: critical
+      - pattern: decision|quyết định
+        name: Selected Decision & Rationale
+        severity: critical
+      - pattern: rollout|rollback|kế hoạch triển khai
+        name: Rollout & Rollback Plan
+        severity: major
+prohibited_patterns:
+  tech_design:
+    - pattern: chỉ có 1 cách|không có lựa chọn khác|only option
+      issue_code: missing_trade_off_analysis
+      description: Bắt buộc phải so sánh ít nhất 2 phương án kỹ thuật.
+      severity: major
+rubric_dimensions:
+  - dimension: completeness
+    name: Độ Đầy Đủ (Completeness)
+    weight: 0.3
+  - dimension: soundness
+    name: Tính Chặt Chẽ & Đúng Đắn (Soundness)
+    weight: 0.35
+  - dimension: actionability
+    name: Tính Khả Thi & Hành Động (Actionability)
+    weight: 0.2
+  - dimension: clarity
+    name: Định Dạng & Rõ Ràng (Clarity)
+    weight: 0.15
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: instant_fail

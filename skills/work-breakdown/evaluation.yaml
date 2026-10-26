@@ -1,0 +1,45 @@
+skill_id: work-breakdown
+skill_version: 1.0.0
+title: Work Breakdown Structure (WBS) & Story Slicing Rubric
+description: Evaluates Epic deconstruction, vertical story slicing, dependency
+  mapping, and acceptance criteria.
+task_types:
+  - id: wbs_planning
+    name: Work Breakdown & Story Slicing
+    required_sections:
+      - pattern: epic|tổng quan dự án
+        name: Epic Scope Definition
+        severity: major
+      - pattern: user stor|stories|story slicing|phân rã
+        name: Vertical User Story Slicing
+        severity: critical
+      - pattern: dependencies|phụ thuộc
+        name: Cross-team Dependencies
+        severity: critical
+      - pattern: estimate|độ phức tạp|story points
+        name: Complexity / Sizing Estimates
+        severity: major
+prohibited_patterns:
+  wbs_planning:
+    - pattern: cắt theo tầng|story chỉ làm fe|story chỉ làm be
+      issue_code: horizontal_slicing_anti_pattern
+      description: Bắt buộc cắt Story theo chiều dọc (Vertical Slice) mang lại giá trị
+        độc lập.
+      severity: critical
+rubric_dimensions:
+  - dimension: completeness
+    name: Độ Đầy Đủ (Completeness)
+    weight: 0.3
+  - dimension: soundness
+    name: Tính Chặt Chẽ & Đúng Đắn (Soundness)
+    weight: 0.35
+  - dimension: actionability
+    name: Tính Khả Thi & Hành Động (Actionability)
+    weight: 0.2
+  - dimension: clarity
+    name: Định Dạng & Rõ Ràng (Clarity)
+    weight: 0.15
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: instant_fail

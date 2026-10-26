@@ -1,0 +1,44 @@
+skill_id: agent-handoff-contract
+skill_version: 1.0.0
+title: AGENT HANDOFF CONTRACT Quality Rubric
+description: Standardized rubric and quality criteria for auditing and executing
+  the agent-handoff-contract skill.
+task_types:
+  - id: agent_handoff_contract_task
+    name: agent handoff contract execution
+    required_sections:
+      - pattern: overview|tổng quan|bối cảnh
+        name: Context & Objectives
+        severity: major
+      - pattern: guidelines|nguyên tắc|quy tắc
+        name: Core Principles & Guidelines
+        severity: critical
+      - pattern: step|quy trình|thực hiện
+        name: Step-by-step Execution
+        severity: critical
+      - pattern: output|kết quả|deliverable
+        name: Standard Deliverable Output
+        severity: critical
+prohibited_patterns:
+  agent_handoff_contract_task:
+    - pattern: làm qua loa|không rõ ràng|tùy ý
+      issue_code: vague_execution
+      description: Bắt buộc phải có hướng dẫn và kết quả cụ thể.
+      severity: major
+rubric_dimensions:
+  - dimension: completeness
+    name: Độ Đầy Đủ (Completeness)
+    weight: 0.3
+  - dimension: soundness
+    name: Tính Chặt Chẽ & Đúng Đắn (Soundness)
+    weight: 0.35
+  - dimension: actionability
+    name: Tính Khả Thi & Hành Động (Actionability)
+    weight: 0.2
+  - dimension: clarity
+    name: Định Dạng & Rõ Ràng (Clarity)
+    weight: 0.15
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: instant_fail

@@ -1,0 +1,16 @@
+{
+  "id": "tc-01",
+  "name": "Cart Total Mismatch Bug Report",
+  "task_type": "bug_report",
+  "prompt": "Viết báo cáo lỗi khi tổng tiền giỏ hàng hiển thị sai sau khi xóa 1 sản phẩm.",
+  "expected_sections": [
+    "Severity Header",
+    "Environment Details",
+    "Steps to Reproduce",
+    "Expected Behavior",
+    "Actual Behavior",
+    "Evidence / Logs / Screenshots"
+  ],
+  "sample_good_output": "### [SEV-2] Tổng tiền giỏ hàng không tự động cập nhật sau khi xóa sản phẩm\n\n**Environment:** Chrome 124, macOS Sonoma, Staging build #482, User: Normal Buyer\n\n**Steps to reproduce:**\n1. Đăng nhập và thêm 2 sản phẩm (Sản phẩm A 100k, Sản phẩm B 200k) vào giỏ hàng.\n2. Vào trang Giỏ hàng (/cart), quan sát tổng tiền hiển thị là 300.000đ.\n3. Bấm icon Thùng rác để xóa Sản phẩm A.\n4. Xác nhận modal 'Bạn có chắc muốn xóa?'.\n\n**Expected:** Sản phẩm A biến mất, tổng tiền giỏ hàng tự động trừ đi 100k và hiển thị 200.000đ.\n**Actual:** Sản phẩm A biến mất nhưng tổng tiền vẫn giữ nguyên là 300.000đ cho đến khi F5 lại trang.\n\n**Evidence:** Console log: `Uncaught TypeError: updateSubtotal is not a function at cart.js:142`.\n**Frequency:** Luôn luôn xảy ra (5/5 lần thử).\n**Scope:** Ảnh hưởng toàn bộ người dùng Desktop Web trên trang giỏ hàng.",
+  "sample_flawed_output": "# Lỗi web giỏ hàng\nNó bị lỗi không chạy được, tính sai tiền. Sửa gấp dùm."
+}

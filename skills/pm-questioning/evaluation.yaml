@@ -1,0 +1,47 @@
+skill_id: pm-questioning
+skill_version: 1.0.0
+title: PM Critical Questioning & Risk Assessment Rubric
+description: Evaluates PM critical thinking, root-cause 5 Whys, Pre-Mortem
+  analysis, and constructive pushback.
+task_types:
+  - id: pm_critique
+    name: PM Risk Assessment & Critical Critique
+    required_sections:
+      - pattern: first principles|nguyên lý đầu tiên|cốt lõi
+        name: First Principles Deconstruction
+        severity: critical
+      - pattern: pre-mortem|tiền tử|giả định thất bại
+        name: Pre-Mortem Failure Analysis
+        severity: critical
+      - pattern: 5 whys|tại sao|root cause
+        name: 5 Whys Deep Dive
+        severity: major
+      - pattern: second-order|hệ quả cấp hai
+        name: Second-Order Consequences
+        severity: major
+      - pattern: pushback|đề xuất thay thế|trade-off
+        name: Constructive Pushback & Alternative
+        severity: critical
+prohibited_patterns:
+  pm_critique:
+    - pattern: đồng ý hoàn toàn|làm luôn không cần hỏi|cứ thế mà làm
+      issue_code: lack_of_critical_questioning
+      description: PM không được gật đầu mù quáng mà phải phản biện rủi ro.
+      severity: critical
+rubric_dimensions:
+  - dimension: completeness
+    name: Độ Đầy Đủ (Completeness)
+    weight: 0.3
+  - dimension: soundness
+    name: Tính Chặt Chẽ & Đúng Đắn (Soundness)
+    weight: 0.35
+  - dimension: actionability
+    name: Tính Khả Thi & Hành Động (Actionability)
+    weight: 0.2
+  - dimension: clarity
+    name: Định Dạng & Rõ Ràng (Clarity)
+    weight: 0.15
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: instant_fail

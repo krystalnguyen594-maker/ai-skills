@@ -1,0 +1,44 @@
+skill_id: doc-writing-process
+skill_version: 1.0.0
+title: Document Writing 2-Tier Sub-agent Process Rubric
+description: Evaluates the document writing phase discovery, drafting, sub-agent
+  peer critique, and sign-off gate.
+task_types:
+  - id: doc_process
+    name: Phased Document Drafting & Review Process
+    required_sections:
+      - pattern: phase|giai đoạn
+        name: Phased Workflow Definition
+        severity: critical
+      - pattern: discovery|thu thập
+        name: Discovery & Input Gate
+        severity: major
+      - pattern: peer review|critique|phản biện
+        name: Sub-agent Peer Review
+        severity: critical
+      - pattern: sign-off|duyệt|acceptance gate
+        name: Sign-off & Quality Gate
+        severity: critical
+prohibited_patterns:
+  doc_process:
+    - pattern: viết 1 lèo xong luôn|không cần review
+      issue_code: skip_review_gate
+      description: Bắt buộc phải có cổng phản biện sub-agent.
+      severity: critical
+rubric_dimensions:
+  - dimension: completeness
+    name: Độ Đầy Đủ (Completeness)
+    weight: 0.3
+  - dimension: soundness
+    name: Tính Chặt Chẽ & Đúng Đắn (Soundness)
+    weight: 0.35
+  - dimension: actionability
+    name: Tính Khả Thi & Hành Động (Actionability)
+    weight: 0.2
+  - dimension: clarity
+    name: Định Dạng & Rõ Ràng (Clarity)
+    weight: 0.15
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: instant_fail

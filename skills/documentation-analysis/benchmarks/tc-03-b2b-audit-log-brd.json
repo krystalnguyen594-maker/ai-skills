@@ -1,0 +1,20 @@
+{
+  "id": "tc-03",
+  "name": "Enterprise Audit Log & Compliance Engine (BRD)",
+  "task_type": "brd_analysis",
+  "prompt": "Viết tài liệu Business Requirements Document (BRD) cho việc xây dựng phân hệ 'Audit Log & Nhật ký tuân thủ bảo mật' của nền tảng B2B SaaS. Tài liệu cần nêu rõ Bối cảnh & Mục tiêu kinh doanh, Phạm vi dự án (In-Scope và Out-of-Scope), Quy tắc tuân thủ (Compliance & Business Rules), Chỉ số đo lường hiệu quả (KPIs), và Ma trận rủi ro vận hành/tài chính.",
+  "expected_sections": [
+    "Executive Summary & Project Objectives",
+    "Project Scope (In-Scope vs Out-of-Scope)",
+    "Business Rules & Compliance",
+    "Business Goals & KPIs",
+    "Financial & Operational Risks"
+  ],
+  "expected_business_rules": [
+    "Toàn bộ nhật ký audit log phải là Append-Only (không ai, kể cả Super Admin, được sửa hoặc xóa).",
+    "Thời gian lưu trữ tối thiểu 365 ngày theo tiêu chuẩn SOC2/ISO 27001.",
+    "Khả năng xuất báo cáo định dạng JSON/CSV có chữ ký số xác thực tính toàn vẹn."
+  ],
+  "sample_good_output": "# BRD: Phân Hệ Audit Log & Nhật Ký Tuân Thủ Bảo Mật\n\n## 1. Executive Summary & Project Objectives\n- **Bối cảnh:** Khách hàng doanh nghiệp Enterprise yêu cầu nền tảng phải đạt chứng chỉ tuân thủ SOC2 Type II và ISO 27001 để ký hợp đồng gia hạn hàng năm trị giá $500,000+.\n- **Mục tiêu:** Xây dựng hệ thống ghi nhận toàn diện mọi hành vi truy cập, thay đổi quyền, thao tác xuất dữ liệu nhạy cảm trên toàn bộ workspace khách hàng, đảm bảo tính bất biến (immutability).\n\n## 2. Project Scope (Phạm Vi Dự Án)\n### In-Scope (Trong phạm vi)\n- Ghi log tự động cho 100% sự kiện: Đăng nhập/Đăng xuất, Phân quyền/Gán Role, Cấu hình License, Xuất file dữ liệu.\n- Lưu trữ an toàn trong 365 ngày ở kho lưu trữ Append-Only.\n- Giao diện tra cứu, bộ lọc tìm kiếm theo thời gian, user, IP, hành động.\n- Tính năng xuất báo cáo phục vụ kiểm toán độc lập.\n\n### Out-of-Scope (Ngoài phạm vi)\n- Hệ thống SIEM phân tích cảnh báo đe dọa thời gian thực (Real-time Threat Detection - sẽ chuyển sang Phase 2).\n- Giám sát mạng nội bộ cấp độ hạ tầng máy chủ vật lý.\n\n## 3. High-level Business Rules & Compliance\n- **Quy tắc 1 (Tính bất biến):** Mọi bản ghi Audit Log đều là bất biến (WORM - Write Once, Read Many). Nghiêm cấm mọi quyền cập nhật hoặc xóa dữ liệu.\n- **Quy tắc 2 (Lưu vết IP & Danh tính):** Mỗi hành động phải ghi nhận chính xác `actor_id`, `actor_role`, `target_resource`, `timestamp_utc`, và `client_ip`.\n- **Quy tắc 3 (Thời hạn lưu trữ):** Dữ liệu được lưu trữ trực tuyến (Hot Storage) trong 90 ngày và chuyển sang kho nén (Cold Storage) trong 275 ngày tiếp theo.\n\n## 4. Business Goals & KPIs\n- Đạt chứng chỉ kiểm toán SOC2 Type II vào Quý 4/2026.\n- Đáp ứng 100% yêu cầu bảo mật của 5 khách hàng Enterprise trọng điểm.\n- Tỷ lệ ghi log thành công đạt 99.99%.\n\n## 5. Financial & Operational Risks\n| Rủi Ro | Mức Độ | Biện Pháp Giảm Thiểu |\n| :--- | :--- | :--- |\n| Dung lượng lưu trữ log tăng đột biến gây tốn chi phí | Trung bình | Áp dụng chính sách nén dữ liệu và phân tầng lưu trữ Hot/Cold Storage. |\n| Ảnh hưởng độ trễ (latency) của các giao dịch nghiệp vụ chính | Cao | Thiết kế cơ chế ghi log bất đồng bộ (Asynchronous Event Queue). |\n",
+  "sample_flawed_output": "# BRD Hệ thống Log\n\nLàm hệ thống ghi log để xem ai vào web làm gì.\n\n## Chức năng\n- Xem log người dùng.\n- Tải log về máy tính.\n"
+}

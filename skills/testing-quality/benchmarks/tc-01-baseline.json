@@ -1,0 +1,14 @@
+{
+  "id": "tc-01",
+  "name": "Playwright API Automation Spec for User Creation",
+  "task_type": "test_automation",
+  "prompt": "Viết kịch bản tự động hóa kiểm thử API Tạo User bằng Playwright có teardown.",
+  "expected_sections": [
+    "Structured Test Cases",
+    "Deterministic Assertions",
+    "Test Fixture & Dynamic Data Seed",
+    "Teardown & Cleanup Mechanism"
+  ],
+  "sample_good_output": "# Test Spec: API Create User Automation\n\n## 1. Test Setup & Fixtures\nSử dụng `@faker-js/faker` để sinh email ngẫu nhiên `test_${Date.now()}@example.com`.\n\n## 2. Test Execution & Assertions\n```typescript\ntest('TC-01: Create user with valid payload returns 201', async ({ request }) => {\n  const res = await request.post('/api/v1/users', { data: payload });\n  expect(res.status()).toBe(201);\n  const body = await res.json();\n  expect(body.user.email).toBe(payload.email);\n});\n```\n\n## 3. Teardown & Cleanup\nSau mỗi test run, lưu lại `createdUserId` và gọi `DELETE /api/v1/users/:id` để dọn dẹp sạch database.",
+  "sample_flawed_output": "# Test script\nChạy API thấy trả về ok là được. Không cần xóa dữ liệu rác."
+}

@@ -84,5 +84,17 @@ Nếu muốn kế thừa kho skill này vào một project khác, bạn chỉ c�
 
 ---
 
+## 📊 Hệ thống Đánh giá & Báo cáo Tự động (AI Skills Evaluation System)
+
+Dự án tích hợp sẵn hệ thống đo lường chất lượng thực tế cho **toàn bộ 20 AI Skills** dựa trên bằng chứng (Evidence-based):
+* **Local Evaluator (CLI):** Chạy kiểm thử tự động kịch bản mẫu cho 1 skill (`npm run eval`) hoặc **chạy toàn bộ 20 skills** (`npm run eval:all`).
+* **Telemetry & Ingestion Server:** Máy chủ thu thập dữ liệu tối thiểu hóa (Strict Data Minimization) với cơ chế Opt-in minh bạch (`npm run eval:all:send`).
+* **Báo cáo định kỳ:** Tự động tổng hợp Pass rate ma trận 20 skills, Top lỗi thường gặp và gửi email báo cáo tuần: `npm run report`.
+
+👉 **Xem hướng dẫn chi tiết và cách bàn giao tại:** [`docs/evaluation-guide.md`](./docs/evaluation-guide.md)
+
+---
+
 ## 🤝 Đóng góp Kỹ năng mới
 Xem hướng dẫn chi tiết tại [CONTRIBUTING.md](./CONTRIBUTING.md).
+

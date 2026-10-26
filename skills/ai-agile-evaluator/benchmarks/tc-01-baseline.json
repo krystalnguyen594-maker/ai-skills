@@ -1,0 +1,14 @@
+{
+  "id": "tc-01",
+  "name": "Senior BA Agile Scenario Interview",
+  "task_type": "agile_evaluation",
+  "prompt": "Đánh giá năng lực giải quyết tình huống của Senior BA khi đối mặt với rủi ro đa tenant.",
+  "expected_sections": [
+    "Target Candidate Role & Level",
+    "Realistic Dilemma Scenario",
+    "Structured Scorecard & Rubric Breakdown",
+    "Actionable Feedback"
+  ],
+  "sample_good_output": "# Đánh Giá Năng Lực Agile: Senior BA\n\n## 1. Target Role & Level\nỨng viên: Senior Business Analyst (Mức độ phức tạp: Rất cao - Kiến trúc đa tổ chức Multi-tenant).\n\n## 2. Realistic Dilemma Scenario\nTech Lead thông báo: 'Sprint tới chúng ta nâng cấp sang hạ tầng multi-tenant. Nếu BA lấy yêu cầu sai, dữ liệu công ty A sẽ rò rỉ sang công ty B'. Bạn xử lý thế nào?\n\n## 3. Structured Scorecard & Rubric Breakdown\n| Tiêu chí | Điểm (1-5) | Bằng chứng |\n| :--- | :--- | :--- |\n| Tư duy First Principles | 4/5 | Đã bóc tách rõ ranh giới tenant logic và tenant vật lý |\n| Nhận diện rủi ro bảo mật | 5/5 | Thiết lập quy tắc dữ liệu WORM và ma trận phân quyền RBAC |\n| Chuẩn Gherkin AC | 4/5 | Viết chi tiết Given-When-Then cho tình huống truy cập chéo space |\n\n## 4. Actionable Feedback\nỨng viên thể hiện tư duy kiến trúc xuất sắc, điểm tổng 13/15 (Đạt chuẩn Senior BA).",
+  "sample_flawed_output": "# Phỏng vấn BA\nHỏi: Mô hình INVEST là gì? Em hãy đọc thuộc lòng định nghĩa."
+}

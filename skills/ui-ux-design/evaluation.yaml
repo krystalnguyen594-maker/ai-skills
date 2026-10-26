@@ -1,0 +1,44 @@
+skill_id: ui-ux-design
+skill_version: 1.0.0
+title: Modern UI/UX Design System Rubric
+description: Evaluates modern aesthetics, design tokens, color harmony,
+  typography, and interactive micro-animations.
+task_types:
+  - id: ui_ux_spec
+    name: UI/UX Design Specification
+    required_sections:
+      - pattern: design tokens|color palette|bảng màu
+        name: Curated Design Tokens & Palette
+        severity: critical
+      - pattern: typography|phông chữ|font
+        name: Typography Scale (Google Fonts)
+        severity: major
+      - pattern: glassmorphism|gradient|visual hierarchy
+        name: Rich Visual Aesthetics & Depth
+        severity: major
+      - pattern: micro-animation|transition|hover effect
+        name: Dynamic Micro-animations & States
+        severity: critical
+prohibited_patterns:
+  ui_ux_spec:
+    - pattern: màu đỏ cờ|màu xanh lá tươi|plain red|plain blue
+      issue_code: generic_color_anti_pattern
+      description: Cấm dùng màu mặc định nguyên thủy, phải dùng curated HSL palette.
+      severity: major
+rubric_dimensions:
+  - dimension: completeness
+    name: Độ Đầy Đủ (Completeness)
+    weight: 0.3
+  - dimension: soundness
+    name: Tính Chặt Chẽ & Đúng Đắn (Soundness)
+    weight: 0.35
+  - dimension: actionability
+    name: Tính Khả Thi & Hành Động (Actionability)
+    weight: 0.2
+  - dimension: clarity
+    name: Định Dạng & Rõ Ràng (Clarity)
+    weight: 0.15
+scoring:
+  pass_threshold: 80
+  scale: 100
+  critical_issue_behavior: instant_fail
