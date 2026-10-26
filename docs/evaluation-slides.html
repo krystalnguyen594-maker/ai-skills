@@ -146,8 +146,8 @@
     /* Deck Viewport */
     .deck-container {
       width: 100%;
-      max-width: 1120px;
-      height: 640px;
+      max-width: 1140px;
+      height: 648px;
       margin-top: 64px;
       margin-bottom: 72px;
       position: relative;
@@ -165,7 +165,7 @@
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-lg);
-      padding: 36px 44px;
+      padding: 34px 44px;
       display: none;
       flex-direction: column;
       justify-content: space-between;
@@ -187,7 +187,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       border-bottom: 1px solid var(--border-subtle);
       padding-bottom: 12px;
     }
@@ -199,18 +199,15 @@
     }
 
     .slide-category {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.8px;
       color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
     .slide-title {
-      font-size: 24px;
+      font-size: 23px;
       font-weight: 800;
       color: var(--text-main);
       line-height: 1.25;
@@ -238,7 +235,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
       justify-content: center;
     }
 
@@ -257,13 +254,19 @@
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
+      gap: 16px;
     }
 
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
     }
 
     .card {
@@ -303,11 +306,8 @@
     }
 
     .card-title {
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
       color: var(--text-main);
     }
 
@@ -317,56 +317,90 @@
       line-height: 1.55;
     }
 
-    /* Friendly Step Cards */
-    .step-box {
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
+    /* Journey Flow Steps */
+    .journey-container {
       display: flex;
-      align-items: flex-start;
+      flex-direction: column;
       gap: 12px;
     }
 
-    .step-badge {
+    .journey-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      position: relative;
+    }
+
+    .journey-step {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+
+    .journey-step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 9999px;
       background: var(--primary);
       color: #fff;
       font-size: 12px;
       font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      white-space: nowrap;
-      margin-top: 2px;
-    }
-
-    .step-badge-purple {
-      background: var(--purple);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      white-space: nowrap;
-      margin-top: 2px;
-    }
-
-    .step-content {
       display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex: 1;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2px;
     }
 
-    .step-title {
-      font-size: 14px;
+    .journey-step-num.purple {
+      background: var(--purple);
+    }
+
+    .journey-step-title {
+      font-size: 13px;
       font-weight: 700;
       color: var(--text-main);
     }
 
-    .step-desc {
-      font-size: 12.5px;
+    .journey-step-desc {
+      font-size: 11.5px;
       color: var(--text-sub);
-      line-height: 1.5;
+      line-height: 1.45;
+    }
+
+    /* Funnel / Pass-Fail Calculation */
+    .funnel-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .funnel-stage {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .funnel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 8px;
+    }
+
+    .funnel-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
     }
 
     /* Friendly Code / Command Snippets */
@@ -376,7 +410,7 @@
       padding: 10px 14px;
       border-radius: var(--radius-sm);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
+      font-size: 12.5px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -390,7 +424,7 @@
     }
 
     .cmd-note {
-      font-size: 11.5px;
+      font-size: 11px;
       color: #94a3b8;
       margin-left: auto;
     }
@@ -399,7 +433,7 @@
     .table-custom {
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
+      font-size: 12.5px;
       background: #ffffff;
       border-radius: var(--radius-sm);
       overflow: hidden;
@@ -407,7 +441,7 @@
     }
 
     .table-custom th, .table-custom td {
-      padding: 10px 14px;
+      padding: 9px 12px;
       text-align: left;
       border-bottom: 1px solid var(--border-color);
     }
@@ -416,7 +450,7 @@
       background: #f8fafc;
       font-weight: 700;
       color: var(--text-main);
-      font-size: 12.5px;
+      font-size: 12px;
     }
 
     .table-custom tr:last-child td {
@@ -427,10 +461,9 @@
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
       padding: 2px 8px;
       border-radius: 9999px;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
     }
 
@@ -513,7 +546,7 @@
     .progress-bar-fill {
       height: 100%;
       background: var(--primary);
-      width: 10%;
+      width: 9.09%;
       transition: width 0.25s ease;
     }
 
@@ -586,15 +619,15 @@
     <div class="top-center">
       <span>Trang</span>
       <select id="slideSelect" class="slide-jump-select" title="Nhảy đến trang"></select>
-      <span id="slideCounterText">/ 10</span>
+      <span id="slideCounterText">/ 11</span>
     </div>
 
     <div class="top-actions">
       <button class="btn-action" onclick="toggleFullscreen()" title="Toàn màn hình (F)">
-        <span>⛶ Toàn Màn Hình</span>
+        <span>Toàn Màn Hình</span>
       </button>
       <button class="btn-action" onclick="window.print()" title="In ra PDF (Cmd+P)">
-        <span>🖨 In / Xuất PDF</span>
+        <span>In / Xuất PDF</span>
       </button>
     </div>
   </header>
@@ -606,75 +639,75 @@
     <section class="slide active" id="slide-1" data-title="Bìa: Hướng Dẫn Sử Dụng">
       <div class="slide-header">
         <div class="slide-title-wrap">
-          <div class="slide-category">📖 Sổ Tay Hướng Dẫn Sử Dụng (User Manual)</div>
-          <h1 class="slide-title">Hướng Dẫn Sử Dụng Phân Hệ Đánh Giá AI Skills</h1>
-          <p class="slide-subtitle">Sổ tay vận hành chất lượng kỹ năng dành riêng cho <strong>Repo Owner</strong> và <strong>Thành Viên Dùng Repo</strong></p>
+          <div class="slide-category">Sổ Tay Hướng Dẫn Vận Hành</div>
+          <h1 class="slide-title">📖 Hướng Dẫn Sử Dụng Phân Hệ Đánh Giá AI Skills</h1>
+          <p class="slide-subtitle">Cẩm nang chuẩn hóa chất lượng kỹ năng dành riêng cho <strong>Repo Owner</strong> và <strong>Thành Viên Dùng Repo</strong></p>
         </div>
-        <span class="slide-tag">2 Nhóm Đối Tượng</span>
+        <span class="slide-tag">2 Đối Tượng Sử Dụng</span>
       </div>
 
       <div class="slide-body">
         <div class="grid-2">
           <div class="card card-primary" style="padding: 20px;">
-            <div class="card-title" style="color: var(--primary); font-size: 16px;">
-              🎯 Phân Định Rõ Ràng 2 Đối Tượng Sử Dụng
+            <div class="card-title" style="color: var(--primary); font-size: 15.5px;">
+              Phân Định 2 Nhóm Người Dùng Trọng Tâm
             </div>
-            <div class="card-desc" style="font-size: 13.5px; display: flex; flex-direction: column; gap: 10px;">
+            <div class="card-desc" style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
               <div>
                 <strong style="color: var(--primary);">1. Thành Viên Dùng Repo (Repo Users):</strong><br>
-                Sử dụng các kỹ năng trong công việc hàng ngày, tự kiểm tra xem bài viết của AI đã đạt chuẩn chưa và đóng góp kỹ năng mới kèm bài test mẫu.
+                Sử dụng các kỹ năng AI trong công việc hàng ngày, tự kiểm tra xem output của AI đã đạt chuẩn chưa trước khi gửi đi và đóng góp kỹ năng mới kèm bài test mẫu.
               </div>
               <div>
-                <strong style="color: var(--purple);">2. Repo Owner (Chủ Sở Hữu / Quản Trị Repo):</strong><br>
-                Quản lý chất lượng tổng thể cả 20 skills, theo dõi báo cáo định kỳ (Health Matrix) và thiết lập chốt chặn chất lượng khi duyệt Pull Request.
+                <strong style="color: var(--purple);">2. Repo Owner (Chủ Sở Hữu / Quản Trị Kho):</strong><br>
+                Quản lý chất lượng tổng thể cả 20 skills, theo dõi báo cáo định kỳ (Health Matrix) và bảo vệ repo chống suy giảm chất lượng khi duyệt Pull Request.
               </div>
             </div>
           </div>
 
           <div class="card" style="padding: 20px; justify-content: space-between;">
             <div>
-              <div class="card-title" style="font-size: 16px; margin-bottom: 8px;">
-                💡 Nguyên Tắc: Đơn Giản & Dễ Dùng
+              <div class="card-title" style="font-size: 15.5px; margin-bottom: 8px;">
+                Nguyên Tắc Thiết Kế: Đơn Giản & Tập Trung Luồng Chính
               </div>
-              <div class="card-desc" style="font-size: 13.5px; line-height: 1.6;">
-                Không cần học code phức tạp hay câu lệnh rối rắm. Phân hệ đóng vai trò như một <strong>"Máy Kiểm Tra Chất Lượng Tự Động"</strong> — bấm 1 lệnh là có điểm số và hướng dẫn sửa lỗi ngay lập tức.
+              <div class="card-desc" style="font-size: 13px; line-height: 1.6;">
+                Không cần học code phức tạp hay câu lệnh rối rắm. Phân hệ đóng vai trò như một <strong>Máy Kiểm Tra Chất Lượng Tự Động</strong> — gõ 1 câu lệnh kiểm tra duy nhất là có ngay kết quả đạt hay không đạt và chỉ rõ vị trí cần hoàn thiện.
               </div>
             </div>
             <div style="background: var(--bg-page); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text-sub); border: 1px solid var(--border-color);">
-              📍 Mã nguồn GitHub: <code>https://github.com/krystalnguyen594-maker/ai-skills</code>
+              Kho GitHub: <code>https://github.com/krystalnguyen594-maker/ai-skills</code>
             </div>
           </div>
         </div>
 
         <div class="grid-3">
           <div class="card">
-            <div class="card-title"><span class="badge badge-green">⏱️ Siêu Nhanh</span></div>
-            <div class="card-desc">Chỉ mất 2 giây để kiểm tra và nhận điểm số đánh giá.</div>
+            <div class="card-title"><span class="badge badge-green">Tốc Độ Cao</span></div>
+            <div class="card-desc">Chỉ mất trung bình 1 đến 2 giây để nhận kết quả đánh giá chi tiết.</div>
           </div>
           <div class="card">
-            <div class="card-title"><span class="badge badge-blue">🎯 Rõ Ràng</span></div>
-            <div class="card-desc">Chỉ rõ thiếu phần nào, lỗi ở đâu và cần bổ sung gì.</div>
+            <div class="card-title"><span class="badge badge-blue">Định Lượng Rõ Ràng</span></div>
+            <div class="card-desc">Chỉ rõ thiếu phần nào, phát hiện lỗi ở đâu và cần bổ sung mục gì.</div>
           </div>
           <div class="card">
-            <div class="card-title"><span class="badge badge-purple">🔒 An Toàn</span></div>
-            <div class="card-desc">Không gửi dữ liệu nhạy cảm ra ngoài, chạy 100% nội bộ.</div>
+            <div class="card-title"><span class="badge badge-purple">Bảo Mật Nội Bộ</span></div>
+            <div class="card-desc">Chạy 100% cục bộ, không gửi dữ liệu prompt nhạy cảm ra ngoài.</div>
           </div>
         </div>
       </div>
 
       <div class="slide-footer">
         <span>Tài liệu chuyển giao nội bộ • AI Skills Repository</span>
-        <span>Trang 1 / 10</span>
+        <span>Trang 1 / 11</span>
       </div>
     </section>
 
     <!-- SLIDE 2: ANALOGY - WHAT IS IT? -->
-    <section class="slide" id="slide-2" data-title="Phân hệ này là gì?">
+    <section class="slide" id="slide-2" data-title="Khái niệm: Phân hệ là gì?">
       <div class="slide-header">
         <div class="slide-title-wrap">
-          <div class="slide-category">💡 Khái Niệm Cơ Bản</div>
-          <h2 class="slide-title">Phân Hệ Evaluation Hoạt Động Như Thế Nào?</h2>
-          <p class="slide-subtitle">Hình dung đơn giản như một "Kỳ Thi Tốt Nghiệp Tự Động" cho mỗi kỹ năng AI</p>
+          <div class="slide-category">Khái Niệm Cốt Lõi</div>
+          <h1 class="slide-title">💡 Phân Hệ Evaluation Hoạt Động Như Thế Nào?</h1>
+          <p class="slide-subtitle">Hình dung đơn giản như một kỳ thi kiểm định chất lượng tự động cho mỗi kỹ năng AI</p>
         </div>
         <span class="slide-tag">Mô Hình Dễ Hiểu</span>
       </div>
@@ -682,82 +715,79 @@
       <div class="slide-body">
         <div class="grid-3">
           <div class="card" style="padding: 18px;">
-            <div style="font-size: 28px; margin-bottom: 4px;">📋</div>
             <div class="card-title">1. Phiếu Chấm Điểm (Rubric)</div>
             <div class="card-desc">
-              Giống như đáp án chấm thi của thầy cô. Quy định sẵn: Bài làm phải có những mục nào? Có bị lỗi cấm kỵ không? Đạt bao nhiêu điểm thì được tính là đỗ (PASS).
+              Tương tự như đáp án chấm thi. Quy định sẵn: Bài làm bắt buộc phải có những phần nào? Có bị lỗi cấm kỵ không? Đạt từ bao nhiêu điểm trở lên thì được công nhận đạt chuẩn (PASS).
             </div>
             <div style="font-size: 11.5px; color: var(--primary); font-weight: 600; margin-top: auto;">
-              📄 Tương ứng file: <code>evaluation.yaml</code>
+              File tương ứng: <code>evaluation.yaml</code>
             </div>
           </div>
 
           <div class="card" style="padding: 18px;">
-            <div style="font-size: 28px; margin-bottom: 4px;">📝</div>
             <div class="card-title">2. Đề Thi & Bài Mẫu (Benchmark)</div>
             <div class="card-desc">
-              Một đề bài thực tế kèm theo 2 bài làm mẫu: Một <strong>bài làm tốt</strong> để kiểm tra xem máy có cho điểm cao không, và một <strong>bài làm ẩu</strong> để xem máy có bắt lỗi được không.
+              Một đề bài thực tế kèm 2 bài làm mẫu: Một <strong>bài làm tốt</strong> để máy kiểm tra xem có đạt điểm cao không, và một <strong>bài làm lỗi cố tình</strong> để máy chứng minh khả năng bắt lỗi.
             </div>
             <div style="font-size: 11.5px; color: var(--primary); font-weight: 600; margin-top: auto;">
-              📁 Tương ứng thư mục: <code>benchmarks/</code>
+              Thư mục tương ứng: <code>benchmarks/</code>
             </div>
           </div>
 
           <div class="card" style="padding: 18px;">
-            <div style="font-size: 28px; margin-bottom: 4px;">🤖</div>
             <div class="card-title">3. Giám Thị Chấm Điểm (Runner)</div>
             <div class="card-desc">
-              Công cụ chấm tự động trong chớp mắt. Lấy bài làm đối chiếu với phiếu chấm, tính ra điểm số (0 - 100), báo ngay PASS hay FAIL và ghi nhận vào bảng theo dõi tuần.
+              Bộ công cụ chấm tự động trong tích tắc. Lấy bài làm đối chiếu với phiếu chấm, tính ra điểm số (0 - 100), thông báo PASS hay FAIL và ghi nhận vào bảng theo dõi tuần.
             </div>
             <div style="font-size: 11.5px; color: var(--primary); font-weight: 600; margin-top: auto;">
-              ⚙️ Lệnh chạy: <code>npm run eval</code>
+              Lệnh chạy: <code>npm run eval</code>
             </div>
           </div>
         </div>
 
         <div class="card card-primary" style="padding: 14px 18px;">
-          <div class="card-title" style="font-size: 14px;">🎯 Lợi Ích Trực Tiếp Cho Bạn</div>
+          <div class="card-title" style="font-size: 14px;">Giá Trị Mang Lại</div>
           <div class="card-desc">
-            Không còn phải đoán mò "prompt này viết vậy ổn chưa?". Máy sẽ cho bạn biết ngay: <strong>Điểm số cụ thể</strong>, <strong>Phần nào làm tốt</strong>, và <strong>Phần nào bị sót cần bổ sung ngay</strong>.
+            Xóa bỏ hoàn toàn việc tranh cãi cảm tính ("tôi thấy prompt này hay / dở"). Cả Repo Owner và Thành viên đều có chung một thước đo định lượng khách quan để nghiệm thu chất lượng công việc.
           </div>
         </div>
       </div>
 
       <div class="slide-footer">
-        <span>Quy chuẩn khách quan: Xóa bỏ hoàn toàn việc nhận xét cảm tính "tôi thấy hay / tôi thấy dở"</span>
-        <span>Trang 2 / 10</span>
+        <span>Quy chuẩn khách quan: Chấm điểm dựa trên cấu trúc và ma trận kiểm thử</span>
+        <span>Trang 2 / 11</span>
       </div>
     </section>
 
-    <!-- SLIDE 3: YOUR ROLE (2 TARGET AUDIENCES) -->
+    <!-- SLIDE 3: YOUR ROLE (2 AUDIENCES) -->
     <section class="slide" id="slide-3" data-title="Phân vai: 2 Đối Tượng">
       <div class="slide-header">
         <div class="slide-title-wrap">
-          <div class="slide-category">👥 Phân Vai Sử Dụng</div>
-          <h2 class="slide-title">Hai Đối Tượng Sử Dụng: Bạn Cần Làm Gì?</h2>
-          <p class="slide-subtitle">Trách nhiệm, mục tiêu và thao tác cụ thể cho từng đối tượng trong dự án</p>
+          <div class="slide-category">Phân Vai Nhiệm Vụ</div>
+          <h1 class="slide-title">👥 Hai Đối Tượng Sử Dụng: Bạn Cần Làm Gì?</h1>
+          <p class="slide-subtitle">Trách nhiệm, mục tiêu và phạm vi thao tác của từng nhóm trong dự án</p>
         </div>
-        <span class="slide-tag">2 Nhóm Đối Tượng</span>
+        <span class="slide-tag">2 Đối Tượng</span>
       </div>
 
       <div class="slide-body">
         <div class="grid-2">
           <!-- Cột 1: Thành Viên Dùng Repo -->
           <div class="card card-primary" style="padding: 20px;">
-            <div class="card-title" style="color: var(--primary); font-size: 16px;">
-              <span>🧑‍💻 1. Thành Viên Dùng Repo (Team Members)</span>
+            <div class="card-title" style="color: var(--primary); font-size: 15.5px;">
+              1. Thành Viên Dùng Repo (Repo Users)
             </div>
             <div class="card-desc" style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
               <div>
-                <strong>Mục tiêu:</strong> Tận dụng các AI skills trong công việc hằng ngày (phân tích tài liệu, vẽ kiến trúc, chia task...) và tự tin rằng output tạo ra luôn đạt chuẩn.
+                <strong>Mục tiêu:</strong> Tận dụng các AI skills trong công việc hằng ngày (phân tích tài liệu, vẽ kiến trúc, chia task...) và tự tin rằng output tạo ra luôn đạt chuẩn trước khi bàn giao.
               </div>
               <div style="background: #ffffff; padding: 10px 12px; border-radius: 6px; border: 1px solid var(--primary-border);">
-                <strong>Khi nào dùng & Thao tác:</strong><br>
-                • <em>Khi dùng skill làm việc:</em> Chạy lệnh test nhanh xem sản phẩm AI vừa viết có đạt chuẩn không trước khi gửi cho team.<br>
-                • <em>Khi tạo skill mới / sửa prompt:</em> Soạn 2 file (Rubric + Benchmark) để kiểm tra chất lượng trước khi nộp PR.
+                <strong>Trách nhiệm & Thao tác:</strong><br>
+                • <em>Khi làm việc hằng ngày:</em> Chạy lệnh test nhanh xem sản phẩm AI vừa viết có đạt chuẩn không.<br>
+                • <em>Khi đóng góp skill mới:</em> Soạn 2 file (Rubric + Benchmark) để tự kiểm tra đạt chuẩn trước khi tạo Pull Request.
               </div>
               <div>
-                <strong>Lệnh thường dùng nhất:</strong><br>
+                <strong>Lệnh chính cần nhớ:</strong><br>
                 <code>npm run eval &lt;tên-skill&gt;</code> (chạy offline chỉ mất 1 giây).
               </div>
             </div>
@@ -766,22 +796,22 @@
 
           <!-- Cột 2: Repo Owner -->
           <div class="card card-purple" style="padding: 20px;">
-            <div class="card-title" style="color: var(--purple); font-size: 16px;">
-              <span>👔 2. Repo Owner (Chủ Sở Hữu / Quản Trị Kho)</span>
+            <div class="card-title" style="color: var(--purple); font-size: 15.5px;">
+              2. Repo Owner (Chủ Sở Hữu / Quản Trị Kho)
             </div>
             <div class="card-desc" style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
               <div>
-                <strong>Mục tiêu:</strong> Nắm chắc bức tranh sức khỏe của cả 20 skills, ngăn ngừa tình trạng sửa skill này làm hỏng skill khác (chống hồi quy).
+                <strong>Mục tiêu:</strong> Nắm chắc bức tranh sức khỏe của cả 20 skills, ngăn ngừa tình trạng sửa skill này làm hỏng skill khác (chống hồi quy khi merge PR).
               </div>
               <div style="background: #ffffff; padding: 10px 12px; border-radius: 6px; border: 1px solid var(--purple-border);">
-                <strong>Khi nào dùng & Thao tác:</strong><br>
+                <strong>Trách nhiệm & Thao tác:</strong><br>
                 • <em>Khởi động hệ thống:</em> Bật máy chủ thu thập số liệu nền (<code>npm run server</code>).<br>
                 • <em>Định kỳ hàng tuần:</em> Xuất báo cáo HTML (<code>npm run report</code>) để họp giao ban và xem skill nào cần hỗ trợ.<br>
-                • <em>Khi duyệt PR:</em> Chạy kiểm tra toàn bộ kho (<code>npm run eval:all</code>) trước khi bấm merge code.
+                • <em>Khi duyệt PR:</em> Kiểm tra xem skill mới có đủ rubric và benchmark đạt chuẩn hay không.
               </div>
               <div>
-                <strong>Lệnh thường dùng nhất:</strong><br>
-                <code>npm run server</code> • <code>npm run eval:all</code> • <code>npm run report</code>
+                <strong>Lệnh chính cần nhớ:</strong><br>
+                <code>npm run server</code> • <code>npm run report</code>
               </div>
             </div>
             <div class="badge badge-purple" style="margin-top: auto; align-self: flex-start;">Người Quản Trị & Kiểm Soát</div>
@@ -791,316 +821,386 @@
 
       <div class="slide-footer">
         <span>Rõ ràng, mạch lạc: Mỗi nhóm đối tượng chỉ cần nắm đúng những thao tác thuộc về mình</span>
-        <span>Trang 3 / 10</span>
+        <span>Trang 3 / 11</span>
       </div>
     </section>
 
-    <!-- SLIDE 4: STEP 1 - STARTUP -->
-    <section class="slide" id="slide-4" data-title="Bước 1: Chuẩn bị & Khởi động">
+    <!-- SLIDE 4: USER JOURNEY - REPO USER -->
+    <section class="slide" id="slide-4" data-title="User Journey: Thành Viên Dùng Repo">
       <div class="slide-header">
         <div class="slide-title-wrap">
-          <div class="slide-category">🚀 Hướng Dẫn Thao Tác</div>
-          <h2 class="slide-title">Bước 1: Chuẩn Bị & Bật Máy Chủ Đo Lường</h2>
-          <p class="slide-subtitle">Chỉ cần 2 câu lệnh duy nhất là hệ thống đã sẵn sàng hoạt động</p>
+          <div class="slide-category">Hành Trình Người Dùng (User Journey)</div>
+          <h1 class="slide-title">🧭 Hành Trình Của Thành Viên Dùng Repo</h1>
+          <p class="slide-subtitle">Trực quan hóa từng chặng từ lúc nhận yêu cầu đến khi bàn giao sản phẩm AI đạt chuẩn</p>
         </div>
-        <span class="slide-tag">Khởi Động Nhanh</span>
+        <span class="slide-tag">Đối Tượng: Thành Viên</span>
       </div>
 
       <div class="slide-body">
-        <div class="step-box">
-          <div class="step-badge">Thao Tác 1</div>
-          <div class="step-content">
-            <div class="step-title">
-              Cài đặt thư viện cần thiết (Chỉ làm 1 lần đầu tiên)
-              <span class="badge badge-blue" style="margin-left: 8px;">Dành cho cả 2 đối tượng</span>
+        <div class="journey-container">
+          <div class="journey-steps">
+            <div class="journey-step">
+              <div class="journey-step-num">1</div>
+              <div class="journey-step-title">Nhận Task</div>
+              <div class="journey-step-desc">Nhận yêu cầu công việc (viết PRD/FRD, phân rã WBS, tạo test case...).</div>
             </div>
-            <div class="step-desc">Mở ứng dụng Terminal trên máy tính, di chuyển vào thư mục project và gõ:</div>
-            <div class="cmd-friendly">
-              <span class="cmd-prompt">$</span>
-              <span>npm install</span>
-              <span class="cmd-note"># Cài đặt gói yaml cần thiết</span>
+
+            <div class="journey-step">
+              <div class="journey-step-num">2</div>
+              <div class="journey-step-title">Gọi AI Skill</div>
+              <div class="journey-step-desc">Dùng AI Skill tương ứng trong kho để sinh bản thảo tài liệu đầu ra.</div>
+            </div>
+
+            <div class="journey-step" style="border-color: var(--primary-border); background: var(--primary-light);">
+              <div class="journey-step-num">3</div>
+              <div class="journey-step-title">Chạy Test Nhanh</div>
+              <div class="journey-step-desc">
+                Chạy lệnh kiểm tra offline:<br>
+                <code>npm run eval &lt;skill&gt;</code>
+              </div>
+            </div>
+
+            <div class="journey-step">
+              <div class="journey-step-num">4</div>
+              <div class="journey-step-title">Đọc Kết Quả</div>
+              <div class="journey-step-desc">
+                • <strong>PASS (≥80đ):</strong> Yên tâm bàn giao.<br>
+                • <strong>FAIL:</strong> Nhìn mã lỗi, nhắc AI bổ sung phần thiếu.
+              </div>
+            </div>
+
+            <div class="journey-step">
+              <div class="journey-step-num">5</div>
+              <div class="journey-step-title">Bàn Giao / PR</div>
+              <div class="journey-step-desc">Gửi kết quả cho team hoặc tạo Pull Request đóng góp skill mới.</div>
             </div>
           </div>
-        </div>
 
-        <div class="step-box">
-          <div class="step-badge-purple">Thao Tác 2</div>
-          <div class="step-content">
-            <div class="step-title">
-              Bật máy chủ tiếp nhận kết quả đo lường
-              <span class="badge badge-purple" style="margin-left: 8px;">Nhiệm vụ của Repo Owner</span>
+          <div class="card card-primary" style="padding: 14px 18px; margin-top: 6px;">
+            <div class="card-title" style="font-size: 13.5px; color: var(--primary);">Quy Tắc Vàng Cho Thành Viên:</div>
+            <div class="card-desc" style="font-size: 12.5px;">
+              Chỉ mất <strong>1 giây chạy lệnh <code>npm run eval</code></strong> trước khi gửi bài cho khách hàng hoặc sếp, bạn sẽ loại bỏ được 100% rủi ro bị phản hồi vì thiếu mục bắt buộc hoặc sai quy cách!
             </div>
-            <div class="step-desc">Gõ lệnh sau để trạm tiếp nhận báo cáo nội bộ bắt đầu lắng nghe số liệu:</div>
-            <div class="cmd-friendly">
-              <span class="cmd-prompt">$</span>
-              <span>npm run server</span>
-              <span class="cmd-note"># Lắng nghe tại cổng http://localhost:3456</span>
-            </div>
-            <div style="font-size: 12px; color: var(--success); font-weight: 600; margin-top: 4px;">
-              ✔ Khi thấy thông báo "Server running on port 3456" nghĩa là trạm đo lường đã sẵn sàng phục vụ toàn team!
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-primary" style="padding: 12px 16px;">
-          <div class="card-desc" style="font-size: 12.5px;">
-            💡 <strong>Dành cho Thành Viên Dùng Repo:</strong> Nếu bạn chỉ muốn chạy kiểm tra điểm số cá nhân trên máy mình, bạn <strong>không bắt buộc</strong> phải bật server này. Hệ thống vẫn chấm điểm offline 100% bình thường!
           </div>
         </div>
       </div>
 
       <div class="slide-footer">
-        <span>Yêu cầu duy nhất: Máy tính đã cài sẵn Node.js (phiên bản v22 trở lên)</span>
-        <span>Trang 4 / 10</span>
+        <span>Tối ưu trải nghiệm: Không làm thay đổi thói quen làm việc thường nhật của thành viên</span>
+        <span>Trang 4 / 11</span>
       </div>
     </section>
 
-    <!-- SLIDE 5: STEP 2 - RUNNING EVAL -->
-    <section class="slide" id="slide-5" data-title="Bước 2: Chạy kiểm tra kỹ năng">
+    <!-- SLIDE 5: USER JOURNEY - REPO OWNER -->
+    <section class="slide" id="slide-5" data-title="User Journey: Repo Owner">
       <div class="slide-header">
         <div class="slide-title-wrap">
-          <div class="slide-category">⚡ Hướng Dẫn Thao Tác</div>
-          <h2 class="slide-title">Bước 2: Cách Chạy Kiểm Tra Một Kỹ Năng Bất Kỳ</h2>
-          <p class="slide-subtitle">Các câu lệnh thường dùng phân chia rõ ràng theo từng nhóm đối tượng</p>
+          <div class="slide-category">Hành Trình Người Dùng (User Journey)</div>
+          <h1 class="slide-title">🧭 Hành Trình Của Repo Owner</h1>
+          <p class="slide-subtitle">Trực quan hóa quy trình quản trị chất lượng, duyệt đóng góp và theo dõi báo cáo định kỳ</p>
         </div>
-        <span class="slide-tag">Thao Tác Hằng Ngày</span>
+        <span class="slide-tag">Đối Tượng: Repo Owner</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="journey-container">
+          <div class="journey-steps">
+            <div class="journey-step">
+              <div class="journey-step-num purple">1</div>
+              <div class="journey-step-title">Khởi Động Trạm</div>
+              <div class="journey-step-desc">
+                Chạy máy chủ thu thập số liệu nền:<br>
+                <code>npm run server</code>
+              </div>
+            </div>
+
+            <div class="journey-step">
+              <div class="journey-step-num purple">2</div>
+              <div class="journey-step-title">Ban Hành Chuẩn</div>
+              <div class="journey-step-desc">Quy định rubric mẫu và ngưỡng đạt (≥80 điểm) cho từng kỹ năng trong kho.</div>
+            </div>
+
+            <div class="journey-step">
+              <div class="journey-step-num purple">3</div>
+              <div class="journey-step-title">Xem Báo Cáo Tuần</div>
+              <div class="journey-step-desc">
+                Chạy lệnh mở dashboard HTML:<br>
+                <code>npm run report</code>
+              </div>
+            </div>
+
+            <div class="journey-step" style="border-color: var(--purple-border); background: var(--purple-light);">
+              <div class="journey-step-num purple">4</div>
+              <div class="journey-step-title">Duyệt Pull Request</div>
+              <div class="journey-step-desc">Kiểm tra test case của skill mới đạt 100% trước khi bấm nút Merge PR.</div>
+            </div>
+
+            <div class="journey-step">
+              <div class="journey-step-num purple">5</div>
+              <div class="journey-step-title">Chuyển Giao Team</div>
+              <div class="journey-step-desc">Dùng báo cáo HTML và slide này để đào tạo và nhân rộng cho các team dự án.</div>
+            </div>
+          </div>
+
+          <div class="card card-purple" style="padding: 14px 18px; margin-top: 6px;">
+            <div class="card-title" style="font-size: 13.5px; color: var(--purple);">Lợi Thế Cho Repo Owner:</div>
+            <div class="card-desc" style="font-size: 12.5px;">
+              Không cần phải ngồi đọc từng dòng prompt hay test thủ công khi ai đó sửa skill. Hệ thống tự động cảnh báo ngay nếu tỷ lệ Pass Rate bị sụt giảm hoặc tỷ lệ Rework tăng cao.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Tự động hóa quản trị: Báo cáo số liệu minh bạch phục vụ các buổi họp giao ban</span>
+        <span>Trang 5 / 11</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: PASS / FAIL CALCULATION BY BENCHMARK -->
+    <section class="slide" id="slide-6" data-title="Cơ chế tính Pass / Fail theo Benchmark">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">Quy Chế Chấm Điểm</div>
+          <h1 class="slide-title">🎯 Cách Tính PASS Hoặc FAIL Theo Benchmark</h1>
+          <p class="slide-subtitle">Trực quan hóa phễu thẩm định 3 tầng và cơ chế đối chiếu kép giữa mẫu chuẩn và mẫu lỗi</p>
+        </div>
+        <span class="slide-tag">Thuật Toán Chấm Điểm</span>
+      </div>
+
+      <div class="slide-body">
+        <div class="funnel-container">
+          <!-- Tầng 1: Cấu trúc & Lỗi cấm -->
+          <div class="funnel-stage">
+            <div class="funnel-header">
+              <span class="funnel-title">Tầng 1: Kiểm Tra Cấu Trúc</span>
+              <span class="badge badge-red">Chốt Chặn</span>
+            </div>
+            <div class="card-desc" style="font-size: 12.5px;">
+              <strong>1. Các mục bắt buộc:</strong> Kiểm tra tài liệu có đủ các phần thiết yếu theo quy định rubric.<br><br>
+              <strong>2. Lỗi cấm kỵ (Instant Fail):</strong> Nếu phát hiện lỗi nghiêm trọng (như rò rỉ mã code vào tài liệu kinh doanh) thì bài làm <strong>bị đánh trượt ngay lập tức</strong>, bất kể điểm số các phần khác cao bao nhiêu.
+            </div>
+          </div>
+
+          <!-- Tầng 2: Điểm số 4 chiều -->
+          <div class="funnel-stage">
+            <div class="funnel-header">
+              <span class="funnel-title">Tầng 2: Điểm Số 4 Chiều</span>
+              <span class="badge badge-blue">Trọng Số</span>
+            </div>
+            <div class="card-desc" style="font-size: 12.5px;">
+              Điểm tổng hợp (0 - 100) được tính từ 4 khía cạnh nghiệp vụ:
+              <br>• <strong>Độ đầy đủ (25-30%):</strong> Bao quát các kịch bản.
+              <br>• <strong>Độ chặt chẽ (35%):</strong> Logic kinh doanh đúng.
+              <br>• <strong>Chuẩn nghiệm thu (20-25%):</strong> Đúng format Gherkin/Traceability.
+              <br>• <strong>Định dạng (15%):</strong> Trình bày rõ ràng.
+            </div>
+          </div>
+
+          <!-- Tầng 3: Ngưỡng đạt & Đối chiếu kép -->
+          <div class="funnel-stage">
+            <div class="funnel-header">
+              <span class="funnel-title">Tầng 3: Ngưỡng Đạt Benchmark</span>
+              <span class="badge badge-green">Nghiệm Thu</span>
+            </div>
+            <div class="card-desc" style="font-size: 12.5px;">
+              <strong>Ngưỡng đỗ: Điểm tổng ≥ 80/100.</strong><br><br>
+              <strong>Cơ chế đối chiếu kép trong Benchmark:</strong><br>
+              • <code>sample_good_output</code>: Mẫu chuẩn phải đạt <span style="color: var(--success); font-weight: bold;">PASS (≥80đ)</span>.<br>
+              • <code>sample_flawed_output</code>: Mẫu lỗi cố tình bắt buộc phải bị bắt <span style="color: var(--danger); font-weight: bold;">FAIL (&lt;80đ)</span> để chứng minh máy chấm có độ nhạy!
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-warning" style="padding: 12px 16px;">
+          <div class="card-desc" style="font-size: 12.5px;">
+            <strong>Chỉ số Rework (Cần sửa lại):</strong> Khi bài làm bị FAIL hoặc có điểm từ 80 đến 84 điểm, hệ thống sẽ gắn nhãn cảnh báo cần tối ưu thêm (Rework Required) để người dùng tinh chỉnh output đạt chất lượng hoàn hảo.
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Minh bạch 100%: Mọi điểm số và nhãn kết quả đều truy vết được nguồn gốc quy tắc</span>
+        <span>Trang 6 / 11</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: CORE ACTIONS - RUNNING EVAL -->
+    <section class="slide" id="slide-7" data-title="Thao tác chính: Chạy kiểm tra kỹ năng">
+      <div class="slide-header">
+        <div class="slide-title-wrap">
+          <div class="slide-category">Thao Tác Trọng Tâm</div>
+          <h1 class="slide-title">⚡ Thao Tác 1: Cách Chạy Kiểm Tra Một Kỹ Năng</h1>
+          <p class="slide-subtitle">Câu lệnh thực thi trực tiếp trên Terminal dành cho Thành viên dùng repo</p>
+        </div>
+        <span class="slide-tag">Luồng Thường Nhật</span>
       </div>
 
       <div class="slide-body">
         <div class="grid-2">
-          <!-- Nhóm Thành viên dùng repo -->
-          <div class="card card-primary">
-            <div class="card-title" style="color: var(--primary);">
-              <span>🧑‍💻 Dành Cho Thành Viên Dùng Repo</span>
+          <div class="card card-primary" style="padding: 18px;">
+            <div class="card-title" style="color: var(--primary);">Cú Pháp Lệnh Duy Nhất Cần Nhớ</div>
+            <div class="card-desc">Gõ lệnh sau vào Terminal khi muốn thẩm định kỹ năng bất kỳ:</div>
+            <div class="cmd-friendly">
+              <span class="cmd-prompt">$</span>
+              <span>npm run eval &lt;tên-kỹ-năng&gt;</span>
             </div>
-            <div class="card-desc">
-              <strong>1. Test nhanh kỹ năng đang dùng:</strong>
-              <div class="cmd-friendly">
-                <span class="cmd-prompt">$</span>
-                <span>npm run eval &lt;tên-skill&gt;</span>
-              </div>
-              <small style="color: var(--text-muted);">Ví dụ: <code>npm run eval work-breakdown</code></small>
-            </div>
-            <div class="card-desc" style="margin-top: 4px;">
-              <strong>2. Test nhanh kỹ năng mặc định:</strong>
-              <div class="cmd-friendly">
-                <span class="cmd-prompt">$</span>
-                <span>npm run eval</span>
-              </div>
-              <small style="color: var(--text-muted);">Đánh giá ngay skill <code>documentation-analysis</code>.</small>
+            <div class="card-desc" style="font-size: 12.5px; color: var(--text-muted); margin-top: 6px;">
+              Ví dụ kiểm tra kỹ năng phân rã công việc:<br>
+              <code>npm run eval work-breakdown</code><br><br>
+              Hoặc kiểm tra kỹ năng phân tích tài liệu mặc định:<br>
+              <code>npm run eval</code>
             </div>
           </div>
 
-          <!-- Nhóm Repo Owner -->
-          <div class="card card-purple">
-            <div class="card-title" style="color: var(--purple);">
-              <span>👔 Dành Cho Repo Owner</span>
+          <div class="card" style="padding: 18px;">
+            <div class="card-title">Kết Quả In Ra Trên Terminal Trong 1 Giây</div>
+            <div class="card-desc" style="font-size: 12px;">Màn hình sẽ hiển thị bảng kết quả rõ ràng:</div>
+            <div style="background: #0f172a; color: #f8fafc; padding: 10px 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.6; margin-top: 4px;">
+              <div>tc-01  User Onboarding [Good]    <span style="color: #4ade80; font-weight: bold;">PASS</span>  <span style="color: #4ade80;">94/100</span>  None</div>
+              <div>tc-01  User Onboarding [Flawed]  <span style="color: #f87171; font-weight: bold;">FAIL</span>  <span style="color: #f87171;">45/100</span>  <span style="color: #facc15;">missing_epic_scope</span></div>
             </div>
-            <div class="card-desc">
-              <strong>1. Quét sức khỏe toàn bộ 20 kỹ năng:</strong>
-              <div class="cmd-friendly">
-                <span class="cmd-prompt">$</span>
-                <span>npm run eval:all</span>
-              </div>
-              <small style="color: var(--text-muted);">In ra bảng tổng hợp Pass Rate của cả kho trong 3 giây.</small>
+            <div class="card-desc" style="font-size: 12px; margin-top: 6px; color: var(--text-sub);">
+              • Nếu thấy dòng chữ xanh <span style="color: var(--success); font-weight: bold;">PASS</span>: Bạn đã hoàn thành xuất sắc!<br>
+              • Nếu thấy chữ đỏ <span style="color: var(--danger); font-weight: bold;">FAIL</span>: Đọc danh sách lỗi màu vàng bên cạnh để bổ sung.
             </div>
-            <div class="card-desc" style="margin-top: 4px;">
-              <strong>2. Đánh giá toàn bộ & lưu vào báo cáo tuần:</strong>
-              <div class="cmd-friendly">
-                <span class="cmd-prompt">$</span>
-                <span>npm run eval:all:send</span>
-              </div>
-              <small style="color: var(--text-muted);">Đồng bộ toàn bộ kết quả lên Central Ingestion Server.</small>
-            </div>
+          </div>
+        </div>
+
+        <div class="card card-success" style="padding: 12px 16px;">
+          <div class="card-desc" style="font-size: 12.5px;">
+            <strong>Chạy 100% Cục Bộ (Offline):</strong> Bạn không cần kết nối mạng hay bật bất kỳ máy chủ nào. Lệnh chạy trực tiếp trên máy bạn với tốc độ tức thì.
           </div>
         </div>
       </div>
 
       <div class="slide-footer">
-        <span>Tốc độ: Mỗi bài kiểm tra chỉ mất trung bình 0.1 đến 0.5 giây để hoàn thành</span>
-        <span>Trang 5 / 10</span>
+        <span>Đơn giản tối đa: 1 câu lệnh duy nhất là đủ cho 90% nhu cầu hằng ngày</span>
+        <span>Trang 7 / 11</span>
       </div>
     </section>
 
-    <!-- SLIDE 6: STEP 3 - READING RESULTS -->
-    <section class="slide" id="slide-6" data-title="Bước 3: Đọc hiểu kết quả">
+    <!-- SLIDE 8: CORE ACTIONS - WEEKLY REPORT -->
+    <section class="slide" id="slide-8" data-title="Thao tác chính: Xem báo cáo tuần">
       <div class="slide-header">
         <div class="slide-title-wrap">
-          <div class="slide-category">📊 Đọc Hiểu Báo Cáo</div>
-          <h2 class="slide-title">Bước 3: Cách Đọc Hiểu Kết Quả Đánh Giá</h2>
-          <p class="slide-subtitle">Hiểu rõ ý nghĩa các thông số để biết sản phẩm AI đã dùng được ngay hay cần sửa</p>
+          <div class="slide-category">Thao Tác Trọng Tâm</div>
+          <h1 class="slide-title">📊 Thao Tác 2: Mở Báo Cáo Sức Khỏe Tuần (Dashboard)</h1>
+          <p class="slide-subtitle">Trình bày số liệu trực quan dạng website dành cho <strong>Repo Owner</strong></p>
         </div>
-        <span class="slide-tag">Ý Nghĩa Điểm Số</span>
+        <span class="slide-tag">Dành Cho Repo Owner</span>
       </div>
 
       <div class="slide-body">
-        <div class="grid-3">
-          <div class="card card-success">
-            <div class="card-title" style="color: var(--success);">
-              <span class="badge badge-green" style="font-size: 13px; padding: 4px 12px;">ĐẠT (PASS)</span>
+        <div class="grid-2">
+          <div class="card card-purple" style="padding: 18px;">
+            <div class="card-title" style="color: var(--purple);">Bước 1: Bật Trạm Thu Thập Số Liệu Nền</div>
+            <div class="card-desc">Chạy lệnh khởi động trạm đo lường nội bộ tại một cửa sổ Terminal:</div>
+            <div class="cmd-friendly">
+              <span class="cmd-prompt">$</span>
+              <span>npm run server</span>
             </div>
-            <div class="card-desc">
-              <strong>Điểm: 80 - 100 điểm.</strong><br>
-              Đầu ra hoàn chỉnh, đầy đủ các mục bắt buộc, logic nghiệp vụ chặt chẽ, không có lỗi cấm kỵ.<br>
-              👉 <strong>Hành động:</strong> Thành viên yên tâm sử dụng và bàn giao cho khách hàng hoặc team dev!
-            </div>
-          </div>
-
-          <div class="card card-danger">
-            <div class="card-title" style="color: var(--danger);">
-              <span class="badge badge-red" style="font-size: 13px; padding: 4px 12px;">KHÔNG ĐẠT (FAIL)</span>
-            </div>
-            <div class="card-desc">
-              <strong>Điểm: Dưới 80 điểm hoặc dính lỗi Critical.</strong><br>
-              Thiếu mục quan trọng (như thiếu tiêu chí nghiệm thu Gherkin) hoặc vi phạm lỗi cấm kỵ (như rò rỉ mã code vào tài liệu kinh doanh).<br>
-              👉 <strong>Hành động:</strong> Xem danh sách lỗi ở cột bên phải để nhắc AI bổ sung ngay.
+            <div class="card-desc" style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+              Server sẽ lắng nghe tại <code>http://localhost:3456</code> để tự động tích lũy kết quả đo lường.
             </div>
           </div>
 
-          <div class="card card-warning">
-            <div class="card-title" style="color: var(--warning);">
-              <span class="badge badge-amber" style="font-size: 13px; padding: 4px 12px;">CẦN SỬA LẠI (REWORK)</span>
+          <div class="card card-purple" style="padding: 18px;">
+            <div class="card-title" style="color: var(--purple);">Bước 2: Xuất & Mở Báo Cáo HTML Tuần</div>
+            <div class="card-desc">Gõ 2 lệnh sau để tạo và mở dashboard HTML:</div>
+            <div class="cmd-friendly">
+              <span class="cmd-prompt">$</span>
+              <span>npm run report</span>
             </div>
-            <div class="card-desc">
-              <strong>Tỷ lệ Rework:</strong><br>
-              Cho biết tần suất người dùng phải yêu cầu AI làm lại. Tỷ lệ này càng thấp chứng tỏ skill hoạt động càng ổn định ("làm đúng ngay lần đầu").<br>
-              👉 <strong>Repo Owner theo dõi:</strong> Mục tiêu Rework dưới 20%.
+            <div class="cmd-friendly">
+              <span class="cmd-prompt">$</span>
+              <span>open reports/weekly-2026-10-23.html</span>
+            </div>
+            <div class="card-desc" style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+              Trình duyệt sẽ tự động mở trang web báo cáo với đầy đủ biểu đồ và ma trận sức khỏe 20 skills.
             </div>
           </div>
         </div>
 
         <div class="card" style="padding: 14px 18px;">
-          <div class="card-title" style="font-size: 14px;">🔍 Bảng Mẫu Hiển Thị Trên Màn Hình Terminal:</div>
-          <div style="background: #0f172a; color: #f8fafc; padding: 10px 14px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.6;">
-            <div>tc-01   User Onboarding [Good]     wbs_planning   <span style="color: #4ade80; font-weight: bold;">PASS</span>   <span style="color: #4ade80;">94/100</span>   None</div>
-            <div>tc-01   User Onboarding [Flawed]   wbs_planning   <span style="color: #f87171; font-weight: bold;">FAIL</span>   <span style="color: #f87171;">45/100</span>   <span style="color: #facc15;">missing_epic_scope, horizontal_slicing</span></div>
+          <div class="card-title" style="font-size: 13.5px;">Nội Dung Trọng Tâm Trong Báo Cáo Tuần:</div>
+          <div class="grid-3" style="font-size: 12.5px; margin-top: 4px;">
+            <div>• <strong>Tỷ lệ đạt (Pass Rate):</strong> Cho biết % tác vụ đạt chất lượng ngay từ lần đầu.</div>
+            <div>• <strong>Tỷ lệ sửa lại (Rework Rate):</strong> Đo lường mức độ người dùng phải nhắc AI viết lại.</div>
+            <div>• <strong>Top 3 lỗi phổ biến:</strong> Chỉ rõ kỹ năng nào hay mắc lỗi gì để kịp thời tinh chỉnh prompt.</div>
           </div>
         </div>
       </div>
 
       <div class="slide-footer">
-        <span>Minh bạch: Bất kỳ ai nhìn vào bảng cũng biết chính xác tài liệu đang thiếu điều gì</span>
-        <span>Trang 6 / 10</span>
+        <span>Tiện lợi: File HTML hoàn toàn độc lập, dễ dàng gửi qua Slack, Email hoặc đính kèm báo cáo</span>
+        <span>Trang 8 / 11</span>
       </div>
     </section>
 
-    <!-- SLIDE 7: STEP 4 - WEEKLY REPORT (FOR REPO OWNER) -->
-    <section class="slide" id="slide-7" data-title="Bước 4: Xem báo cáo định kỳ">
+    <!-- SLIDE 9: ADDING A NEW SKILL TEST -->
+    <section class="slide" id="slide-9" data-title="Thêm kỹ năng mới vào repo">
       <div class="slide-header">
         <div class="slide-title-wrap">
-          <div class="slide-category">📈 Báo Cáo Định Kỳ</div>
-          <h2 class="slide-title">Bước 4: Mở Báo Cáo Sức Khỏe Tuần (Dashboard)</h2>
-          <p class="slide-subtitle">Công cụ đắc lực dành cho <strong>Repo Owner</strong> để nắm bắt tình hình và chuyển giao cho team</p>
-        </div>
-        <span class="slide-tag">Trọng Tâm: Repo Owner</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="grid-2">
-          <div class="card card-purple">
-            <div class="card-title" style="color: var(--purple);">1. Xuất báo cáo HTML mới nhất</div>
-            <div class="card-desc">Gõ lệnh xuất báo cáo từ dữ liệu telemetry đã tích lũy:</div>
-            <div class="cmd-friendly">
-              <span class="cmd-prompt">$</span>
-              <span>npm run report</span>
-            </div>
-            <div class="card-desc" style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">
-              Hệ thống sẽ tự động quét số liệu 7 ngày qua và tạo ra file <code>reports/weekly-YYYY-MM-DD.html</code>.
-            </div>
-          </div>
-
-          <div class="card card-purple">
-            <div class="card-title" style="color: var(--purple);">2. Mở file xem trên trình duyệt</div>
-            <div class="card-desc">Mở nhanh file bằng lệnh hoặc click đúp chuột vào file:</div>
-            <div class="cmd-friendly">
-              <span class="cmd-prompt">$</span>
-              <span>open reports/weekly-2026-10-23.html</span>
-            </div>
-            <div class="card-desc" style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">
-              File HTML độc lập, có thể gửi qua Slack, Email hoặc trình chiếu trong các buổi họp giao ban kỹ thuật.
-            </div>
-          </div>
-        </div>
-
-        <div class="card" style="padding: 16px;">
-          <div class="card-title" style="font-size: 14px;">📊 Repo Owner Tìm Thấy Gì Trong Báo Cáo Này?</div>
-          <div class="grid-3" style="margin-top: 6px; font-size: 13px;">
-            <div>• <strong>Tỷ lệ đạt chung (Pass Rate):</strong> Biết ngay kho skill đang hoạt động ổn định ở mức bao nhiêu %.</div>
-            <div>• <strong>Bảng điểm từng kỹ năng:</strong> Phát hiện nhanh skill nào đang có điểm thấp dưới 80 để ưu tiên sửa chữa.</div>
-            <div>• <strong>Top lỗi phổ biến:</strong> Biết được người dùng thường gặp vướng mắc ở khâu nào để cập nhật lại prompt.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide-footer">
-        <span>Tiện lợi: Xem được trên mọi trình duyệt Chrome, Safari, Edge mà không cần kết nối mạng</span>
-        <span>Trang 7 / 10</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 8: CREATING A NEW SKILL TEST -->
-    <section class="slide" id="slide-8" data-title="Thêm kỹ năng mới vào repo">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">🛠️ Đóng Góp & Quản Trị</div>
-          <h2 class="slide-title">Cách Thêm Đánh Giá Cho Một Kỹ Năng Mới</h2>
-          <p class="slide-subtitle">Quy chuẩn khi <strong>Thành viên đóng góp skill</strong> và tiêu chí để <strong>Repo Owner duyệt PR</strong></p>
+          <div class="slide-category">Đóng Góp Kỹ Năng Mới</div>
+          <h1 class="slide-title">🛠️ Cách Thêm Đánh Giá Cho Một Kỹ Năng Mới</h1>
+          <p class="slide-subtitle">Quy chuẩn cho Thành viên khi đóng góp skill mới và tiêu chuẩn để Repo Owner duyệt PR</p>
         </div>
         <span class="slide-tag">Đóng Góp & Duyệt PR</span>
       </div>
 
       <div class="slide-body">
         <div class="grid-2">
-          <div class="step-box">
+          <div class="step-box" style="padding: 14px;">
             <div class="step-badge">File 1</div>
             <div class="step-content">
-              <div class="step-title">Phiếu Chấm Điểm (evaluation.yaml)</div>
+              <div class="step-title">Phiếu Chấm Điểm: <code>evaluation.yaml</code></div>
               <div class="step-desc">
-                Đặt ngay trong thư mục <code>skills/ten-skill-moi/evaluation.yaml</code>.<br>
-                Bạn chỉ cần liệt kê:
-                <br>• Tên các phần bắt buộc phải có trong bài làm (ví dụ: Tóm tắt, Mục tiêu, Tiêu chí nghiệm thu...).
-                <br>• Những điều cấm kỵ (ví dụ: Không được đưa code vào tài liệu kinh doanh).
-                <br>• Ngưỡng điểm đỗ (mặc định là 80 điểm).
+                Đặt ngay tại <code>skills/ten-skill-moi/evaluation.yaml</code>.<br>
+                Liệt kê 3 thông tin cơ bản:
+                <br>• Các mục bắt buộc phải có trong bài viết (tiêu đề, tóm tắt, tiêu chí nghiệm thu...).
+                <br>• Các lỗi cấm kỵ (như rò rỉ mã code vào tài liệu nghiệp vụ).
+                <br>• Ngưỡng điểm đỗ (mặc định 80 điểm).
               </div>
             </div>
           </div>
 
-          <div class="step-box">
+          <div class="step-box" style="padding: 14px;">
             <div class="step-badge">File 2</div>
             <div class="step-content">
-              <div class="step-title">Đề Thi Mẫu (benchmarks/tc-01-baseline.json)</div>
+              <div class="step-title">Đề Thi Mẫu: <code>benchmarks/tc-01-baseline.json</code></div>
               <div class="step-desc">
-                Đặt trong thư mục con <code>skills/ten-skill-moi/benchmarks/</code>.<br>
-                Chứa đề bài thực tế cùng 2 bài mẫu:
-                <br>• <strong>sample_good_output:</strong> Một bài viết mẫu chuẩn mực mà bạn kỳ vọng AI sẽ làm được.
-                <br>• <strong>sample_flawed_output:</strong> Một bài viết cẩu thả để thử xem máy có phát hiện được lỗi không.
+                Đặt tại thư mục <code>skills/ten-skill-moi/benchmarks/</code>.<br>
+                Chứa đề bài thực tế cùng 2 bài làm mẫu:
+                <br>• <strong>sample_good_output:</strong> Bài viết mẫu chuẩn mực mà bạn kỳ vọng AI sinh ra.
+                <br>• <strong>sample_flawed_output:</strong> Bài viết ẩu để thử thách máy bắt lỗi.
               </div>
             </div>
           </div>
         </div>
 
         <div class="card card-success" style="padding: 14px 18px;">
-          <div class="card-title" style="color: var(--success); font-size: 14px;">✨ Tiêu Chuẩn Nghiệm Thu Của Repo Owner</div>
+          <div class="card-title" style="color: var(--success); font-size: 14px;">Tiêu Chuẩn Nghiệm Thu Của Repo Owner</div>
           <div class="card-desc">
             Khi Thành viên tạo Pull Request (PR) đóng góp kỹ năng mới, Repo Owner chỉ cần chạy lệnh:<br>
-            <code>npm run eval ten-skill-moi</code>. Nếu bài mẫu tốt đạt điểm xanh (<span style="color: var(--success); font-weight: bold;">PASS ≥ 80đ</span>) và bài mẫu ẩu bị bắt lỗi (<span style="color: var(--danger); font-weight: bold;">FAIL</span>) thì Repo Owner có thể an tâm bấm nút Merge PR trong 30 giây!
+            <code>npm run eval ten-skill-moi</code>. Nếu bài mẫu tốt đạt điểm xanh (<span style="color: var(--success); font-weight: bold;">PASS ≥ 80đ</span>) và bài mẫu ẩu bị bắt lỗi (<span style="color: var(--danger); font-weight: bold;">FAIL</span>) thì Repo Owner an tâm bấm nút Merge PR trong 30 giây!
           </div>
         </div>
       </div>
 
       <div class="slide-footer">
         <span>Có sẵn 20 mẫu tương tự trong thư mục skills/ để bạn copy và chỉnh sửa nhanh</span>
-        <span>Trang 8 / 10</span>
+        <span>Trang 9 / 11</span>
       </div>
     </section>
 
-    <!-- SLIDE 9: TROUBLESHOOTING & FAQ -->
-    <section class="slide" id="slide-9" data-title="Xử lý sự cố thường gặp (FAQ)">
+    <!-- SLIDE 10: TROUBLESHOOTING & FAQ -->
+    <section class="slide" id="slide-10" data-title="Xử lý sự cố thường gặp (FAQ)">
       <div class="slide-header">
         <div class="slide-title-wrap">
-          <div class="slide-category">❓ Xử Lý Sự Cố (FAQ)</div>
-          <h2 class="slide-title">Các Tình Huống Thường Gặp & Cách Xử Lý</h2>
-          <p class="slide-subtitle">Giải đáp nhanh các thắc mắc thực tế cho cả Thành viên và Repo Owner</p>
+          <div class="slide-category">Giải Đáp Thắc Mắc</div>
+          <h1 class="slide-title">❓ Các Tình Huống Thường Gặp & Cách Xử Lý (FAQ)</h1>
+          <p class="slide-subtitle">Giải đáp nhanh các vướng mắc phổ biến nhất của cả Thành viên và Repo Owner</p>
         </div>
         <span class="slide-tag">Hỏi Đáp Nhanh</span>
       </div>
@@ -1108,40 +1208,40 @@
       <div class="slide-body">
         <div class="grid-2">
           <div class="card">
-            <div class="card-title" style="font-size: 14px; color: var(--danger);">
+            <div class="card-title" style="font-size: 13.5px; color: var(--danger);">
               1. Thành viên: Tại sao bài làm tốt (Good Output) của tôi bị báo FAIL?
             </div>
-            <div class="card-desc">
+            <div class="card-desc" style="font-size: 12.5px;">
               <strong>Nguyên nhân:</strong> Có thể bạn viết thiếu một đề mục bắt buộc được quy định trong file <code>evaluation.yaml</code>, hoặc nội dung bài mẫu quá ngắn (dưới 50 ký tự).<br>
               <strong>Cách sửa:</strong> Nhìn vào dòng lỗi màu vàng trên terminal, bổ sung đúng tiêu đề mục đó vào bài mẫu là sẽ đạt ngay.
             </div>
           </div>
 
           <div class="card">
-            <div class="card-title" style="font-size: 14px; color: var(--warning);">
-              2. Thành viên: Chạy lệnh bị lỗi "Connection Refused"?
+            <div class="card-title" style="font-size: 13.5px; color: var(--warning);">
+              2. Thành viên: Chạy lệnh bị báo lỗi "Connection Refused"?
             </div>
-            <div class="card-desc">
-              <strong>Nguyên nhân:</strong> Bạn chạy lệnh có đuôi <code>:send</code> nhưng Repo Owner chưa bật máy chủ thu nhận dữ liệu.<br>
-              <strong>Cách sửa:</strong> Nếu chỉ muốn test kết quả cá nhân, chỉ cần gõ <code>npm run eval &lt;tên-skill&gt;</code> (không có chữ <code>:send</code>) là chạy offline bình thường!
+            <div class="card-desc" style="font-size: 12.5px;">
+              <strong>Nguyên nhân:</strong> Bạn chạy lệnh có đuôi <code>:send</code> nhưng trạm server chưa được bật.<br>
+              <strong>Cách sửa:</strong> Nếu chỉ muốn test cá nhân, chỉ cần gõ lệnh offline: <code>npm run eval &lt;tên-skill&gt;</code> (không có chữ <code>:send</code>).
             </div>
           </div>
 
           <div class="card">
-            <div class="card-title" style="font-size: 14px; color: var(--primary);">
+            <div class="card-title" style="font-size: 13.5px; color: var(--primary);">
               3. Thành viên: Chạy kiểm tra có tốn phí token AI không?
             </div>
-            <div class="card-desc">
-              <strong>Hoàn toàn không tốn 1 đồng nào!</strong> Bộ đánh giá dùng thuật toán kiểm tra cấu trúc và ngữ nghĩa offline siêu tốc, chạy trực tiếp trên máy bạn mà không cần gọi API tính phí ra ngoài.
+            <div class="card-desc" style="font-size: 12.5px;">
+              <strong>Hoàn toàn không tốn phí:</strong> Bộ đánh giá dùng thuật toán kiểm tra cấu trúc và ngữ nghĩa offline siêu tốc, chạy trực tiếp trên máy bạn mà không cần gọi API trả phí ra ngoài.
             </div>
           </div>
 
           <div class="card card-purple">
-            <div class="card-title" style="font-size: 14px; color: var(--purple);">
-              4. Repo Owner: Dữ liệu công việc của team có bị rò rỉ không?
+            <div class="card-title" style="font-size: 13.5px; color: var(--purple);">
+              4. Repo Owner: Dữ liệu của team có bị rò rỉ ra ngoài không?
             </div>
-            <div class="card-desc">
-              <strong>Bảo mật 100%:</strong> Trạm đo lường chạy cục bộ tại máy nội bộ. Dữ liệu chỉ ghi nhận điểm số và mã lỗi kỹ thuật, tuyệt đối không lưu trữ nội dung prompt bí mật hay thông tin của khách hàng.
+            <div class="card-desc" style="font-size: 12.5px;">
+              <strong>Bảo mật 100%:</strong> Trạm đo lường chạy nội bộ trên máy bạn. Dữ liệu chỉ ghi nhận điểm số và mã lỗi kỹ thuật, tuyệt đối không lưu trữ nội dung prompt bí mật hay thông tin của khách hàng.
             </div>
           </div>
         </div>
@@ -1149,101 +1249,96 @@
 
       <div class="slide-footer">
         <span>Gặp khó khăn? Liên hệ ngay Repo Owner để được hướng dẫn trực tiếp</span>
-        <span>Trang 9 / 10</span>
+        <span>Trang 10 / 11</span>
       </div>
     </section>
 
-    <!-- SLIDE 10: CHEAT SHEET (SPLIT BY 2 AUDIENCES) -->
-    <section class="slide" id="slide-10" data-title="Bảng tra cứu nhanh & Tổng kết">
+    <!-- SLIDE 11: APPENDIX (EXPANDED COMMANDS & CLI FLAGS) -->
+    <section class="slide" id="slide-11" data-title="Phụ Lục: Các Lệnh Mở Rộng & Cờ Tùy Biến">
       <div class="slide-header">
         <div class="slide-title-wrap">
-          <div class="slide-category">📌 Tóm Tắt & Tra Cứu Nhanh</div>
-          <h2 class="slide-title">Bảng Tra Cứu Lệnh Nhanh (Cheat Sheet)</h2>
-          <p class="slide-subtitle">Phân chia rõ ràng danh mục lệnh dành cho <strong>Thành Viên Dùng Repo</strong> và <strong>Repo Owner</strong></p>
+          <div class="slide-category">Phụ Lục Tham Khảo (Appendix)</div>
+          <h1 class="slide-title">📌 Phụ Lục: Các Lệnh Mở Rộng & Cờ Tùy Biến</h1>
+          <p class="slide-subtitle">Bảng tra cứu đầy đủ các lệnh nâng cao và cờ tham số dành cho người cần tùy biến sâu</p>
         </div>
-        <span class="slide-tag">Tra Cứu Theo Đối Tượng</span>
+        <span class="slide-tag">Dành Cho Tham Khảo</span>
       </div>
 
       <div class="slide-body">
         <div class="grid-2">
-          <!-- Bảng 1: Thành viên dùng repo -->
-          <div class="card card-primary" style="padding: 14px;">
-            <div class="card-title" style="color: var(--primary); font-size: 14.5px;">
-              🧑‍💻 Dành Cho Thành Viên Dùng Repo
-            </div>
+          <!-- Bảng 1: Lệnh mở rộng -->
+          <div class="card" style="padding: 14px;">
+            <div class="card-title" style="font-size: 14px;">1. Danh Mục Các Lệnh Mở Rộng</div>
             <table class="table-custom" style="margin-top: 6px;">
               <thead>
                 <tr>
-                  <th style="width: 45%;">Nhu Cầu</th>
-                  <th>Lệnh Terminal</th>
+                  <th style="width: 48%;">Lệnh Thực Thi</th>
+                  <th>Mô Tả Chức Năng</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Cài đặt lúc đầu</td>
-                  <td><code>npm install</code></td>
-                </tr>
-                <tr>
-                  <td>Kiểm tra skill đang dùng</td>
-                  <td><code>npm run eval &lt;tên-skill&gt;</code></td>
-                </tr>
-                <tr>
-                  <td>Kiểm tra skill mặc định</td>
-                  <td><code>npm run eval</code></td>
-                </tr>
-                <tr>
-                  <td>Kiểm tra & gửi kết quả</td>
                   <td><code>npm run eval:send</code></td>
+                  <td>Kiểm tra 1 skill và gửi số liệu về server.</td>
+                </tr>
+                <tr>
+                  <td><code>npm run eval:all</code></td>
+                  <td>Quét toàn bộ 20 kỹ năng trong kho offline.</td>
+                </tr>
+                <tr>
+                  <td><code>npm run eval:all:send</code></td>
+                  <td>Quét cả 20 kỹ năng và đồng bộ lên server.</td>
+                </tr>
+                <tr>
+                  <td><code>npm run test:e2e</code></td>
+                  <td>Chạy kiểm thử end-to-end từ test đến xuất báo cáo.</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <!-- Bảng 2: Repo Owner -->
-          <div class="card card-purple" style="padding: 14px;">
-            <div class="card-title" style="color: var(--purple); font-size: 14.5px;">
-              👔 Dành Cho Repo Owner
-            </div>
+          <!-- Bảng 2: Cờ tham số CLI -->
+          <div class="card" style="padding: 14px;">
+            <div class="card-title" style="font-size: 14px;">2. Các Cờ Tùy Biến (CLI Flags)</div>
             <table class="table-custom" style="margin-top: 6px;">
               <thead>
                 <tr>
-                  <th style="width: 45%;">Nhu Cầu</th>
-                  <th>Lệnh Terminal</th>
+                  <th style="width: 44%;">Cờ Tham Số</th>
+                  <th>Mục Đích Sử Dụng</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Bật trạm nhận báo cáo</td>
-                  <td><code>npm run server</code></td>
+                  <td><code>--opt-in</code></td>
+                  <td>Bật gửi telemetry lên máy chủ đo lường.</td>
                 </tr>
                 <tr>
-                  <td>Quét cả 20 skills</td>
-                  <td><code>npm run eval:all</code></td>
+                  <td><code>--benchmark=&lt;tên&gt;</code></td>
+                  <td>Chỉ chạy duy nhất 1 file test case cụ thể.</td>
                 </tr>
                 <tr>
-                  <td>Quét cả 20 skills & lưu</td>
-                  <td><code>npm run eval:all:send</code></td>
+                  <td><code>--server-url=&lt;url&gt;</code></td>
+                  <td>Trỏ đến server từ xa (mặc định: port 3456).</td>
                 </tr>
                 <tr>
-                  <td>Mở báo cáo HTML tuần</td>
-                  <td><code>npm run report</code></td>
+                  <td><code>--all</code></td>
+                  <td>Chế độ chạy hàng loạt cho tất cả kỹ năng.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <div class="card" style="text-align: center; padding: 14px; background: #ffffff;">
-          <h3 style="font-size: 16px; color: var(--text-main); margin-bottom: 4px;">🎉 Bạn Đã Nắm Rõ Toàn Bộ Quy Trình!</h3>
-          <p style="font-size: 13px; color: var(--text-muted);">
-            Thành viên hãy gõ thử <code>npm run eval</code> và Repo Owner hãy thử bật <code>npm run server</code> để trải nghiệm ngay nhé.
+        <div class="card card-primary" style="text-align: center; padding: 12px; margin-top: 4px;">
+          <p style="font-size: 12.5px; color: var(--text-sub);">
+            <strong>Gợi ý:</strong> Trong công việc hằng ngày, bạn chỉ cần dùng lệnh chính <code>npm run eval &lt;tên-skill&gt;</code>. Hãy tham khảo trang Phụ Lục này khi cần tự động hóa nâng cao hoặc cấu hình CI/CD!
           </p>
         </div>
       </div>
 
       <div class="slide-footer">
         <span>Chúc toàn thể đội ngũ vận hành và sử dụng kho AI Skills thật hiệu quả!</span>
-        <span>Trang 10 / 10</span>
+        <span>Trang 11 / 11</span>
       </div>
     </section>
 
