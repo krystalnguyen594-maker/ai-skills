@@ -7,7 +7,7 @@ task_types:
   - id: test_automation
     name: Test Automation Spec & Quality Gates
     required_sections:
-      - pattern: test case|tc-|kịch bản|test execution|test spec
+      - pattern: test case|test execution|kịch bản
         name: Structured Test Cases
         severity: critical
       - pattern: assertion|expect|kiểm tra kết quả

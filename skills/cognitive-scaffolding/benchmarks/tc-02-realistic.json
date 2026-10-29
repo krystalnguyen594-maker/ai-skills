@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Scaffolding Kubernetes Pod Networking for Junior Web Developers",
+  "task_type": "cognitive_explanation",
+  "prompt": "Thiết lập khung giải thích bắc cầu nhận thức về cơ chế Networking của Pod trong Kubernetes cho lập trình viên quen dùng Docker đơn lẻ.",
+  "expected_sections": [
+    "Cognitive Anchor & Reader Pain Point",
+    "Progressive Reasoning Bridge & Analogy",
+    "Target Concept Mastery & Mental Model",
+    "Check for Understanding & Practical Takeaway"
+  ],
+  "sample_good_output": "# Bắc Cầu Nhận Thức: Bản Chất Kubernetes Pod Networking\n\n## 1. Cognitive Anchor: Neo Nhận Thức Trên Nền Docker Có Sẵn\nBạn đã quá quen với việc chạy `docker run -p 8080:80 nginx`. Mỗi container là một hòn đảo riêng, có địa chỉ IP riêng và muốn nói chuyện với nhau phải qua Docker Bridge Network.\n\n## 2. Progressive Reasoning Bridge: Ẩn Dụ Căn Hộ Chung Cư\nHãy tưởng tượng một Căn hộ 2 phòng ngủ (gọi là Pod):\n- Hai người bạn sống chung trong căn hộ này (hai containers: ví dụ 1 Web App và 1 Logging Sidecar).\n- Căn hộ chỉ có **1 địa chỉ hòm thư duy nhất** (1 IP duy nhất cho toàn bộ Pod).\n- Ở trong nhà, hai người bạn nói chuyện với nhau trực tiếp qua hành lang mà không cần gửi thư bưu điện (giao tiếp qua `localhost:PORT`).\n\n## 3. Target Concept: Kubernetes Network Model\nBản chất trong Linux, Pod là một tập hợp các container chia sẻ chung một **Network Namespace** (nhờ container phụ `pause`). Do đó: Tất cả containers trong cùng 1 Pod thấy chung 1 IP, dùng chung cổng port, và chia sẻ cùng loopback adapter.\n\n## 4. Check for Understanding & Cạm Bẫy Thực Tế\nNếu Container A mở port 8080, Container B trong cùng Pod có mở được port 8080 không? -> Không, vì sẽ bị lỗi `Port already in use` giống hệt 2 ứng dụng chạy trên cùng 1 máy tính bàn.",
+  "sample_flawed_output": "# K8s Network\nNém một đống từ khó: CNI plugin cấu hình iptables và veth pair gắn vào OVS bridge overlay VXLAN encapsulation không giải thích bối cảnh."
+}

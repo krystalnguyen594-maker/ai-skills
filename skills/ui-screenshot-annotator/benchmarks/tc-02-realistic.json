@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Enterprise Multi-Factor Authentication Troubleshooting SOP Annotation Guide",
+  "task_type": "screenshot_annotation",
+  "prompt": "Thiết kế tài liệu chú thích ảnh màn hình hướng dẫn nhân viên IT Helpdesk xử lý sự cố thiết bị Token MFA bị mất đồng bộ.",
+  "expected_sections": [
+    "Screenshot Context & Viewport Bounds",
+    "Coordinate-Accurate Callouts & Badges",
+    "Sequential Visual Flow & Directional Arrows",
+    "Step-by-Step SOP Operational Guidance"
+  ],
+  "sample_good_output": "# Enterprise SOP: Khắc Phục Sự Cố Lệch Thời Gian Hardware Token MFA\n\n## 1. Screenshot Context & Viewport Bounds\n- Viewport: Bảng điều khiển quản trị viên Identity Provider (/admin/security/tokens).\n- Độ phân giải gốc: 2560x1440 Retina, tỷ lệ hiển thị co giãn chuẩn 100%.\n\n## 2. Coordinate-Accurate Callouts & Safe-Zone Offsets\n- **Callout [1] (Search Bar):** Bounding Box `x: 240, y: 88, w: 420, h: 42`. Thẻ Badge tròn số 1 màu xanh đặt tại `x: 215, y: 88` (Vùng an toàn bên ngoài mép trái input).\n- **Callout [2] (Drift Offset Status):** Bounding Box viền đỏ `rgba(239, 68, 68, 0.8)` quanh ô hiển thị '+120s Time Drift'.\n- **Callout [3] (Sync Button):** Khung viền nét đứt màu vàng Amber quanh nút `[Re-synchronize Token]`.\n\n## 3. Sequential Visual Flow & Focus Isolation\nLàm mờ nhẹ 30% các khu vực thông tin cá nhân xung quanh (Privacy Masking) để hướng sự tập trung của nhân viên Helpdesk vào chuỗi thao tác [1] -> [2] -> [3].\n\n## 4. Step-by-Step SOP Operational Guidance\n1. Bước 1: Tìm kiếm theo mã nhân viên hoặc Serial Number in trên mặt sau thiết bị phần cứng.\n2. Bước 2: Đối chiếu thông số Time Drift trên màn hình với đồng hồ nguyên tử chuẩn NTP.\n3. Bước 3: Nhấn nút 'Re-synchronize', yêu cầu nhân viên đọc 2 mã OTP liên tiếp để hoàn tất tái kích hoạt.",
+  "sample_flawed_output": "# Chú thích ảnh helpdesk\nGắn hình chụp vào, badge đè lên chữ che mất Serial Number và không đánh số thứ tự thao tác."
+}

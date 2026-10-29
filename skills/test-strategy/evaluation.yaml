@@ -1,30 +1,30 @@
 skill_id: test-strategy
 skill_version: 1.0.0
-title: TEST STRATEGY Quality Rubric
-description: Standardized rubric and quality criteria for auditing and executing
-  the test-strategy skill.
+title: Test Strategy & Quality Engineering Rubric
+description: Evaluates risk-based scoping, test pyramid layer distribution,
+  entry/exit criteria, and regression release gates.
 task_types:
-  - id: test_strategy_task
-    name: test strategy execution
+  - id: test_strategy
+    name: Test Strategy & Quality Engineering Spec
     required_sections:
-      - pattern: overview|tổng quan|bối cảnh
-        name: Context & Objectives
+      - pattern: risk|scoping|đánh giá rủi ro|phạm vi
+        name: Risk-based Scoping & Impact Matrix
+        severity: critical
+      - pattern: test pyramid|layer|phân tầng kiểm thử
+        name: Test Layer Distribution & Coverage Allocation
+        severity: critical
+      - pattern: quality gates|tiêu chí vào ra|entry exit
+        name: Entry & Exit Quality Gates
+        severity: critical
+      - pattern: regression scope|hồi quy|môi trường
+        name: Regression & Environment Strategy
         severity: major
-      - pattern: guidelines|nguyên tắc|quy tắc
-        name: Core Principles & Guidelines
-        severity: critical
-      - pattern: step|quy trình|thực hiện
-        name: Step-by-step Execution
-        severity: critical
-      - pattern: output|kết quả|deliverable
-        name: Standard Deliverable Output
-        severity: critical
 prohibited_patterns:
-  test_strategy_task:
-    - pattern: làm qua loa|không rõ ràng|tùy ý
-      issue_code: vague_execution
-      description: Bắt buộc phải có hướng dẫn và kết quả cụ thể.
-      severity: major
+  test_strategy:
+    - pattern: test tay 100%|không phân loại rủi ro|bỏ qua kiểm thử tự động
+      issue_code: unprioritized_test_strategy_anti_pattern
+      description: Cấm lên chiến lược chỉ test thủ công toàn bộ mà không phân tầng rủi ro.
+      severity: critical
 rubric_dimensions:
   - dimension: completeness
     name: Độ Đầy Đủ (Completeness)

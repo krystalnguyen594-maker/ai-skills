@@ -1,14 +1,14 @@
 {
   "id": "tc-01",
-  "name": "Baseline Test for ai-curriculum-designer",
-  "task_type": "ai_curriculum_designer_task",
-  "prompt": "Thực hiện một kịch bản chuẩn cho kỹ năng ai-curriculum-designer.",
+  "name": "4-Week Agile Testing Study Plan for Junior QC",
+  "task_type": "curriculum_design",
+  "prompt": "Thiết kế giáo trình học tập 4 tuần về Kỹ năng Kiểm thử Hồi quy cho QC mới vào nghề.",
   "expected_sections": [
-    "Context & Objectives",
-    "Core Principles & Guidelines",
-    "Step-by-step Execution",
-    "Standard Deliverable Output"
+    "Target Persona & Prerequisites",
+    "Learning Objectives & Competencies",
+    "Active Learning Syllabus & Modules",
+    "Hands-on Exercises & Assessment Rubric"
   ],
-  "sample_good_output": "# Kế Hoạch Thực Thi Kỹ Năng: ai-curriculum-designer\n\n## 1. Bối Cảnh & Mục Tiêu\nXác định rõ ràng phạm vi bài toán và tiêu chí thành công.\n\n## 2. Nguyên Tắc Cốt Lõi\nTuân thủ nghiêm ngặt các hướng dẫn và rào cản chất lượng.\n\n## 3. Quy Trình Các Bước Thực Hiện\n1. Bước 1: Tiếp nhận và phân tích thông tin đầu vào.\n2. Bước 2: Thực thi theo khung tiêu chuẩn.\n3. Bước 3: Rà soát kiểm tra chất lượng trước khi bàn giao.\n\n## 4. Kết Quả Bàn Giao Hoàn Chỉnh\nĐầy đủ bằng chứng, dữ liệu và tài liệu bàn giao cụ thể.",
-  "sample_flawed_output": "# Làm việc\nCứ làm đại khái là được."
+  "sample_good_output": "# Lộ Trình Đào Tạo Thực Chiến: Agile Quality Engineering Cho Junior QC\n\n## 1. Target Persona & Prerequisites\n- Đối tượng: Junior QC (kinh nghiệm < 1 năm), đã nắm khái niệm kiểm thử đen/trắng.\n- Yêu cầu tiền đề: Đã cài đặt Node.js và Git cơ bản.\n\n## 2. Learning Objectives & Competencies (Bloom's Taxonomy)\n- Hiểu sâu nguyên lý Test Pyramid và Shift-Left Testing.\n- Áp dụng kỹ thuật phân vùng tương đương và phân tích giá trị biên vào tài liệu thực tế.\n- Độc lập viết được kịch bản Playwright cơ bản.\n\n## 3. Active Learning Syllabus (Format Talk Show & Coding Dojo)\n- **Tuần 1:** Bóc tách yêu cầu từ PRD mơ hồ (Talk Show phản biện BA).\n- **Tuần 2:** Thiết kế ma trận Test Cases tối giản không thừa thãi.\n- **Tuần 3:** Tự động hóa API testing với Postman & Newman.\n- **Tuần 4:** Báo cáo Defect chuẩn quốc tế SEV-1 đến SEV-4.\n\n## 4. Hands-on Exercises & Assessment Rubric\n- Bài tập: Tìm 5 bug nghiệp vụ trong ứng dụng E-commerce mẫu.\n- Thang điểm: Đánh giá dựa trên độ chi tiết của Steps to Reproduce và bằng chứng đính kèm.",
+  "sample_flawed_output": "# Khóa học QC\nHọc viên chỉ nghe thuyết trình lý thuyết và học vẹt định nghĩa, không có thực hành."
 }

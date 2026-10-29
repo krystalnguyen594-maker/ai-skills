@@ -1,14 +1,14 @@
 {
   "id": "tc-01",
-  "name": "Baseline Test for dont-make-me-think-ux",
-  "task_type": "dont_make_me_think_ux_task",
-  "prompt": "Thực hiện một kịch bản chuẩn cho kỹ năng dont-make-me-think-ux.",
+  "name": "B2B Order Management DataGrid Refactoring",
+  "task_type": "ux_architecture",
+  "prompt": "Tái cấu trúc giao diện Bảng quản lý đơn hàng theo triết lý Don't Make Me Think.",
   "expected_sections": [
-    "Context & Objectives",
-    "Core Principles & Guidelines",
-    "Step-by-step Execution",
-    "Standard Deliverable Output"
+    "3-Second Scanability & Visual Hierarchy",
+    "Noise & Redundancy Reduction",
+    "Unambiguous Primary Action",
+    "Error Prevention & Frictionless Flow"
   ],
-  "sample_good_output": "# Kế Hoạch Thực Thi Kỹ Năng: dont-make-me-think-ux\n\n## 1. Bối Cảnh & Mục Tiêu\nXác định rõ ràng phạm vi bài toán và tiêu chí thành công.\n\n## 2. Nguyên Tắc Cốt Lõi\nTuân thủ nghiêm ngặt các hướng dẫn và rào cản chất lượng.\n\n## 3. Quy Trình Các Bước Thực Hiện\n1. Bước 1: Tiếp nhận và phân tích thông tin đầu vào.\n2. Bước 2: Thực thi theo khung tiêu chuẩn.\n3. Bước 3: Rà soát kiểm tra chất lượng trước khi bàn giao.\n\n## 4. Kết Quả Bàn Giao Hoàn Chỉnh\nĐầy đủ bằng chứng, dữ liệu và tài liệu bàn giao cụ thể.",
-  "sample_flawed_output": "# Làm việc\nCứ làm đại khái là được."
+  "sample_good_output": "# Tái Cấu Trúc Bố Cục UX: Bảng Đơn Hàng B2B Tinh Gọn\n\n## 1. 3-Second Scanability & Visual Hierarchy\nNgười vận hành kho chỉ mất 3 giây để nhận biết đơn nào cần xử lý ngay nhờ màu sắc trạng thái chuẩn hóa (Xanh lá: Đã thanh toán, Vàng cam: Chờ đóng gói, Xám: Đã hoàn tất).\n\n## 2. Noise & Redundancy Reduction\nẨn 12 cột phụ (như mã bưu điện, tọa độ GPS) vào menu 'Xem chi tiết' dạng drawer trượt, giảm 60% mật độ chữ trên màn hình chính.\n\n## 3. Unambiguous Primary Action (F-Pattern)\nNút hành động chính 'In Phiếu Giao Hàng' luôn nổi bật ở góc trên bên phải, nút phụ có độ tương phản thấp hơn để tránh nhầm lẫn.\n\n## 4. Error Prevention & Frictionless Safeguards\nKhi bấm nút 'Hủy toàn bộ đơn đã chọn', modal xác nhận hiển thị số tiền chính xác sẽ bị hủy và yêu cầu gõ chữ XACNHAN để phòng ngừa bấm nhầm.",
+  "sample_flawed_output": "# Thiết kế bảng\nQuá tải thông tin: nhồi nhét 40 cột lên màn hình, đặt tên nút là bấm vào đây."
 }

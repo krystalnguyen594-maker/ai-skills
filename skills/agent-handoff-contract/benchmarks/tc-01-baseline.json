@@ -1,14 +1,14 @@
 {
   "id": "tc-01",
-  "name": "Baseline Test for agent-handoff-contract",
-  "task_type": "agent_handoff_contract_task",
-  "prompt": "Thực hiện một kịch bản chuẩn cho kỹ năng agent-handoff-contract.",
+  "name": "BA to Developer Handoff Packet for Checkout API",
+  "task_type": "agent_handoff",
+  "prompt": "Soạn gói bàn giao Handoff Packet từ BA sang Dev cho tính năng Áp mã giảm giá.",
   "expected_sections": [
-    "Context & Objectives",
-    "Core Principles & Guidelines",
-    "Step-by-step Execution",
-    "Standard Deliverable Output"
+    "Handoff Context & Objective",
+    "Deliverable Artifacts & Contract",
+    "Assumptions & Known Risks",
+    "Next Owner & Escalation Trigger"
   ],
-  "sample_good_output": "# Kế Hoạch Thực Thi Kỹ Năng: agent-handoff-contract\n\n## 1. Bối Cảnh & Mục Tiêu\nXác định rõ ràng phạm vi bài toán và tiêu chí thành công.\n\n## 2. Nguyên Tắc Cốt Lõi\nTuân thủ nghiêm ngặt các hướng dẫn và rào cản chất lượng.\n\n## 3. Quy Trình Các Bước Thực Hiện\n1. Bước 1: Tiếp nhận và phân tích thông tin đầu vào.\n2. Bước 2: Thực thi theo khung tiêu chuẩn.\n3. Bước 3: Rà soát kiểm tra chất lượng trước khi bàn giao.\n\n## 4. Kết Quả Bàn Giao Hoàn Chỉnh\nĐầy đủ bằng chứng, dữ liệu và tài liệu bàn giao cụ thể.",
-  "sample_flawed_output": "# Làm việc\nCứ làm đại khái là được."
+  "sample_good_output": "# Agent Handoff Packet: Feature Apply Discount Voucher\n\n## 1. Handoff Context & Objective\nChuyển giao thông số nghiệp vụ từ BA Agent sang Backend Lead Agent để lập trình endpoint `/api/v1/cart/apply-voucher`.\n\n## 2. Deliverable Artifacts & Contract\n- Tài liệu PRD: [PRD-Voucher-v2.md](file:///docs/PRD-Voucher.md)\n- Schema JSON Input: `{ voucherCode: string, cartTotal: number }`\n- Expected Response: `{ valid: boolean, discountAmount: number, finalTotal: number }`\n\n## 3. Assumptions & Known Risks\n- Giả định: Tỷ giá tiền tệ luôn cố định là VND, không xử lý ngoại tệ trong phase 1.\n- Rủi ro: Khách hàng mở nhiều tab browser áp cùng 1 voucher mã dùng 1 lần (cần khóa Redis distributed lock).\n\n## 4. Next Owner & Escalation Trigger\n- Người nhận: Backend Dev Agent.\n- Cổng leo thang: Nếu service Voucher phản hồi > 500ms trong quá trình stress test, kích hoạt escalation lại cho Kiến trúc sư.",
+  "sample_flawed_output": "# Bàn giao task\nXong rồi đấy, chắc là dev tự hiểu mà làm tiếp đi."
 }

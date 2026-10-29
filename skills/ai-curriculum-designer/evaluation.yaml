@@ -1,30 +1,31 @@
 skill_id: ai-curriculum-designer
 skill_version: 1.0.0
-title: AI CURRICULUM DESIGNER Quality Rubric
-description: Standardized rubric and quality criteria for auditing and executing
-  the ai-curriculum-designer skill.
+title: AI Curriculum Designer Rubric
+description: Evaluates active learning study plans, Bloom's taxonomy objectives,
+  talk-show format agendas, and practical exercises.
 task_types:
-  - id: ai_curriculum_designer_task
-    name: ai curriculum designer execution
+  - id: curriculum_design
+    name: Active Learning Curriculum & Study Guide
     required_sections:
-      - pattern: overview|tổng quan|bối cảnh
-        name: Context & Objectives
-        severity: major
-      - pattern: guidelines|nguyên tắc|quy tắc
-        name: Core Principles & Guidelines
+      - pattern: persona|đối tượng|tiền đề|prerequisite
+        name: Target Persona & Prerequisites
         severity: critical
-      - pattern: step|quy trình|thực hiện
-        name: Step-by-step Execution
+      - pattern: mục tiêu đào tạo|learning objectives|bloom
+        name: Learning Objectives & Competencies
         severity: critical
-      - pattern: output|kết quả|deliverable
-        name: Standard Deliverable Output
+      - pattern: lộ trình|syllabus|talk show|chủ đề
+        name: Active Learning Syllabus & Modules
+        severity: critical
+      - pattern: thực hành|bài tập|đánh giá|criteria
+        name: Hands-on Exercises & Assessment Rubric
         severity: critical
 prohibited_patterns:
-  ai_curriculum_designer_task:
-    - pattern: làm qua loa|không rõ ràng|tùy ý
-      issue_code: vague_execution
-      description: Bắt buộc phải có hướng dẫn và kết quả cụ thể.
-      severity: major
+  curriculum_design:
+    - pattern: chỉ nghe thuyết trình|không có thực hành|học vẹt
+      issue_code: passive_learning_anti_pattern
+      description: Cấm tổ chức đào tạo chỉ đọc chép thụ động, bắt buộc có bài tập thực
+        chiến.
+      severity: critical
 rubric_dimensions:
   - dimension: completeness
     name: Độ Đầy Đủ (Completeness)

@@ -1,14 +1,14 @@
 {
   "id": "tc-01",
-  "name": "Baseline Test for customer-acceptance",
-  "task_type": "customer_acceptance_task",
-  "prompt": "Thực hiện một kịch bản chuẩn cho kỹ năng customer-acceptance.",
+  "name": "UAT Sign-off on Order Cancellation Flow",
+  "task_type": "uat_acceptance",
+  "prompt": "Thực hiện biên bản nghiệm thu UAT cho tính năng Hủy đơn hàng tự động.",
   "expected_sections": [
-    "Context & Objectives",
-    "Core Principles & Guidelines",
-    "Step-by-step Execution",
-    "Standard Deliverable Output"
+    "Customer Persona & Real-world Context",
+    "Criteria-based Checklist",
+    "Objective Evidence & Defect Log",
+    "Formal Verdict & Business Impact"
   ],
-  "sample_good_output": "# Kế Hoạch Thực Thi Kỹ Năng: customer-acceptance\n\n## 1. Bối Cảnh & Mục Tiêu\nXác định rõ ràng phạm vi bài toán và tiêu chí thành công.\n\n## 2. Nguyên Tắc Cốt Lõi\nTuân thủ nghiêm ngặt các hướng dẫn và rào cản chất lượng.\n\n## 3. Quy Trình Các Bước Thực Hiện\n1. Bước 1: Tiếp nhận và phân tích thông tin đầu vào.\n2. Bước 2: Thực thi theo khung tiêu chuẩn.\n3. Bước 3: Rà soát kiểm tra chất lượng trước khi bàn giao.\n\n## 4. Kết Quả Bàn Giao Hoàn Chỉnh\nĐầy đủ bằng chứng, dữ liệu và tài liệu bàn giao cụ thể.",
-  "sample_flawed_output": "# Làm việc\nCứ làm đại khái là được."
+  "sample_good_output": "# Biên Bản Nghiệm Thu UAT: Tính Năng Hủy Đơn Hàng Tự Phục Vụ\n\n## 1. Customer Persona & Real-world Context\nNgười thẩm định: Nguyễn Văn A (Đại diện Khách hàng Doanh nghiệp mua sỉ B2B).\n\n## 2. Acceptance Criteria Checklist\n- [x] AC-01: Cho phép hủy đơn trong vòng 15 phút nếu đơn chưa sang trạng thái 'Đang đóng gói'.\n- [x] AC-02: Tự động hoàn tiền vào ví trong vòng 3 phút.\n- [ ] AC-03: Gửi email xác nhận kèm mã số giao dịch hoàn tiền (Chưa đạt: email gửi chậm 45 phút).\n\n## 3. Objective Evidence & Defect Log\nĐã thử nghiệm 10 đơn hàng hủy. 10/10 đơn hoàn tiền chuẩn xác. Phát hiện lỗi SEV-3: Template email gửi thiếu thông tin lý do hủy đơn.\n\n## 4. Formal Verdict & Business Impact\n**Verdict: CONDITIONAL ACCEPTANCE (Chấp thuận có điều kiện)**. Cho phép release ra thị trường sau khi hotfix template email hoàn tiền.",
+  "sample_flawed_output": "# Nghiệm thu\nTôi không thích cái màu nút bấm này, nhìn ngứa mắt cảm tính cá nhân nên từ chối."
 }

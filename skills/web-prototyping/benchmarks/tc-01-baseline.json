@@ -1,14 +1,14 @@
 {
   "id": "tc-01",
-  "name": "Baseline Test for web-prototyping",
-  "task_type": "web_prototyping_task",
-  "prompt": "Thực hiện một kịch bản chuẩn cho kỹ năng web-prototyping.",
+  "name": "Interactive Kanban Task Board Prototype",
+  "task_type": "web_prototype_spec",
+  "prompt": "Lập đặc tả kiến trúc cho Prototype Bảng Kanban kéo thả bằng React và Tailwind/CSS.",
   "expected_sections": [
-    "Context & Objectives",
-    "Core Principles & Guidelines",
-    "Step-by-step Execution",
-    "Standard Deliverable Output"
+    "Modern Tech Stack Architecture",
+    "Component Breakdown & State Management",
+    "Responsive Layout & Tailored Tokens",
+    "Interactive States & Micro-animations"
   ],
-  "sample_good_output": "# Kế Hoạch Thực Thi Kỹ Năng: web-prototyping\n\n## 1. Bối Cảnh & Mục Tiêu\nXác định rõ ràng phạm vi bài toán và tiêu chí thành công.\n\n## 2. Nguyên Tắc Cốt Lõi\nTuân thủ nghiêm ngặt các hướng dẫn và rào cản chất lượng.\n\n## 3. Quy Trình Các Bước Thực Hiện\n1. Bước 1: Tiếp nhận và phân tích thông tin đầu vào.\n2. Bước 2: Thực thi theo khung tiêu chuẩn.\n3. Bước 3: Rà soát kiểm tra chất lượng trước khi bàn giao.\n\n## 4. Kết Quả Bàn Giao Hoàn Chỉnh\nĐầy đủ bằng chứng, dữ liệu và tài liệu bàn giao cụ thể.",
-  "sample_flawed_output": "# Làm việc\nCứ làm đại khái là được."
+  "sample_good_output": "# Kiến Trúc Web Prototype: Bảng Quản Lý Công Việc Kanban Tương Tác\n\n## 1. Modern Tech Stack Architecture\n- Framework: React 18 + Vite giúp khởi động nhanh dưới 300ms.\n- Thư viện kéo thả: `@hello-pangea/dnd` mượt mà không giật khung hình.\n\n## 2. Component Breakdown & State Management\n- Cấu trúc: `KanbanBoard -> ColumnList -> KanbanCard -> TaskDetailModal`.\n- Quản lý trạng thái: Zustand lưu trữ danh sách tasks trong LocalStorage.\n\n## 3. Responsive Layout & Tailored Design Tokens\n- Bố cục: CSS Grid 3 cột trên Desktop, chuyển sang Horizontal Carousel vuốt tay trên Mobile.\n- Màu sắc: Nền Slate Dark `hsl(222, 47%, 11%)` kết hợp viền mờ Glassmorphism.\n\n## 4. Interactive States & Micro-animations\n- Kéo thả: Card phóng to nhẹ 1.02x kèm đổ bóng `box-shadow: 0 10px 25px rgba(0,0,0,0.3)`.\n- Hover nút: Chuyển màu mượt mà trong 200ms `transition: all 0.2s ease`.",
+  "sample_flawed_output": "# Làm web\nNhét toàn bộ vào 1 file code monolith 5000 dòng, không có tương tác gì hết."
 }

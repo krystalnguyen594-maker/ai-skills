@@ -1,30 +1,30 @@
 skill_id: dont-make-me-think-ux
 skill_version: 1.0.0
-title: DONT MAKE ME THINK UX Quality Rubric
-description: Standardized rubric and quality criteria for auditing and executing
-  the dont-make-me-think-ux skill.
+title: Don't Make Me Think UX Architecture Rubric
+description: Evaluates cognitive load reduction, 3-second scanability, visual
+  hierarchy, F-pattern layout, and frictionless error prevention.
 task_types:
-  - id: dont_make_me_think_ux_task
-    name: dont make me think ux execution
+  - id: ux_architecture
+    name: Cognitive Usability & UX Architecture Spec
     required_sections:
-      - pattern: overview|tổng quan|bối cảnh
-        name: Context & Objectives
+      - pattern: 3-second scan|quét mắt 3 giây|visual hierarchy
+        name: 3-Second Scanability & Visual Hierarchy
+        severity: critical
+      - pattern: noise|redundancy|cognitive load|giảm tải nhận thức|loại bỏ rác
+        name: Noise & Redundancy Reduction
+        severity: critical
+      - pattern: primary action|hành động chính|f-pattern
+        name: Unambiguous Primary Action
+        severity: critical
+      - pattern: frictionless|phòng ngừa lỗi|hướng dẫn
+        name: Error Prevention & Frictionless Flow
         severity: major
-      - pattern: guidelines|nguyên tắc|quy tắc
-        name: Core Principles & Guidelines
-        severity: critical
-      - pattern: step|quy trình|thực hiện
-        name: Step-by-step Execution
-        severity: critical
-      - pattern: output|kết quả|deliverable
-        name: Standard Deliverable Output
-        severity: critical
 prohibited_patterns:
-  dont_make_me_think_ux_task:
-    - pattern: làm qua loa|không rõ ràng|tùy ý
-      issue_code: vague_execution
-      description: Bắt buộc phải có hướng dẫn và kết quả cụ thể.
-      severity: major
+  ux_architecture:
+    - pattern: quá tải thông tin|nhồi nhét|nhãn nút mơ hồ|bấm vào đây
+      issue_code: cognitive_overload_anti_pattern
+      description: Cấm nhồi nhét thông tin dày đặc hoặc đặt tên nút bấm mơ hồ vô nghĩa.
+      severity: critical
 rubric_dimensions:
   - dimension: completeness
     name: Độ Đầy Đủ (Completeness)

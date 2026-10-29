@@ -1,14 +1,14 @@
 {
   "id": "tc-01",
-  "name": "Baseline Test for pdf-creator",
-  "task_type": "pdf_creator_task",
-  "prompt": "Thực hiện một kịch bản chuẩn cho kỹ năng pdf-creator.",
+  "name": "A4 Technical Proposal Document PDF Spec",
+  "task_type": "pdf_spec",
+  "prompt": "Lập thông số kỹ thuật layout xuất bản tài liệu Đề xuất Kỹ thuật khổ A4 chống gãy trang.",
   "expected_sections": [
-    "Context & Objectives",
-    "Core Principles & Guidelines",
-    "Step-by-step Execution",
-    "Standard Deliverable Output"
+    "Document Profiling & Page Budget",
+    "Page Break & Flow Control",
+    "Professional Typography & Layout Tokens",
+    "Print Header/Footer & Vietnamese Font Setup"
   ],
-  "sample_good_output": "# Kế Hoạch Thực Thi Kỹ Năng: pdf-creator\n\n## 1. Bối Cảnh & Mục Tiêu\nXác định rõ ràng phạm vi bài toán và tiêu chí thành công.\n\n## 2. Nguyên Tắc Cốt Lõi\nTuân thủ nghiêm ngặt các hướng dẫn và rào cản chất lượng.\n\n## 3. Quy Trình Các Bước Thực Hiện\n1. Bước 1: Tiếp nhận và phân tích thông tin đầu vào.\n2. Bước 2: Thực thi theo khung tiêu chuẩn.\n3. Bước 3: Rà soát kiểm tra chất lượng trước khi bàn giao.\n\n## 4. Kết Quả Bàn Giao Hoàn Chỉnh\nĐầy đủ bằng chứng, dữ liệu và tài liệu bàn giao cụ thể.",
-  "sample_flawed_output": "# Làm việc\nCứ làm đại khái là được."
+  "sample_good_output": "# Đặc Tả Kỹ Thuật Layout PDF: Đề Xuất Kỹ Thuật Khổ A4\n\n## 1. Document Profiling & Page Budget\n- Dung lượng mục tiêu: Chính xác 4 trang A4 (không thừa trang trắng cuối cùng).\n- Thành phần: Chứa 2 biểu đồ kiến trúc và 3 bảng so sánh kỹ thuật.\n\n## 2. Page Break & Flow Control Strategy\n- Thiết lập CSS: `.card, .table-container, pre { break-inside: avoid; }`.\n- Tiêu đề mục: `h2, h3 { break-after: avoid; }` đảm bảo không bao giờ có tiêu đề mồ côi ở cuối trang.\n\n## 3. Professional Typography & Layout Tokens\n- Font chữ: Inter và Roboto (Google Fonts) hỗ trợ 100% tiếng Việt có dấu không bị lỗi chân chữ.\n- Thước đo: Margin 15mm chuẩn in ấn văn phòng phẩm.\n\n## 4. Running Header/Footer & Vietnamese Setup\n- Header cố định: Tên dự án và logo công ty.\n- Footer chuẩn: Đánh số trang động dạng `Trang X / Y` với script đo lường Puppeteer.",
+  "sample_flawed_output": "# Xuất PDF\nCứ để mặc định in đại ra, cắt đôi bảng giữa trang cũng kệ nó."
 }

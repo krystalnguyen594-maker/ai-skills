@@ -1,14 +1,14 @@
 {
   "id": "tc-01",
-  "name": "Baseline Test for test-strategy",
-  "task_type": "test_strategy_task",
-  "prompt": "Thực hiện một kịch bản chuẩn cho kỹ năng test-strategy.",
+  "name": "Core Banking Migration Test Strategy",
+  "task_type": "test_strategy",
+  "prompt": "Lập chiến lược kiểm thử cho dự án chuyển đổi hệ thống Core Banking sang Microservices.",
   "expected_sections": [
-    "Context & Objectives",
-    "Core Principles & Guidelines",
-    "Step-by-step Execution",
-    "Standard Deliverable Output"
+    "Risk-based Scoping & Impact Matrix",
+    "Test Layer Distribution & Coverage Allocation",
+    "Entry & Exit Quality Gates",
+    "Regression & Environment Strategy"
   ],
-  "sample_good_output": "# Kế Hoạch Thực Thi Kỹ Năng: test-strategy\n\n## 1. Bối Cảnh & Mục Tiêu\nXác định rõ ràng phạm vi bài toán và tiêu chí thành công.\n\n## 2. Nguyên Tắc Cốt Lõi\nTuân thủ nghiêm ngặt các hướng dẫn và rào cản chất lượng.\n\n## 3. Quy Trình Các Bước Thực Hiện\n1. Bước 1: Tiếp nhận và phân tích thông tin đầu vào.\n2. Bước 2: Thực thi theo khung tiêu chuẩn.\n3. Bước 3: Rà soát kiểm tra chất lượng trước khi bàn giao.\n\n## 4. Kết Quả Bàn Giao Hoàn Chỉnh\nĐầy đủ bằng chứng, dữ liệu và tài liệu bàn giao cụ thể.",
-  "sample_flawed_output": "# Làm việc\nCứ làm đại khái là được."
+  "sample_good_output": "# Chiến Lược Kiểm Thử (Test Strategy): Dự Án Chuyển Đổi Core Banking\n\n## 1. Risk-based Scoping & Impact Matrix\nPhân loại rủi ro thành 3 cấp: P0 (Giao dịch tiền tệ, hạch toán sổ cái), P1 (Xác thực sinh trắc học), P2 (Thông báo biến động số dư).\n\n## 2. Test Layer Distribution (Test Pyramid)\n- Tầng Unit Test (70%): Đảm bảo 100% logic tính lãi và đối soát số dư được bao phủ bằng unit test.\n- Tầng Integration/API Test (20%): Kiểm thử luồng gọi chéo giữa Payment Service và Account Service.\n- Tầng E2E/UI Test (10%): Kịch bản nạp/rút tiền end-to-end trên app di động.\n\n## 3. Entry & Exit Quality Gates\n- Entry Gate: Code coverage đạt >= 80%, không có lỗi sonar blocker.\n- Exit Gate: 100% test case P0 pass, 0 bug SEV-1 và SEV-2 còn mở.\n\n## 4. Regression & Environment Strategy\nChạy bộ regression tự động trên môi trường Staging có dữ liệu ẩn danh (Sanitized Production Data).",
+  "sample_flawed_output": "# Kế hoạch test\nTest tay 100% toàn bộ màn hình, không phân loại rủi ro gì cả."
 }

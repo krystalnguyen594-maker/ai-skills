@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "High-Stakes Financial Risk Monitoring Dashboard Layout",
+  "task_type": "ux_architecture",
+  "prompt": "Thiết kế kiến trúc trải nghiệm cho màn hình giám sát rủi ro gian lận giao dịch thẻ theo nguyên tắc giảm tải nhận thức tối đa.",
+  "expected_sections": [
+    "3-Second Scanability & Visual Hierarchy",
+    "Noise & Redundancy Reduction",
+    "Unambiguous Primary Action",
+    "Error Prevention & Frictionless Flow"
+  ],
+  "sample_good_output": "# UX Architecture Spec: Fraud Risk Monitoring Command Center\n\n## 1. 3-Second Scanability & Visual Hierarchy\n- Tầng 1 (Eye-level Top): Thanh đồng hồ đo mức độ rủi ro hệ thống (Threat Gauge) chuyển từ Xanh sang Đỏ.\n- Tầng 2 (Trung tâm): Danh sách các giao dịch bất thường được nhóm theo mức độ đe dọa (Critical Anomaly) với chữ số tiền lớn, phông Tabular Nums.\n\n## 2. Noise Reduction & Cognitive Load Stripping\n- Loại bỏ toàn bộ viền bảng (borders) không cần thiết, thay bằng khoảng trống Whitespace 16px tạo nhịp thở thị giác.\n- Thu gọn các chuỗi JSON payload kỹ thuật vào accordion thu nhỏ, chỉ hiển thị tóm tắt: 'IP đổi vị trí từ VN sang Nga sau 4 phút'.\n\n## 3. Unambiguous Primary Action Hierarchy\n- Nút khẩn cấp P0: `[KHÓA THẺ TỨC THÌ]` màu đỏ đậm có icon ổ khóa rõ ràng.\n- Nút P1: `[Bỏ qua cảnh báo]` dạng ghost button viền mờ, triệt tiêu nguy cơ chọn nhầm trong trạng thái hoảng loạn.\n\n## 4. Frictionless Error Prevention & Reversible Actions\nMọi hành động khóa thẻ đều cho phép 'Hoàn tác trong 10 giây' (Undo Toast) ở góc dưới màn hình giúp nhân viên an tâm xử lý nhanh mà không sợ thao tác nhầm.",
+  "sample_flawed_output": "# Màn hình rủi ro\nNhồi nhét tất cả biểu đồ lên một chỗ gây quá tải thông tin, gắn 20 nút giống hệt nhau ghi bấm vào đây."
+}

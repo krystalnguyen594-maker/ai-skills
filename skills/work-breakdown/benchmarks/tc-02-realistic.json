@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Omnichannel Loyalty Points Engine Epic Vertical Slicing",
+  "task_type": "wbs_planning",
+  "prompt": "Phân rã Epic Tích điểm đổi quà đa kênh (Omnichannel Loyalty Points) theo phương pháp Vertical Slicing.",
+  "expected_sections": [
+    "Epic Scope Definition",
+    "Vertical User Story Slicing",
+    "Cross-team Dependencies",
+    "Complexity / Sizing Estimates"
+  ],
+  "sample_good_output": "# WBS: Epic Omnichannel Loyalty Points Engine\n\n## 1. Epic Scope Definition\nCho phép 500.000 khách hàng tích điểm khi mua hàng tại cả POS cửa hàng vật lý và ứng dụng thương mại điện tử, tự động quy đổi thành voucher giảm giá.\n\n## 2. Vertical Sliced User Stories\n- **Story 1 (P0 - Thin Slice): Tích điểm tự động khi mua online** (UI giỏ hàng hiển thị số điểm nhận được, API tính điểm theo tỷ lệ 10.000đ = 1 điểm, ghi sổ Ledger DB).\n- **Story 2 (P0): Tra cứu số dư điểm và lịch sử biến động** (Trang Profile hiển thị realtime, webhook đồng bộ với hệ thống POS cửa hàng).\n- **Story 3 (P1): Dùng điểm giảm giá trực tiếp khi thanh toán** (Validate hạn mức tối đa 50% giá trị đơn, rollback điểm nếu hủy giao dịch).\n\n## 3. Cross-team Dependencies & Blockers\n- Phụ thuộc team POS cung cấp API đối soát ca bán hàng trước ngày 15/11.\n- Phụ thuộc team Tài chính phê duyệt tỷ lệ trích lập quỹ dự phòng điểm thưởng.\n\n## 4. Estimates & Release Milestones\n- Story 1: 5 SP | Story 2: 3 SP | Story 3: 8 SP -> Tổng: 16 Story Points (Triển khai gói gọn trong 2 Sprint).",
+  "sample_flawed_output": "# Kế hoạch phân rã\nCắt theo tầng kỹ thuật: Story chỉ làm FE dựng form tích điểm, Story chỉ làm BE viết API database."
+}

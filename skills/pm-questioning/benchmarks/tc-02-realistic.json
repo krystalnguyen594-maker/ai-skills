@@ -1,0 +1,15 @@
+{
+  "id": "tc-02",
+  "name": "Critical Review on Removing SMS OTP for In-App Biometrics",
+  "task_type": "pm_critique",
+  "prompt": "Phản biện đề xuất của Ban Giám đốc về việc loại bỏ hoàn toàn mã SMS OTP và chỉ dùng FaceID/Vân tay để tiết kiệm chi phí viễn thông.",
+  "expected_sections": [
+    "First Principles Deconstruction",
+    "Pre-Mortem Failure Analysis",
+    "5 Whys Deep Dive",
+    "Second-Order Consequences",
+    "Constructive Pushback & Alternative"
+  ],
+  "sample_good_output": "# PM Critical Pushback: Đề Xuất Bỏ Hoàn Toàn SMS OTP Để Cắt Giảm Chi Phí\n\n## 1. First Principles Deconstruction\nBản chất của xác thực giao dịch tài chính là nguyên lý 'Something you have' và 'Something you are'. Biometrics chỉ chứng minh chủ thiết bị đang cầm máy, không chứng minh được sự đồng thuận giao dịch nếu thiết bị bị root/jailbreak.\n\n## 2. 5 Whys Root Cause Analysis\n- Tại sao muốn bỏ SMS OTP? -> Tiết kiệm 400 triệu đồng tiền tin nhắn viễn thông mỗi tháng.\n- Tại sao chi phí viễn thông cao? -> Gửi OTP cho mọi giao dịch kể cả dưới 50.000đ.\n- Gốc rễ: Do chiến lược phân tầng rủi ro (Risk-based Authentication) chưa có, chứ không phải do bản thân kênh SMS.\n\n## 3. Pre-Mortem Analysis (Kịch bản thất bại sau 3 tháng)\nNếu bỏ hẳn SMS OTP: Khách hàng lớn tuổi dùng điện thoại không hỗ trợ FaceID sẽ không thể chuyển tiền; tài khoản bị tấn công Session Hijacking sẽ mất trắng tiền mà không hề nhận được cảnh báo ngoại vi (out-of-band notification).\n\n## 4. Second-Order Consequences\nTỷ lệ churn khách hàng phân khúc trên 45 tuổi tăng 22%; chi phí xử lý khiếu nại của tổng đài CSKH tăng gấp 3 lần số tiền tiết kiệm viễn thông.\n\n## 5. Constructive Pushback & Strategic Alternative\nÁp dụng xác thực phân tầng (Risk-based): Miễn xác thực cho giao dịch < 200k với thiết bị tin cậy; dùng Push Notification App Approval cho giao dịch trung bình; chỉ kích hoạt SMS OTP cho giao dịch giá trị cao (> 10 triệu) hoặc thay đổi mật khẩu.",
+  "sample_flawed_output": "# Phê duyệt\nSếp bảo tiết kiệm tiền là đúng rồi. Đồng ý hoàn toàn làm luôn không cần hỏi gì thêm."
+}

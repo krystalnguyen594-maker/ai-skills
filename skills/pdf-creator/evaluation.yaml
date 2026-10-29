@@ -1,30 +1,31 @@
 skill_id: pdf-creator
 skill_version: 1.0.0
-title: PDF CREATOR Quality Rubric
-description: Standardized rubric and quality criteria for auditing and executing
-  the pdf-creator skill.
+title: Adaptive PDF Creator Specification Rubric
+description: Evaluates document profiling, page-break avoidance, print layout
+  budgets, Vietnamese typography, and running headers/footers.
 task_types:
-  - id: pdf_creator_task
-    name: pdf creator execution
+  - id: pdf_spec
+    name: Adaptive PDF Creator Layout Specification
     required_sections:
-      - pattern: overview|tổng quan|bối cảnh
-        name: Context & Objectives
+      - pattern: profiling|khảo sát tài liệu|page budget
+        name: Document Profiling & Page Budget
+        severity: critical
+      - pattern: page break|chống gãy trang|break-inside
+        name: Page Break & Flow Control
+        severity: critical
+      - pattern: typography|phông chữ|spacing
+        name: Professional Typography & Layout Tokens
         severity: major
-      - pattern: guidelines|nguyên tắc|quy tắc
-        name: Core Principles & Guidelines
-        severity: critical
-      - pattern: step|quy trình|thực hiện
-        name: Step-by-step Execution
-        severity: critical
-      - pattern: output|kết quả|deliverable
-        name: Standard Deliverable Output
+      - pattern: header|footer|số trang|vietnamese
+        name: Print Header/Footer & Vietnamese Font Setup
         severity: critical
 prohibited_patterns:
-  pdf_creator_task:
-    - pattern: làm qua loa|không rõ ràng|tùy ý
-      issue_code: vague_execution
-      description: Bắt buộc phải có hướng dẫn và kết quả cụ thể.
-      severity: major
+  pdf_spec:
+    - pattern: hardcode height px|để mặc định|cắt đôi bảng
+      issue_code: broken_pdf_layout_anti_pattern
+      description: Cấm hardcode chiều cao tĩnh gây tràn trang hoặc để bảng bị cắt đôi
+        ngang thân.
+      severity: critical
 rubric_dimensions:
   - dimension: completeness
     name: Độ Đầy Đủ (Completeness)

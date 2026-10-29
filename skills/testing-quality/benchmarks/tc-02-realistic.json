@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Playwright E2E Idempotent Checkout Automation with Mocked Payment",
+  "task_type": "test_automation",
+  "prompt": "Thiết kế bộ kiểm thử tự động hóa E2E cho quy trình Thanh toán đơn hàng có cơ chế dọn dẹp dữ liệu và chống flaky.",
+  "expected_sections": [
+    "Structured Test Cases",
+    "Deterministic Assertions",
+    "Test Fixture & Dynamic Data Seed",
+    "Teardown & Cleanup Mechanism"
+  ],
+  "sample_good_output": "# Playwright Automation Spec: Idempotent E2E Checkout Flow\n\n## 1. Test Setup & Dynamic Data Seed Fixtures\nKhởi tạo test runner với tài khoản khách hàng cô lập thông qua fixture API:\n```typescript\ntest.beforeEach(async ({ request, context }) => {\n  const user = await createTestCustomer(request, { balance: 500000 });\n  const item = await seedInventoryItem(request, { stock: 10 });\n  context.setExtraHTTPHeaders({ Authorization: `Bearer ${user.token}` });\n});\n```\n\n## 2. Structured Test Cases & Deterministic Assertions\n```typescript\ntest('TC-E2E-01: Hoàn tất đơn hàng với thẻ tín dụng sandbox', async ({ page }) => {\n  await page.goto('/checkout');\n  await page.getByRole('button', { name: 'Thanh toán' }).click();\n  await expect(page.getByTestId('order-success-badge')).toBeVisible({ timeout: 5000 });\n  await expect(page.getByTestId('order-status')).toHaveText('ĐÃ THANH TOÁN');\n});\n```\n\n## 3. Teardown & Idempotent Cleanup\n```typescript\ntest.afterEach(async ({ request }) => {\n  if (testOrderId) {\n    await request.post(`/api/test/cleanup/orders/${testOrderId}`);\n  }\n});\n```",
+  "sample_flawed_output": "# Script test thanh toán\nChạy qua màn hình checkout rồi sleep(10000) chờ bừa xem nó có hiện chữ thành công không. Hardcode id tài khoản 99999."
+}

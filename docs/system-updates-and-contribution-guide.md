@@ -22,37 +22,38 @@ Mỗi kỹ năng trong thư mục `skills/<skill-name>/` bắt buộc phải có
 skills/<skill-name>/
 ├── 1. SKILL.md             # System Prompt & Hướng dẫn nghiệp vụ
 ├── 2. evaluation.yaml      # Bộ tiêu chí thẩm định chất lượng (Rubric & Quality Gates)
-└── 3. benchmarks/          # Bộ kịch bản kiểm thử đối chứng hồi quy (Regression Test Suite)
-    └── tc-01-baseline.json
+└── 3. benchmarks/          # Bộ kịch bản kiểm thử đối chứng hồi quy (Tối thiểu 2 bài test)
+    ├── tc-01-baseline.json   # Kịch bản kiểm thử nền tảng
+    └── tc-02-realistic.json  # Kịch bản nghiệp vụ thực chiến chuyên sâu
 ```
 
 #### Phân định vai trò kỹ thuật:
 | Thành phần | File cấu hình | Vai trò & Ý nghĩa kỹ thuật |
 | :--- | :--- | :--- |
 | **System Prompt** | `SKILL.md` | Định nghĩa vai trò, ngữ cảnh, các bước phân tích, định dạng đầu ra và điều kiện kích hoạt (*Trigger conditions*) của AI. |
-| **Grading Rubric** | `evaluation.yaml` | Bản đặc tả tiêu chuẩn nghiệm thu: Các phần bắt buộc (*Required Sections*), các lỗi phản mẫu bị cấm (*Prohibited Patterns*), trọng số điểm các chiều chất lượng (*Rubric Dimensions*) và ngưỡng điểm đạt (`pass_threshold: 80`). |
-| **Regression Suite** | `benchmarks/` | Tập dữ liệu kiểm thử đối chứng, gồm: <br>• **Sample Good:** Mẫu đầu ra chuẩn mực (kỳ vọng $\ge 80$ điểm - `PASS`).<br>• **Sample Flawed:** Mẫu cố tình vi phạm lỗi nghiệp vụ (kỳ vọng $< 80$ điểm - `FAIL`) để xác minh bộ lọc hoạt động chính xác. |
+| **Grading Rubric** | `evaluation.yaml` | Bản đặc tả tiêu chuẩn nghiệm thu độc lập: Các phần bắt buộc (*Required Sections*), các lỗi phản mẫu bị cấm (*Prohibited Patterns*), trọng số điểm các chiều chất lượng (*Rubric Dimensions*) và ngưỡng điểm đạt (`pass_threshold: 80`). |
+| **Regression Suite** | `benchmarks/` | Tập dữ liệu kiểm thử đối chứng gồm tối thiểu 2 bài (`tc-01-baseline` và `tc-02-realistic`), mỗi bài chứa: <br>• **Sample Good:** Mẫu đầu ra chuẩn mực (kỳ vọng $\ge 80$ điểm - `PASS`).<br>• **Sample Flawed:** Mẫu cố tình vi phạm lỗi nghiệp vụ (kỳ vọng $< 80$ điểm - `FAIL`) để xác minh bộ lọc hoạt động chính xác. |
 
 ---
 
-### 3. Luồng Vận Hành Toàn Trình (End-to-End Workflow)
+### 3. Luồng Vận Hành Toàn Trình (3-Tier End-to-End Workflow)
 
-Hệ thống hoạt động theo quy trình tự động hóa khép kín:
+Hệ thống tuân thủ nghiêm ngặt **Quy trình vận hành 3 Chặng bắt buộc (Mandatory 3-Tier Pipeline)**:
 
 ```mermaid
 flowchart TD
-    A["1. User Prompt (Yêu cầu nghiệp vụ)"] --> B["2. AI sinh tài liệu theo SKILL.md"]
-    B --> C["3. Local Evaluator chấm điểm theo evaluation.yaml"]
-    C --> D["4. Xuất tài liệu kèm Quality Badge (Pass / Fail / Score)"]
-    D --> E["5. Thu thập User Feedback & Rework Flag"]
-    E --> F["6. Ingestion Server lưu Telemetry vào SQLite DB"]
-    F --> G["7. Cron/CLI tạo Weekly Executive Report (Markdown / HTML / Email)"]
-    G --> H["8. Repo Owner tối ưu câu chữ trong SKILL.md"]
+    A["1. User Prompt (Yêu cầu nghiệp vụ)"] --> B["Chặng 1: AI soạn thảo theo SKILL.md"]
+    B --> C["Chặng 2: Config-Driven Evaluator tự động đối soát evaluation.yaml"]
+    C --> D["Xuất tài liệu kèm Thẻ Chất Lượng (Quality Scorecard & Badge)"]
+    D --> E["Chặng 3: Hộp thoại phản hồi 1-chạm (Interactive Modal Popup UI)"]
+    E --> F["Lưu trữ Telemetry vào SQLite DB (server/data/eval.db)"]
+    F --> G["Cron/CLI tạo Weekly Executive Report (Markdown & HTML Dashboard)"]
+    G --> H["Repo Owner tối ưu câu chữ trong SKILL.md"]
     H -.-> B
 ```
 
-* **Trải nghiệm phía người dùng:** Bạn nhận được văn bản chuẩn chỉnh kèm theo **Thẻ thẩm định chất lượng tự động** (Điểm số, Trạng thái Pass/Fail, Các mục đã đạt). Nếu cần tinh chỉnh, bạn chọn phản hồi để AI cập nhật lại tài liệu; đồng thời hệ thống ghi nhận cờ `rework_required` vào báo cáo tuần.
-* **Bảo mật dữ liệu (Strict Data Minimization):** Hệ thống **không gửi văn bản gốc, prompt hay dữ liệu kinh doanh của bạn**. Telemetry chỉ truyền metadata gồm: `event_id`, `skill_id`, `score`, `result`, và danh sách mã lỗi `issue_codes`.
+* **Trải nghiệm phía người dùng (1-Click Interactive Modal):** Bạn nhận được văn bản chuẩn chỉnh kèm theo **Bảng Thẻ Kiểm Định Chất Lượng** (Điểm số 4 chiều, Trạng thái Pass/Fail). Ngay sau đó, hệ thống tự động kích hoạt **hộp thoại tương tác đồ họa Modal UI** để bạn bấm chọn đánh giá 1-chạm (`[1] Rất hài lòng`, `[2] Cần bổ sung`, `[3] Điều chỉnh phạm vi`) mà không cần gõ phím thủ công.
+* **Bảo mật dữ liệu (Strict Data Minimization):** Hệ thống **không gửi văn bản gốc, prompt hay dữ liệu kinh doanh của bạn**. Telemetry chỉ truyền metadata gồm: `event_id`, `skill_id`, `score`, `result`, và danh sách mã lỗi `issue_codes`. Dữ liệu feedback **tuyệt đối không tự động git push lên repo** mà lưu trữ an toàn trong SQLite cục bộ (`server/data/eval.db`).
 
 ---
 
@@ -60,16 +61,17 @@ flowchart TD
 
 Toàn bộ 20 skills trong repository tuân thủ 4 nguyên tắc kiến trúc:
 
-1. **Độc lập theo yêu cầu (Independent On-demand):** Các kỹ năng không gây nhiễu chéo ngữ cảnh. Khi gọi kỹ năng nào, Agent chỉ nạp duy nhất skill đó để đảm bảo độ tập trung và tiết kiệm token.
-2. **Thẩm định cách ly (Isolated Evaluation):** Tài liệu của kỹ năng nào chỉ chấm điểm dựa trên đúng file `evaluation.yaml` của kỹ năng đó, không áp đặt hay trừ điểm chéo tiêu chí của domain khác.
-3. **Phản hồi tinh gọn (Pure Delivery):** Sau khi xuất kết quả và Thẻ đánh giá, Agent kết thúc lượt và chờ lệnh tiếp theo; không tự ý chào mời các kỹ năng kế tiếp.
-4. **Kích hoạt có chọn lọc (Selective Triggering):** Chỉ kích hoạt bộ thẩm định khi người dùng yêu cầu các sản phẩm có cấu trúc chuẩn (PRD, BRD, WBS, Kiến trúc kỹ thuật, Test Automation...). Các câu hỏi tư vấn thông thường được phản hồi linh hoạt.
+1. **Bộ máy đánh giá động (Config-Driven Universal Evaluator):** File lõi [rubric-evaluator.ts](file:///Users/krystalnguyen/Documents/ai-skills/ai-skills/evaluation/src/judge/rubric-evaluator.ts) hoạt động như một Engine độc lập, hoàn toàn **không hardcode** bất kỳ nghiệp vụ nào. Khi chấm điểm skill nào, engine tự động nạp `evaluation.yaml` của skill đó để tính điểm theo đúng barem và trọng số riêng.
+2. **Độ phủ kiểm thử 100% (82 Automated Benchmarks):** Toàn bộ 20 kỹ năng đều được trang bị cặp bài test chuẩn `tc-01` và `tc-02`, đạt Pass Rate 50% đối chứng (100% Good đạt PASS, 100% Flawed bị FAIL).
+3. **Thẩm định cách ly (Isolated Evaluation):** Tài liệu của kỹ năng nào chỉ chấm điểm dựa trên đúng file `evaluation.yaml` của kỹ năng đó, không áp đặt hay trừ điểm chéo tiêu chí của domain khác.
+4. **Phản hồi tinh gọn (Pure Delivery):** Sau khi xuất kết quả và Thẻ đánh giá kèm Modal UI, Agent kết thúc lượt và chờ lệnh tiếp theo; không tự ý chào mời các kỹ năng kế tiếp.
+5. **Kích hoạt có chọn lọc (Selective Triggering):** Chỉ kích hoạt bộ thẩm định khi người dùng yêu cầu các sản phẩm có cấu trúc chuẩn (PRD, BRD, WBS, Kiến trúc kỹ thuật, Test Automation...). Các câu hỏi tư vấn thông thường được phản hồi linh hoạt.
 
 ---
 
 ### 5. Hướng Dẫn Đóng Góp Skill Mới (Contributor Walkthrough)
 
-Khi đóng góp một skill mới (ví dụ: `skills/api-contract-design/`), bạn thực hiện theo 4 bước chuẩn hóa:
+Khi đóng góp một skill mới (ví dụ: `skills/api-contract-design/`), bạn thực hiện theo 5 bước chuẩn hóa:
 
 #### Bước 1: Khởi tạo thư mục
 Tạo thư mục tại `skills/<tên-skill>/` theo cấu trúc chuẩn.
@@ -126,8 +128,12 @@ scoring:
   critical_issue_behavior: instant_fail
 ```
 
-#### Bước 4: Viết Bộ Test Case `benchmarks/tc-01-baseline.json`
-Chuẩn bị 1 case kiểm thử có cả 2 biến thể:
+#### Bước 4: Viết Bộ Test Case Benchmarks (`tc-01-baseline.json` & `tc-02-realistic.json`)
+Chuẩn bị tối thiểu 2 bài kiểm thử (mỗi bài có cả 2 biến thể `sample_good_output` và `sample_flawed_output`):
+1. `benchmarks/tc-01-baseline.json`: Kịch bản cơ sở kiểm tra tính đầy đủ của các mục cốt lõi.
+2. `benchmarks/tc-02-realistic.json`: Kịch bản thực chiến chuyên sâu, tình huống biên phức tạp và các ràng buộc đa chiều.
+
+Cấu trúc mỗi file JSON:
 ```json
 {
   "id": "tc-01",
@@ -145,7 +151,11 @@ Trước khi tạo Pull Request, chạy lệnh kiểm thử cục bộ:
 ```bash
 npm run eval <tên-skill>
 ```
-* **Điều kiện nghiệm thu:** Sample Good phải đạt `PASS` ($\ge 80$), Sample Flawed phải đạt `FAIL` ($< 80$) và bắt chính xác mã lỗi đã cấu hình.
+* **Điều kiện nghiệm thu:** 
+  * Cả hai bài kiểm thử `tc-01` và `tc-02` đều phải đạt:
+    * `Sample Good`: Đạt `PASS` ($\ge 80/100$, 0 lỗi Critical).
+    * `Sample Flawed`: Bị `FAIL` ($< 80/100$), bẫy chính xác các mã lỗi cấm đã cấu hình.
+  * Tỷ lệ đạt chuẩn đối chứng phải đúng 50% (Good: 100% Pass, Flawed: 100% Fail).
 
 ---
 
@@ -153,11 +163,11 @@ npm run eval <tên-skill>
 
 | Lệnh thực thi | Vai trò sử dụng | Chức năng chi tiết |
 | :--- | :--- | :--- |
-| `npm run eval <skill>` | Contributor / Dev | Chạy kiểm thử tự động cục bộ cho 1 skill (offline, an toàn, không gửi mạng). |
-| `npm run eval:all` | Repo Owner / CI | Quét kiểm tra chất lượng hồi quy toàn bộ 20 skills trong kho cùng lúc. |
+| `npm run eval <skill>` | Contributor / Dev | Chạy kiểm thử tự động cục bộ cho 1 skill (đối soát `evaluation.yaml`, offline, an toàn). |
+| `npm run eval:all` | Repo Owner / CI | Quét kiểm tra chất lượng hồi quy toàn bộ 20 skills (82 bài test benchmark) cùng lúc. |
 | `npm run eval:all:send` | Repo Owner | Kiểm thử 20 skills và đồng bộ telemetry về Central Ingestion Server. |
-| `npm run server` | DevOps / Owner | Khởi động Ingestion Server & SQLite Database tại `http://localhost:3456`. |
-| `npm run report` | Repo Owner | Tổng hợp toàn bộ số liệu và xuất Báo cáo tuần (Markdown & HTML Dashboard). |
+| `npm run server` | DevOps / Owner | Khởi động Ingestion Server & SQLite Database (`server/data/eval.db`) tại `http://localhost:3456`. |
+| `npm run report` | Repo Owner | Tổng hợp toàn bộ số liệu từ database và xuất Báo cáo tuần (Markdown & HTML Dashboard). |
 | `npm run test:e2e` | Toàn bộ | Chạy thử nghiệm toàn trình: Chấm điểm $\rightarrow$ Ingestion DB $\rightarrow$ Xuất Báo cáo. |
 
 ---

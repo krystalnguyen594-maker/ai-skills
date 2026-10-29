@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Explain Zero-Knowledge Proofs (ZKP) to Non-Technical Executives",
+  "task_type": "feynman_explanation",
+  "prompt": "Giải thích công nghệ Zero-Knowledge Proof (ZKP) bằng phương pháp Feynman cho Giám đốc kinh doanh.",
+  "expected_sections": [
+    "Jargon-free Core Concept",
+    "Real-world Relatable Analogy",
+    "Addressing Common Misconceptions",
+    "One-sentence Simple Takeaway"
+  ],
+  "sample_good_output": "# Giải Thích Công Nghệ Zero-Knowledge Proofs (Bằng Chứng Không Tri Thức)\n\n## 1. Khái Niệm Bình Dân Không Thuật Ngữ\nZKP là cách bạn **chứng minh cho người khác biết bạn có chìa khóa mở kho báu, mà không cần cho họ nhìn thấy chiếc chìa khóa hay bất kỳ thứ gì bên trong kho báu**.\n\n## 2. Ẩn Dụ Trực Quan: Hai Quả Táo và Người Bạn Mù Màu\nHãy tưởng tượng bạn có 2 quả táo: 1 quả đỏ và 1 quả xanh, nhưng người bạn của bạn bị mù màu và nghĩ chúng giống hệt nhau.\n- Bạn bảo: 'Hai quả màu khác nhau đấy!'. Bạn ấy giấu 2 quả sau lưng, tráo đổi hoặc giữ nguyên rồi đưa ra hỏi: 'Tôi có vừa tráo quả không?'.\n- Bạn luôn trả lời đúng 100% sau 20 lần thử.\n- Bạn của bạn hoàn toàn bị thuyết phục rằng 2 quả táo khác màu thật, dù bạn ấy vẫn **không hề biết quả nào là màu đỏ, quả nào là màu xanh**.\n\n## 3. Gỡ Rối Điểm Hiểu Lầm Phổ Biến\nMọi người thường nghĩ muốn bảo mật thì phải mã hóa mật khẩu rồi gửi cho server giải mã. ZKP chứng minh server không cần biết mật khẩu của bạn là gì nhưng vẫn chứng thực được bạn là chủ tài khoản.\n\n## 4. Tóm Tắt Trong 1 Câu Đắt Giá\nZKP là chiếc thẻ căn cước thông minh chứng minh bạn đủ 18 tuổi để vào rạp chiếu phim mà không để lộ ngày sinh hay địa chỉ nhà.",
+  "sample_flawed_output": "# Zero-Knowledge Proof\nZKP dùng thuật ngữ khó hiểu mà không giải thích: zk-SNARKs dựa trên đa thức elliptic curve và hệ thống cam kết mật mã học phi tương tác."
+}

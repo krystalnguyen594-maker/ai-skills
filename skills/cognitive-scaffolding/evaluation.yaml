@@ -1,30 +1,30 @@
 skill_id: cognitive-scaffolding
 skill_version: 1.0.0
-title: COGNITIVE SCAFFOLDING Quality Rubric
-description: Standardized rubric and quality criteria for auditing and executing
-  the cognitive-scaffolding skill.
+title: Cognitive Scaffolding & Progressive Explanation Rubric
+description: Evaluates cognitive bridges, the Anchor-Bridge-Target model, Minto
+  Pyramid progression, and curse-of-knowledge elimination.
 task_types:
-  - id: cognitive_scaffolding_task
-    name: cognitive scaffolding execution
+  - id: cognitive_explanation
+    name: Progressive Explanation & Cognitive Scaffolding
     required_sections:
-      - pattern: overview|tổng quan|bối cảnh
-        name: Context & Objectives
+      - pattern: anchor|neo nhận thức|điểm tựa
+        name: Cognitive Anchor & Reader Pain Point
+        severity: critical
+      - pattern: bridge|bắc cầu|minto|dẫn dắt
+        name: Progressive Reasoning Bridge & Analogy
+        severity: critical
+      - pattern: target concept|khái niệm đích|bản chất
+        name: Target Concept Mastery & Mental Model
+        severity: critical
+      - pattern: verification|kiểm chứng|câu hỏi hiểu bài
+        name: Check for Understanding & Practical Takeaway
         severity: major
-      - pattern: guidelines|nguyên tắc|quy tắc
-        name: Core Principles & Guidelines
-        severity: critical
-      - pattern: step|quy trình|thực hiện
-        name: Step-by-step Execution
-        severity: critical
-      - pattern: output|kết quả|deliverable
-        name: Standard Deliverable Output
-        severity: critical
 prohibited_patterns:
-  cognitive_scaffolding_task:
-    - pattern: làm qua loa|không rõ ràng|tùy ý
-      issue_code: vague_execution
-      description: Bắt buộc phải có hướng dẫn và kết quả cụ thể.
-      severity: major
+  cognitive_explanation:
+    - pattern: nhảy ngay vào thuật ngữ|ném một đống từ khó|không giải thích bối cảnh
+      issue_code: curse_of_knowledge_violation
+      description: Cấm nhảy xổ vào thuật ngữ phức tạp khi chưa neo nhận thức người đọc.
+      severity: critical
 rubric_dimensions:
   - dimension: completeness
     name: Độ Đầy Đủ (Completeness)

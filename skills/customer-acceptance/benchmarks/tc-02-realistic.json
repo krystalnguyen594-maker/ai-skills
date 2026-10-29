@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Enterprise B2B Automated Tax Invoice Reconciliation UAT Sign-off",
+  "task_type": "uat_acceptance",
+  "prompt": "Đánh giá nghiệm thu UAT tính năng Xuất hóa đơn điện tử tự động và đối soát thuế cuối tháng cho khách hàng Doanh nghiệp.",
+  "expected_sections": [
+    "Customer Persona & Real-world Context",
+    "Criteria-based Checklist",
+    "Objective Evidence & Defect Log",
+    "Formal Verdict & Business Impact"
+  ],
+  "sample_good_output": "# Biên Bản Đánh Giá Nghiệm Thu Khách Hàng (UAT Sign-Off): Xuất Hóa Đơn Điện Tử Tự Động\n\n## 1. Customer Persona & Business Operational Context\n- Đại diện nghiệm thu: Kế toán trưởng Tập đoàn Bán lẻ F&B (Quản lý 120 chuỗi nhà hàng).\n- Khối lượng vận hành: 40.000 hóa đơn GTGT/tháng, kết nối trực tiếp cổng Tổng cục Thuế.\n\n## 2. Criteria-Based Acceptance Matrix\n| Mã Tiêu Chí | Nội Dung Cam Kết Nghiệp Vụ | Trạng Thái Thẩm Định |\n| :--- | :--- | :--- |\n| AC-INV-01 | Tự động gom đơn hàng cùng mã số thuế trong ngày thành 1 hóa đơn tổng | **PASS** (Đã thử nghiệm 500 đơn) |\n| AC-INV-02 | Ký số HSM tập trung với tốc độ >= 20 hóa đơn/giây | **PASS** (Đạt 32 hóa đơn/s) |\n| AC-INV-03 | Tự động sinh mã CQT và gửi email link tra cứu cho khách hàng | **FAIL** (Mã tra cứu bị cắt mất 2 ký tự cuối trên mobile) |\n\n## 3. Objective Evidence & Defect Log\n- Test run #429: File XML hóa đơn xuất ra chuẩn định dạng Thông tư 78/2021/TT-BTC.\n- Defect DEF-881 (SEV-2): Link tra cứu trong SMS bị bẻ đôi khi tên khách hàng có dấu tiếng Việt UTF-8.\n\n## 4. Formal Business Verdict & Release Recommendation\n**Quyết định: REJECT (Từ chối nghiệm thu đợt 1)**.\nLý do: Lỗi DEF-881 vi phạm điều kiện pháp lý về tính hợp lệ của đường dẫn tra cứu hóa đơn. Yêu cầu bàn giao bản vá trước ngày 28/10.",
+  "sample_flawed_output": "# Biên bản nghiệm thu\nPhần mềm nhìn xấu quá, tôi không thích nhìn ngứa mắt cảm tính cá nhân, bảo dev sửa lại cho đẹp mắt hơn."
+}

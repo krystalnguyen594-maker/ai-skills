@@ -1,0 +1,16 @@
+{
+  "id": "tc-02",
+  "name": "Multi-Region Distributed Database Replication ADR",
+  "task_type": "tech_design",
+  "prompt": "Thiết kế kiến trúc sao chép dữ liệu đa vùng (Multi-Region) đảm bảo RPO < 1s và RTO < 30s.",
+  "expected_sections": [
+    "Problem Definition",
+    "Constraints",
+    "Non-Functional Requirements",
+    "Trade-off Matrix & Options",
+    "Selected Decision & Rationale",
+    "Rollout & Rollback Plan"
+  ],
+  "sample_good_output": "# Architecture Decision Record (ADR): Multi-Region Active-Passive Database Failover\n\n## Problem\nCụm PostgreSQL chính đặt tại Singapore (ap-southeast-1) gặp rủi ro đứt cáp quang biển hoặc outage vùng, cần cơ chế failover sang Tokyo (ap-northeast-1) tự động.\n\n## Constraints\n- Ngân sách hạ tầng dưới $5,000/tháng.\n- Tuân thủ quy định bảo mật dữ liệu tài chính (Zero Plaintext Cross-border Transfer).\n\n## Non-functional Requirements\n- **RPO (Recovery Point Objective):** < 1 giây.\n- **RTO (Recovery Time Objective):** < 30 giây.\n- **Data Consistency:** Read-after-write consistency cho session người dùng.\n\n## Options Considered & Trade-off Matrix\n| Tiêu chí | Phương án 1: CockroachDB Distributed SQL | Phương án 2: Aurora Global Database (PostgreSQL) |\n| :--- | :--- | :--- |\n| Độ trễ ghi | Cao (Consensus Raft roundtrip ~65ms) | Thấp (Replication vật lý bất đồng bộ < 1s) |\n| Chi phí di chuyển | Viết lại schema và ORM | Tương thích 100% PostgreSQL hiện tại |\n| RTO failover | Tự động tức thì (< 3s) | Chuyển vùng qua Route53 DNS switch (~25s) |\n\n## Decision\nLựa chọn **Phương án 2: Aurora Global Database**. Đáp ứng trọn vẹn SLA RPO < 1s và RTO < 30s trong khi không phải viết lại tầng Data Access Layer.\n\n## Rollout & Rollback Plan\n1. Bước 1: Thiết lập cụm Replica tại Tokyo, đồng bộ dữ liệu ngầm.\n2. Bước 2: Diễn tập Disaster Recovery GameDay vào cuối tuần.\n3. Rollback: Nếu quá trình promote replica thất bại, giữ nguyên master Singapore và phục hồi từ Snapshot PITR.",
+  "sample_flawed_output": "# Kiến trúc đa vùng\nChỉ có 1 cách duy nhất là dùng CockroachDB thôi, không có lựa chọn nào khác."
+}

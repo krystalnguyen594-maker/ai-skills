@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "High-Frequency Crypto Trading Engine Microservices Test Strategy",
+  "task_type": "test_strategy",
+  "prompt": "Thiết kế chiến lược đảm bảo chất lượng cho sàn giao dịch khớp lệnh microsecond với các cổng kiểm soát chất lượng tự động.",
+  "expected_sections": [
+    "Risk-based Scoping & Impact Matrix",
+    "Test Layer Distribution & Coverage Allocation",
+    "Entry & Exit Quality Gates",
+    "Regression & Environment Strategy"
+  ],
+  "sample_good_output": "# Enterprise Test Strategy: High-Frequency Crypto Order Matching Engine\n\n## 1. Risk-Based Scoping & Impact Probability Matrix\n- Rủi ro thảm họa (Severity 1): Race condition gây khớp lệnh 2 lần (Double Spending) hoặc sai lệch sổ lệnh (Orderbook Drift).\n- Rủi ro nghiêm trọng (Severity 2): Độ trễ khớp lệnh (P99 latency) vượt ngưỡng 5 miligiây.\n\n## 2. Test Layer Distribution & Coverage Allocation\n- Unit & Property-Based Testing (65%): Dùng `fast-check` sinh 100.000 kịch bản ngẫu nhiên kiểm tra tính giao hoán và kết hợp của hàm khớp lệnh.\n- Chaos & Concurrency Testing (20%): Kích hoạt mạng chậm và ngắt đột ngột node replica trong khi bơm 50.000 lệnh/giây.\n- E2E Automation Testing (15%): Kịch bản nạp tiền, đặt lệnh limit/market, và rút coin qua RPC node.\n\n## 3. Strict Entry & Exit Quality Gates\n- Entry Gate: 100% code mới có Unit Test, memory leak profiling không phát hiện rò rỉ RAM.\n- Exit Gate: Hệ thống chịu tải liên tục 4 giờ với 100.000 req/s mà không có bất kỳ sai lệch nào trên tài khoản Ledger.\n\n## 4. Regression Scope & Shadow Traffic Replay\nTriển khai cơ chế Shadow Replay: Nhân bản 10% traffic thực từ Production đổ vào cụm Staging để kiểm thử hồi quy ngầm trước khi release chính thức.",
+  "sample_flawed_output": "# Chiến lược kiểm thử sàn\nBỏ qua kiểm thử tự động, gom 5 bạn QC vào bấm tay test tay 100% cho nhanh."
+}

@@ -10,7 +10,7 @@ task_types:
       - pattern: epic|tổng quan dự án
         name: Epic Scope Definition
         severity: major
-      - pattern: user stor|stories|story slicing|phân rã
+      - pattern: sliced stories|user stories|story slicing|phân rã
         name: Vertical User Story Slicing
         severity: critical
       - pattern: dependencies|phụ thuộc

@@ -1,14 +1,14 @@
 {
   "id": "tc-01",
-  "name": "Baseline Test for cognitive-scaffolding",
-  "task_type": "cognitive_scaffolding_task",
-  "prompt": "Thực hiện một kịch bản chuẩn cho kỹ năng cognitive-scaffolding.",
+  "name": "Explaining Event-Driven Architecture to Non-Tech Stakeholders",
+  "task_type": "cognitive_explanation",
+  "prompt": "Bắc cầu nhận thức để giải thích kiến trúc hướng sự kiện (EDA) cho Giám đốc kinh doanh.",
   "expected_sections": [
-    "Context & Objectives",
-    "Core Principles & Guidelines",
-    "Step-by-step Execution",
-    "Standard Deliverable Output"
+    "Cognitive Anchor & Reader Pain Point",
+    "Progressive Reasoning Bridge & Analogy",
+    "Target Concept Mastery & Mental Model",
+    "Check for Understanding & Practical Takeaway"
   ],
-  "sample_good_output": "# Kế Hoạch Thực Thi Kỹ Năng: cognitive-scaffolding\n\n## 1. Bối Cảnh & Mục Tiêu\nXác định rõ ràng phạm vi bài toán và tiêu chí thành công.\n\n## 2. Nguyên Tắc Cốt Lõi\nTuân thủ nghiêm ngặt các hướng dẫn và rào cản chất lượng.\n\n## 3. Quy Trình Các Bước Thực Hiện\n1. Bước 1: Tiếp nhận và phân tích thông tin đầu vào.\n2. Bước 2: Thực thi theo khung tiêu chuẩn.\n3. Bước 3: Rà soát kiểm tra chất lượng trước khi bàn giao.\n\n## 4. Kết Quả Bàn Giao Hoàn Chỉnh\nĐầy đủ bằng chứng, dữ liệu và tài liệu bàn giao cụ thể.",
-  "sample_flawed_output": "# Làm việc\nCứ làm đại khái là được."
+  "sample_good_output": "# Dẫn Dắt Nhận Thức: Kiến Trúc Hướng Sự Kiện (Event-Driven Architecture)\n\n## 1. Cognitive Anchor & Điểm Tựa Thân Thuộc\nBạn hãy tưởng tượng bạn đi ăn tại quán phở truyền thống. Người phục vụ đứng chờ bạn ăn xong rồi mới ghi giấy mang vào bếp, làm mọi người phải xếp hàng chờ đợi.\n\n## 2. Progressive Reasoning Bridge (Cầu Nối Nhận Thức)\nNếu đổi sang mô hình hiện đại: Khi bạn gọi món, lễ tân in 1 phiếu giấy (đây là 'Sự Kiện - Event') rồi đưa cho bạn số bàn. Lễ tân lập tức đón khách tiếp theo. Bếp nhìn phiếu giấy tự nấu, quầy nước nhìn phiếu tự pha.\n\n## 3. Target Concept: Bản Chất Kiến Trúc EDA\nHệ thống phần mềm cũng vậy. Thay vì Module Đặt hàng phải đứng chờ Module Kho và Module Giao hàng trả lời (Đồng bộ), nó chỉ cần phát ra 1 Sự Kiện `OrderPlaced`. Mọi bộ phận khác tự động bắt sự kiện và xử lý độc lập.\n\n## 4. Check for Understanding & Giá Trị Nghiệp Vụ\nNếu website có đợt siêu sale 100.000 người vào cùng lúc: Quán phở của chúng ta không bao giờ bị nghẽn vì lễ tân chỉ phát phiếu rồi phục vụ người tiếp theo.",
+  "sample_flawed_output": "# Event Driven Architecture\nNhảy ngay vào thuật ngữ: EDA là decoupling producer consumer qua Kafka cluster pub-sub message broker serialization Avro."
 }

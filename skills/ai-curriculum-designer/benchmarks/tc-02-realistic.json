@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Enterprise Event-Storming Masterclass for Senior BA & Leads",
+  "task_type": "curriculum_design",
+  "prompt": "Thiết kế khóa huấn luyện 3 ngày về Kỹ thuật Event-Storming và Phân rã Domain-Driven Design cho Senior BA và Tech Leads.",
+  "expected_sections": [
+    "Target Persona & Prerequisites",
+    "Learning Objectives & Competencies",
+    "Active Learning Syllabus & Modules",
+    "Hands-on Exercises & Assessment Rubric"
+  ],
+  "sample_good_output": "# Khóa Huấn Luyện Chuyên Sâu: Event-Storming & Domain-Driven Design Thực Chiến\n\n## 1. Target Persona & Prerequisites\n- Đối tượng: Senior Business Analysts, Solution Architects, Tech Leads.\n- Tiền đề: Đã có kinh nghiệm tham gia triển khai hệ thống phân tán tối thiểu 2 năm.\n\n## 2. Learning Objectives & Competencies (Bloom: Analyze & Create)\n- Phân rã nghiệp vụ phức tạp thành các Bounded Contexts độc lập.\n- Nhận diện sự kiện Domain Events, Commands và Read Models trên bề mặt canvas.\n- Phát hiện ranh giới tranh chấp dữ liệu giữa các phòng ban chức năng.\n\n## 3. Active Learning Syllabus & Workshop Schedule\n- **Ngày 1 (Big Picture Event Storming):** Dán thẻ Domain Events màu cam tái hiện toàn bộ chuỗi giá trị khách hàng.\n- **Ngày 2 (Design-Level Storming):** Gắn Command, Aggregate, và Policy để khoanh vùng Subdomains (Core vs Supporting).\n- **Ngày 3 (Context Mapping & Handoff):** Xây dựng hợp đồng giao tiếp giữa các đội nhóm (Upstream/Downstream, Customer-Supplier).\n\n## 4. Hands-on Exercises & Assessment Rubric\n- Thực hành: Tái cấu trúc phân rã hệ thống Logistics đa chặng tại Việt Nam.\n- Tiêu chí đánh giá: Ma trận Bounded Context sạch, không có quan hệ vòng tròn (Circular Dependency), định nghĩa rõ ràng Aggregate Root.",
+  "sample_flawed_output": "# Đào tạo Event Storming\nGiảng viên chiếu slide 3 ngày, chỉ nghe thuyết trình lý thuyết suông không có thực hành trên bảng."
+}

@@ -1,30 +1,31 @@
 skill_id: web-prototyping
 skill_version: 1.0.0
-title: WEB PROTOTYPING Quality Rubric
-description: Standardized rubric and quality criteria for auditing and executing
-  the web-prototyping skill.
+title: Web Prototyping Best Practices Rubric
+description: Evaluates modern frontend architecture (Vite/React/HTML), component
+  hierarchy, responsive tokens, and micro-interactions.
 task_types:
-  - id: web_prototyping_task
-    name: web prototyping execution
+  - id: web_prototype_spec
+    name: Web Prototype Architecture Specification
     required_sections:
-      - pattern: overview|tổng quan|bối cảnh
-        name: Context & Objectives
+      - pattern: tech stack|kiến trúc|framework
+        name: Modern Tech Stack Architecture
+        severity: critical
+      - pattern: component hierarchy|cấu trúc component|state
+        name: Component Breakdown & State Management
+        severity: critical
+      - pattern: responsive layout|design tokens|bảng màu
+        name: Responsive Layout & Tailored Tokens
+        severity: critical
+      - pattern: interactive states|micro-interactions|hover
+        name: Interactive States & Micro-animations
         severity: major
-      - pattern: guidelines|nguyên tắc|quy tắc
-        name: Core Principles & Guidelines
-        severity: critical
-      - pattern: step|quy trình|thực hiện
-        name: Step-by-step Execution
-        severity: critical
-      - pattern: output|kết quả|deliverable
-        name: Standard Deliverable Output
-        severity: critical
 prohibited_patterns:
-  web_prototyping_task:
-    - pattern: làm qua loa|không rõ ràng|tùy ý
-      issue_code: vague_execution
-      description: Bắt buộc phải có hướng dẫn và kết quả cụ thể.
-      severity: major
+  web_prototype_spec:
+    - pattern: nhét toàn bộ vào 1 file|monolith 5000 dòng|không có tương tác
+      issue_code: monolithic_prototype_anti_pattern
+      description: Cấm nhét mã nguồn nguyên khối vào 1 file duy nhất hoặc thiếu tương
+        tác người dùng.
+      severity: critical
 rubric_dimensions:
   - dimension: completeness
     name: Độ Đầy Đủ (Completeness)

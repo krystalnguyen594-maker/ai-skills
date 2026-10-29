@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Lead QC Chaos Dilemma & Shift-Left Assessment",
+  "task_type": "agile_evaluation",
+  "prompt": "Đánh giá năng lực thực chiến của Lead QC trong tình huống Product Owner ép ra mắt tính năng dù tỷ lệ pass automation chỉ đạt 75%.",
+  "expected_sections": [
+    "Target Candidate Role & Level",
+    "Realistic Dilemma Scenario",
+    "Structured Scorecard & Rubric Breakdown",
+    "Actionable Feedback"
+  ],
+  "sample_good_output": "# Đánh Giá Năng Lực Ứng Viên: Lead QC Engineer\n\n## 1. Target Candidate Role & Level\nVị trí: Lead Quality Control / Quality Assurance Architect (Senior/Lead Level).\n\n## 2. Realistic Dilemma Scenario\nChỉ còn 4 giờ trước đợt Release Black Friday, PO yêu cầu bỏ qua 15 test case bị fail trong bộ hồi quy tự động (Pass rate 75%) vì cho rằng đây là 'lỗi giao diện nhỏ', trong khi QC phát hiện 1 trong số đó là race condition khi áp mã giảm giá đồng thời. Bạn xử lý thế nào giữa áp lực kinh doanh và kỷ luật chất lượng?\n\n## 3. Structured Scorecard & Rubric Breakdown\n| Năng lực then chốt | Điểm (1-5) | Bằng chứng quan sát |\n| :--- | :--- | :--- |\n| Quản trị Rủi ro (Risk-based QA) | 5/5 | Không nói 'Không' cảm tính; lập tức cô lập rủi ro tài chính thành ma trận thiệt hại ước tính ($30,000 thất thoát nếu bị exploit mã voucher) |\n| Kỹ năng Đàm phán Agile | 4/5 | Đề xuất giải pháp dung hòa: Release tính năng với Feature Flag tắt tạm thời voucher code đó để kịp tiến độ marketing |\n| Khả năng Root Cause Tracing | 4/5 | Truy vết ngay log Playwright và chỉ ra nguyên nhân deadlock tại microservice voucher |\n\n## 4. Actionable Feedback & Recommendation\nĐạt yêu cầu xuất sắc (Tổng điểm 13/15). Ứng viên sở hữu bản lĩnh nghề nghiệp vững vàng, không gật đầu mù quáng trước áp lực thời gian.",
+  "sample_flawed_output": "# Phỏng vấn QC\nHỏi: Em hãy cho biết định nghĩa Scrum là gì và User Story là gì?"
+}

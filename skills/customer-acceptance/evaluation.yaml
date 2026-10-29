@@ -1,30 +1,30 @@
 skill_id: customer-acceptance
 skill_version: 1.0.0
-title: CUSTOMER ACCEPTANCE Quality Rubric
-description: Standardized rubric and quality criteria for auditing and executing
-  the customer-acceptance skill.
+title: Customer Acceptance & UAT Rubric
+description: Evaluates user acceptance testing reviews, persona discipline,
+  accept/reject verdicts, and objective criteria-based evaluation.
 task_types:
-  - id: customer_acceptance_task
-    name: customer acceptance execution
+  - id: uat_acceptance
+    name: Customer Acceptance & UAT Verdict
     required_sections:
-      - pattern: overview|tổng quan|bối cảnh
-        name: Context & Objectives
-        severity: major
-      - pattern: guidelines|nguyên tắc|quy tắc
-        name: Core Principles & Guidelines
+      - pattern: persona|vai trò người dùng|bối cảnh nghiệp vụ
+        name: Customer Persona & Real-world Context
         severity: critical
-      - pattern: step|quy trình|thực hiện
-        name: Step-by-step Execution
+      - pattern: acceptance criteria|criteria-based|tiêu chí chấp nhận|kịch bản kiểm tra
+        name: Criteria-based Checklist
         severity: critical
-      - pattern: output|kết quả|deliverable
-        name: Standard Deliverable Output
+      - pattern: evidence|bằng chứng|kết quả kiểm thử
+        name: Objective Evidence & Defect Log
+        severity: critical
+      - pattern: verdict|quyết định|chấp thuận|từ chối
+        name: Formal Verdict & Business Impact
         severity: critical
 prohibited_patterns:
-  customer_acceptance_task:
-    - pattern: làm qua loa|không rõ ràng|tùy ý
-      issue_code: vague_execution
-      description: Bắt buộc phải có hướng dẫn và kết quả cụ thể.
-      severity: major
+  uat_acceptance:
+    - pattern: tôi không thích|nhìn ngứa mắt|cảm tính cá nhân
+      issue_code: subjective_taste_anti_pattern
+      description: Đánh giá UAT phải căn cứ tiêu chí nghiệm thu, cấm chê bai cảm tính.
+      severity: critical
 rubric_dimensions:
   - dimension: completeness
     name: Độ Đầy Đủ (Completeness)

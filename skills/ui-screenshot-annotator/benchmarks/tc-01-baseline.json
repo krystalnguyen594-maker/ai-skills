@@ -1,14 +1,14 @@
 {
   "id": "tc-01",
-  "name": "Baseline Test for ui-screenshot-annotator",
-  "task_type": "ui_screenshot_annotator_task",
-  "prompt": "Thực hiện một kịch bản chuẩn cho kỹ năng ui-screenshot-annotator.",
+  "name": "User Onboarding SOP Screenshot Annotations",
+  "task_type": "screenshot_annotation",
+  "prompt": "Lập đặc tả gắn chú thích ảnh chụp màn hình cho quy trình Tạo tài khoản nhân viên mới.",
   "expected_sections": [
-    "Context & Objectives",
-    "Core Principles & Guidelines",
-    "Step-by-step Execution",
-    "Standard Deliverable Output"
+    "Screenshot Context & Viewport Bounds",
+    "Coordinate-Accurate Callouts & Badges",
+    "Sequential Visual Flow & Directional Arrows",
+    "Step-by-Step SOP Operational Guidance"
   ],
-  "sample_good_output": "# Kế Hoạch Thực Thi Kỹ Năng: ui-screenshot-annotator\n\n## 1. Bối Cảnh & Mục Tiêu\nXác định rõ ràng phạm vi bài toán và tiêu chí thành công.\n\n## 2. Nguyên Tắc Cốt Lõi\nTuân thủ nghiêm ngặt các hướng dẫn và rào cản chất lượng.\n\n## 3. Quy Trình Các Bước Thực Hiện\n1. Bước 1: Tiếp nhận và phân tích thông tin đầu vào.\n2. Bước 2: Thực thi theo khung tiêu chuẩn.\n3. Bước 3: Rà soát kiểm tra chất lượng trước khi bàn giao.\n\n## 4. Kết Quả Bàn Giao Hoàn Chỉnh\nĐầy đủ bằng chứng, dữ liệu và tài liệu bàn giao cụ thể.",
-  "sample_flawed_output": "# Làm việc\nCứ làm đại khái là được."
+  "sample_good_output": "# Hướng Dẫn Chú Thích Ảnh Chụp Màn Hình: Tạo Mới Nhân Viên\n\n## 1. Screenshot Context & Viewport Bounds\n- Tên màn hình: Quản Lý Nhân Sự -> Thêm Mới (/hr/employees/new).\n- Kích thước ảnh chuẩn: 1920x1080 (Desktop Full HD).\n\n## 2. Coordinate-Accurate Callouts & Badges\n- Badge [1]: Tọa độ `top: 140px, left: 320px` (Đặt phía trên nhãn 'Họ và tên', không đè chữ).\n- Badge [2]: Tọa độ `top: 220px, left: 320px` (Ngay cạnh ô chọn 'Phòng ban').\n- Badge [3]: Tọa độ `bottom: 80px, right: 120px` (Trỏ vào nút 'Lưu thông tin').\n\n## 3. Sequential Visual Flow & Directional Arrows\nMũi tên màu xanh Cyan `#06b6d4` nối từ Badge [1] -> [2] -> [3] theo luồng thao tác từ trên xuống dưới.\n\n## 4. Step-by-Step SOP Operational Guidance\n- Bước 1: Nhập họ tên đầy đủ theo giấy tờ tùy thân.\n- Bước 2: Chọn phòng ban trực thuộc từ menu thả xuống.\n- Bước 3: Nhấn nút Lưu và kiểm tra email kích hoạt tài khoản.",
+  "sample_flawed_output": "# Gắn hình\nBadge đè lên chữ che khuất nút bấm, gắn callout lung tung không đánh số thứ tự."
 }

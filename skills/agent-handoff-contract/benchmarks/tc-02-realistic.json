@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Architecture Agent to DevOps Agent Infrastructure Handoff",
+  "task_type": "agent_handoff",
+  "prompt": "Bàn giao gói đặc tả hạ tầng Kubernetes cụm thanh toán đa vùng từ Architecture Agent sang DevOps Agent.",
+  "expected_sections": [
+    "Handoff Context & Objective",
+    "Deliverable Artifacts & Contract",
+    "Assumptions & Known Risks",
+    "Next Owner & Escalation Trigger"
+  ],
+  "sample_good_output": "# Agent Handoff Contract: Multi-Region Payment Cluster Deployment\n\n## 1. Handoff Context & Objective\nBàn giao kiến trúc cụm hạ tầng từ Solution Architect sang DevOps Lead Agent để kích hoạt script Terraform triển khai cụm EKS tại Tokyo và Singapore.\n\n## 2. Deliverable Artifacts & Contract Requirements\n- File thiết kế chi tiết: [Payment-Arch-v3.md](file:///docs/arch/Payment-Arch-v3.md)\n- Bộ mẫu Terraform: `infra/terraform/modules/eks-cluster`\n- SLA Yêu cầu: Pod startup time < 15 giây, Cluster Autoscaler phản ứng trong vòng 45 giây.\n\n## 3. Assumptions & Known Risks\n- Giả định: AWS Account đã được nâng hạn mức Service Quota cho m5.2xlarge instances.\n- Rủi ro tồn đọng: Kết nối Direct Connect giữa 2 vùng có thể tăng latency trong đợt bảo trì cáp quang biển APG.\n\n## 4. Next Owner & Escalation Trigger Matrix\n- Người tiếp nhận: Senior DevOps Automation Agent.\n- Escalation Gate: Nếu chi phí dự toán vượt $4,500/tháng hoặc latency ping chéo vùng > 80ms, lập tức dừng pipeline và thông báo cho CPO.",
+  "sample_flawed_output": "# Handoff hạ tầng\nTự suy đoán thông số rồi cài bừa lên AWS đi, xong rồi đấy."
+}

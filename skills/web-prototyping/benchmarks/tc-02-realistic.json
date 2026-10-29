@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "AI Agent Orchestration Flow Visualizer Interactive Workspace",
+  "task_type": "web_prototype_spec",
+  "prompt": "Thiết kế kiến trúc Web Prototype cho ứng dụng Trực quan hóa luồng phối hợp Đa Agent (Multi-Agent Workflow Designer).",
+  "expected_sections": [
+    "Modern Tech Stack Architecture",
+    "Component Breakdown & State Management",
+    "Responsive Layout & Tailored Tokens",
+    "Interactive States & Micro-animations"
+  ],
+  "sample_good_output": "# Web Prototype Spec: Enterprise AI Agent Workflow Canvas\n\n## 1. Modern Tech Stack & Tooling Architecture\n- Core Runtime: React 19 + Vite + TypeScript với Strict Mode kích hoạt.\n- Canvas Engine: `@xyflow/react` (React Flow) hỗ trợ đồ thị node vô cực và minimap.\n- Styling: Vanilla CSS kết hợp CSS Modules và Custom Design Tokens chống đụng độ class.\n\n## 2. Component Hierarchy & Unidirectional State Flow\n- `WorkspaceRoot`: Quản lý top navbar và telemetry session.\n- `CanvasArea`: Chứa các node AgentNode, DecisionNode, và RouterEdge.\n- `InspectorSidebar`: Hiển thị thuộc tính node được chọn với JSON schema editor.\n- State Store: Redux Toolkit hoặc Zustand với cơ chế Undo/Redo (Time-travel debugging).\n\n## 3. Responsive Layout & Tailored Visual Tokens\n- Layout: CSS Flexbox 3 phân vùng (Left Palette 240px, Center Canvas auto, Right Panel 320px).\n- Dark Mode Glassmorphism Tokens: `rgba(15, 23, 42, 0.8)` kết hợp `backdrop-filter: blur(12px)`.\n\n## 4. Interactive States & Dynamic Micro-Interactions\n- Kết nối Node: Đường nối cáp phát sáng (Animated SVG Dasharray stroke) khi luồng dữ liệu đang chạy.\n- Trạng thái Agent: Vòng tròn Pulse tỏa sáng xung quanh avatar Agent khi đang suy nghĩ (Thinking state).",
+  "sample_flawed_output": "# Web app prototype\nViết đại nhét toàn bộ vào 1 file HTML duy nhất không có tương tác, không tách component."
+}

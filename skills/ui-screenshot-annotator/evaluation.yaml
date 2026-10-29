@@ -1,30 +1,31 @@
 skill_id: ui-screenshot-annotator
 skill_version: 1.0.0
-title: UI SCREENSHOT ANNOTATOR Quality Rubric
-description: Standardized rubric and quality criteria for auditing and executing
-  the ui-screenshot-annotator skill.
+title: UI Screenshot Annotation & SOP Packaging Rubric
+description: Evaluates coordinate accuracy, non-overlapping badge placement,
+  directional callouts, and step-by-step SOP instructions.
 task_types:
-  - id: ui_screenshot_annotator_task
-    name: ui screenshot annotator execution
+  - id: screenshot_annotation
+    name: UI Screenshot Annotation Specification
     required_sections:
-      - pattern: overview|tổng quan|bối cảnh
-        name: Context & Objectives
+      - pattern: viewport|ngữ cảnh ảnh chụp|màn hình
+        name: Screenshot Context & Viewport Bounds
+        severity: critical
+      - pattern: bounding box|tọa độ|callout
+        name: Coordinate-Accurate Callouts & Badges
+        severity: critical
+      - pattern: visual flow|mũi tên|thứ tự
+        name: Sequential Visual Flow & Directional Arrows
         severity: major
-      - pattern: guidelines|nguyên tắc|quy tắc
-        name: Core Principles & Guidelines
-        severity: critical
-      - pattern: step|quy trình|thực hiện
-        name: Step-by-step Execution
-        severity: critical
-      - pattern: output|kết quả|deliverable
-        name: Standard Deliverable Output
+      - pattern: sop|hướng dẫn thao tác|chú thích|operational guidance
+        name: Step-by-Step SOP Operational Guidance
         severity: critical
 prohibited_patterns:
-  ui_screenshot_annotator_task:
-    - pattern: làm qua loa|không rõ ràng|tùy ý
-      issue_code: vague_execution
-      description: Bắt buộc phải có hướng dẫn và kết quả cụ thể.
-      severity: major
+  screenshot_annotation:
+    - pattern: badge đè lên chữ|che khuất nút|không đánh số
+      issue_code: obscuring_annotation_anti_pattern
+      description: Cấm đặt badge đè che mất chữ trên nút bấm hoặc gắn callout lộn xộn
+        không số thứ tự.
+      severity: critical
 rubric_dimensions:
   - dimension: completeness
     name: Độ Đầy Đủ (Completeness)

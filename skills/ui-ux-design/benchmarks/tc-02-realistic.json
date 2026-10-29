@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Dark-Mode FinTech Crypto Trading Workspace Design Tokens",
+  "task_type": "ui_ux_spec",
+  "prompt": "Thiết kế hệ thống token thị giác cho ứng dụng giao dịch tài chính tốc độ cao với phong cách Dark Mode Glassmorphism.",
+  "expected_sections": [
+    "Curated Design Tokens & Palette",
+    "Typography Scale (Google Fonts)",
+    "Rich Visual Aesthetics & Depth",
+    "Dynamic Micro-animations & States"
+  ],
+  "sample_good_output": "# UI/UX Specification: FinTech High-Frequency Trading Terminal\n\n## 1. Curated Color Tokens (Ultra Dark Mode)\n- **Background Base:** `hsl(224, 71%, 4%)` (Deep Obsidian Void)\n- **Panel Surface:** `hsla(222, 47%, 11%, 0.65)` kết hợp `backdrop-filter: blur(16px)` và border viền `hsla(217, 33%, 24%, 0.4)` (Glassmorphism)\n- **Bullish Green Accent:** `hsl(158, 64%, 52%)` (Emerald Neon Glow)\n- **Bearish Red Accent:** `hsl(350, 89%, 60%)` (Crimson Pulse)\n\n## 2. Typography Hierarchy (Outfit & JetBrains Mono)\n- Headings & Metrics: Font `Outfit`, weights 600-700.\n- Ticker Prices & Orderbook Data: Font `JetBrains Mono`, `font-variant-numeric: tabular-nums` chống giật số.\n\n## 3. Visual Depth & Glow Gradients\nHiệu ứng radial gradient tinh tế tại góc biểu đồ nến `radial-gradient(ellipse at top, hsla(217, 91%, 60%, 0.15), transparent 70%)` tạo độ sâu không gian phòng tối.\n\n## 4. Micro-animations & Dynamic State Feedback\n- Giá biến động: nhấp nháy nền `animation: pricePulse 300ms ease-out`.\n- Nút Buy/Sell: hiệu ứng sóng ripple `transform: scale(0.98)` khi click và đổ bóng glow `box-shadow: 0 0 15px hsla(158, 64%, 52%, 0.4)`.",
+  "sample_flawed_output": "# Giao diện sàn giao dịch\nDùng màu đỏ cờ với màu xanh lá tươi plain red plain blue, không cần hiệu ứng gì hết."
+}

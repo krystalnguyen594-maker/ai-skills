@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Production Redis Cluster OOM Cascade Incident RCA",
+  "task_type": "rca_analysis",
+  "prompt": "Phân tích nguyên nhân gốc rễ (RCA) cho sự cố cụm Redis Production bị tràn bộ nhớ gây sập hệ thống xác thực người dùng.",
+  "expected_sections": [
+    "Incident Timeline",
+    "Symptom vs Cause Separation",
+    "5 Whys Analysis",
+    "Preventative Action Items (CAPA)"
+  ],
+  "sample_good_output": "# Root Cause Analysis (RCA): Cụm Redis Session Cluster Bị OOM Sập Đồng Loạt\n\n## 1. Incident Timeline\n- 08:30: Bắt đầu chiến dịch Push Notif tặng quà cho 2 triệu user.\n- 08:32: Redis Memory vọt từ 65% lên 98% trong vòng 120 giây.\n- 08:34: Master node kích hoạt cơ chế `maxmemory-policy: noeviction`, từ chối toàn bộ lệnh ghi `OOM command not allowed`.\n- 08:45: Thay đổi cấu hình sang `allkeys-lru` khẩn cấp và flush key tạm, hệ thống phục hồi hoàn toàn.\n\n## 2. Symptom vs. Root Cause\n- **Triệu chứng bên ngoài:** Người dùng mở app bị văng ra màn hình đăng nhập (Session Invalid).\n- **Nguyên nhân gốc rễ:** Tính năng lưu lịch sử đọc thông báo mới deploy tuần trước quên thiết lập TTL (Time To Live), khiến mỗi key tồn tại vĩnh viễn trong RAM.\n\n## 3. 5 Whys Deep Dive\n1. Tại sao Redis bị OOM? -> Số lượng key session tăng đột biến 15 triệu key.\n2. Tại sao key không tự giải phóng? -> Key không được gắn TTL.\n3. Tại sao không có TTL? -> Code `setSessionCache()` chỉ truyền key và value, bỏ quên tham số EX.\n4. Tại sao unit test không phát hiện? -> Mock Redis trong CI test không kiểm tra thuộc tính TTL.\n5. Tại sao không có cảnh báo trước? -> Ngưỡng alert bộ nhớ đặt ở mức 95% là quá muộn khi traffic tăng nhanh.\n\n## 4. Corrective & Preventative Action Items (CAPA)\n1. Bắt buộc mọi lệnh set Redis phải qua wrapper class có default TTL 24h (P0 - Done).\n2. Hạ ngưỡng cảnh báo RAM xuống 75% trên Datadog (P0 - Done).\n3. Thêm linter rule cấm gọi trực tiếp `redis.set()` trần mà không có expire (P1 - Sprint 26).",
+  "sample_flawed_output": "# Báo cáo sự cố\nSự cố do sơ suất cá nhân của bạn dev mới vào làm, do người dùng dùng sai bấm thông báo nhiều quá."
+}

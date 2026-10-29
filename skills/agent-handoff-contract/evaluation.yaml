@@ -1,30 +1,30 @@
 skill_id: agent-handoff-contract
 skill_version: 1.0.0
-title: AGENT HANDOFF CONTRACT Quality Rubric
-description: Standardized rubric and quality criteria for auditing and executing
-  the agent-handoff-contract skill.
+title: Agent Handoff Contract Rubric
+description: Evaluates multi-agent handoff packets, context transfer,
+  input/output contracts, risk escalation, and assumption logs.
 task_types:
-  - id: agent_handoff_contract_task
-    name: agent handoff contract execution
+  - id: agent_handoff
+    name: Multi-Agent Handoff Packet
     required_sections:
-      - pattern: overview|tổng quan|bối cảnh
-        name: Context & Objectives
+      - pattern: context|bối cảnh|mục tiêu
+        name: Handoff Context & Objective
+        severity: critical
+      - pattern: contract|deliverable|kết quả bàn giao
+        name: Deliverable Artifacts & Contract
+        severity: critical
+      - pattern: assumptions|giả định|rủi ro
+        name: Assumptions & Known Risks
         severity: major
-      - pattern: guidelines|nguyên tắc|quy tắc
-        name: Core Principles & Guidelines
-        severity: critical
-      - pattern: step|quy trình|thực hiện
-        name: Step-by-step Execution
-        severity: critical
-      - pattern: output|kết quả|deliverable
-        name: Standard Deliverable Output
+      - pattern: escalation|chuyển giao|người nhận
+        name: Next Owner & Escalation Trigger
         severity: critical
 prohibited_patterns:
-  agent_handoff_contract_task:
-    - pattern: làm qua loa|không rõ ràng|tùy ý
-      issue_code: vague_execution
-      description: Bắt buộc phải có hướng dẫn và kết quả cụ thể.
-      severity: major
+  agent_handoff:
+    - pattern: tự suy đoán|tự đoán|chắc là|xong rồi đấy
+      issue_code: unverified_assumption_leak
+      description: Cấm đoán mò yêu cầu mà không ghi log giả định rõ ràng.
+      severity: critical
 rubric_dimensions:
   - dimension: completeness
     name: Độ Đầy Đủ (Completeness)

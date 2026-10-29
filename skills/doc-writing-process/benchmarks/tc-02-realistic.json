@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "Enterprise Architecture Specification Multi-Tier Review Pipeline",
+  "task_type": "doc_process",
+  "prompt": "Thiết lập quy trình chuẩn 4 giai đoạn soạn thảo tài liệu kiến trúc hệ thống Core Banking với cổng duyệt phản biện Sub-agent.",
+  "expected_sections": [
+    "Phased Workflow Definition",
+    "Discovery & Input Gate",
+    "Sub-agent Peer Review",
+    "Sign-off & Quality Gate"
+  ],
+  "sample_good_output": "# Quy Trình Soạn Thảo Tài Liệu Kiến Trúc Chuẩn Enterprise (Architecture Spec Pipeline)\n\n## Phase 1: Input Discovery & Stakeholder Baselines\nThu thập ràng buộc từ Ngân hàng Nhà nước, SLA thời gian thực (p99 < 50ms), và phỏng vấn C-Level để xác định Business Drivers.\n\n## Phase 2: Structured Architecture Drafting\nSoạn thảo tài liệu theo mô hình C4 (Context, Container, Component, Code), tích hợp đầy đủ ma trận ADR và phân tích chi phí TCO.\n\n## Phase 3: Sub-agent Multi-Role Peer Review & Stress Testing\nTriển khai 2 Sub-agent chuyên biệt:\n- Sub-agent 1 (Security Red Team): Soát lỗ hổng dữ liệu PII và tuân thủ PCI-DSS 4.0.\n- Sub-agent 2 (DevOps Lead): Phản biện tính khả thi triển khai trên Kubernetes và chi phí tài nguyên mạng.\n\n## Phase 4: Sign-off & Quality Gate Thresholds\nĐiều kiện bàn giao: Scorecard đạt tối thiểu 90/100, zero critical findings, có chữ ký điện tử của Lead Architect và Head of Security.",
+  "sample_flawed_output": "# Viết tài liệu ngân hàng\nCứ ngồi viết 1 lèo xong luôn rồi gửi sếp ký, không cần review làm gì cho mất thời gian."
+}

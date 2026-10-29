@@ -1,0 +1,14 @@
+{
+  "id": "tc-02",
+  "name": "5-Page Executive Board Business Intelligence Report PDF Spec",
+  "task_type": "pdf_spec",
+  "prompt": "Thiết kế bộ thông số layout PDF chuyên nghiệp cho Báo cáo Tài chính Quý 5 trang gửi Hội đồng Quản trị.",
+  "expected_sections": [
+    "Document Profiling & Page Budget",
+    "Page Break & Flow Control",
+    "Professional Typography & Layout Tokens",
+    "Print Header/Footer & Vietnamese Font Setup"
+  ],
+  "sample_good_output": "# PDF Layout Specification: Q3 Executive Board Financial Performance Report\n\n## 1. Document Profiling & Strict Page Budgeting\n- Ngân sách trang in: Cố định 5 trang A4 dọc (Portrait), độ dài mỗi phần được kiểm soát dung lượng từ trước.\n- Thành phần rủi ro: Biểu đồ SVG Mermaid và bảng cân đối kế toán 8 cột.\n\n## 2. Page Break Defense Architecture\n- Chống gãy bảng: Toàn bộ thẻ `tr` được bọc `break-inside: avoid; page-break-inside: avoid;`.\n- Phân trang chủ động: Ép ngắt trang sạch sẽ tại ranh giới giữa các chương bằng class `.page-break { break-before: page; }`.\n\n## 3. Executive Typography & Color Tokens\n- Bảng màu: Deep Navy (`#0f172a`) kết hợp Slate Gray (`#475569`) và Accent Blue (`#2563eb`), không dùng màu loè loẹt.\n- Dàn trang: Bảng số liệu sử dụng `font-variant-numeric: tabular-nums` và `padding: 8px 12px`.\n\n## 4. Running Header/Footer & Vietnamese Diacritics Compatibility\n- Nhúng font trực tiếp `@font-face` từ Google Fonts nạp sẵn bộ ký tự Latin-Extended chống lỗi vỡ ký tự tiếng Việt.\n- Dynamic Footer: Hiển thị dòng bảo mật 'TÀI LIỆU MẬT - LƯU HÀNH NỘI BỘ' bên trái và số trang 'Trang 3/5' bên phải.",
+  "sample_flawed_output": "# In báo cáo\nHardcode height px cố định các ô bảng, làm bảng bị cắt đôi qua 2 trang lung tung."
+}

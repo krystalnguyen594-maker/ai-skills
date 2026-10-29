@@ -3,1492 +3,573 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hướng Dẫn Sử Dụng Phân Hệ Đánh Giá AI Skills (User Guide)</title>
+  <title>Kho AI Skills — Cẩm Nang & Kiểm Định Chất Lượng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-page: #f8fafc;
-      --bg-slide: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --text-sub: #334155;
-      --border-color: #e2e8f0;
-      --border-subtle: #f1f5f9;
-      --primary: #2563eb;
-      --primary-light: #eff6ff;
-      --primary-border: #bfdbfe;
-      --success: #16a34a;
-      --success-light: #f0fdf4;
-      --success-border: #bbf7d0;
-      --warning: #d97706;
-      --warning-light: #fffbeb;
-      --warning-border: #fef3c7;
-      --danger: #dc2626;
-      --danger-light: #fef2f2;
-      --danger-border: #fecaca;
-      --purple: #7c3aed;
-      --purple-light: #f5f3ff;
-      --purple-border: #ddd6fe;
-      --code-bg: #f8fafc;
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
-      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 16px;
+      --bg: #f8f9fa;
+      --surface: #ffffff;
+      --text: #111827;
+      --text-sub: #4b5563;
+      --text-light: #9ca3af;
+      --border: #e5e7eb;
+      --border-dark: #111827;
+      --accent: #2563eb;
+      --tag-pass: #059669;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg-page);
-      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Top Navigation Bar */
-    .top-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 52px;
+    /* ── Top Header ── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 48px;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
       padding: 0 24px;
       z-index: 100;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--text-main);
-    }
-
-    .brand-badge {
-      background: var(--primary);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 9999px;
-      letter-spacing: 0.5px;
-    }
-
-    .top-center {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-muted);
-    }
-
-    .slide-jump-select {
-      border: 1px solid var(--border-color);
-      background: #ffffff;
+    .brand { font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text); }
+    
+    .nav-tracker { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-sub); }
+    .slide-select {
+      border: 1px solid var(--border);
+      background: var(--surface);
       padding: 4px 8px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-main);
-      cursor: pointer;
-      outline: none;
+      border-radius: 4px;
+      font-size: 12px; font-weight: 500; color: var(--text);
+      cursor: pointer; outline: none;
     }
 
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-action {
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      padding: 6px 12px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-sub);
+    .top-actions { display: flex; gap: 8px; }
+    .btn-top {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 11px; font-weight: 600; color: var(--text-sub);
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
       transition: all 0.15s ease;
     }
+    .btn-top:hover { border-color: var(--text); color: var(--text); }
 
-    .btn-action:hover {
-      background: var(--bg-page);
-      color: var(--primary);
-      border-color: var(--primary-border);
-    }
-
-    /* Deck Viewport */
-    .deck-container {
-      width: 100%;
-      max-width: 1140px;
-      height: 648px;
-      margin-top: 64px;
-      margin-bottom: 72px;
+    /* ── Deck Viewport ── */
+    .deck {
+      width: 100%; max-width: 1040px; height: 580px;
+      margin-top: 56px; margin-bottom: 64px;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       padding: 0 16px;
     }
 
     .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: var(--bg-slide);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
-      padding: 34px 44px;
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-      overflow-y: auto;
+      position: absolute; inset: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 44px 52px 36px;
+      display: none; flex-direction: column;
+      opacity: 0; transition: opacity 0.18s ease-in-out;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .slide.active { display: flex; opacity: 1; z-index: 10; }
+
+    /* ── Typography ── */
+    .header { margin-bottom: 24px; }
+    .kicker { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
+    .title { font-size: 26px; font-weight: 800; line-height: 1.25; letter-spacing: -0.5px; color: var(--text); }
+    .subtitle { font-size: 14px; color: var(--text-sub); margin-top: 4px; font-weight: 400; line-height: 1.5; }
+
+    .content { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+
+    .footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 20px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 11px; color: var(--text-light); font-weight: 500;
     }
 
-    .slide.active {
-      display: flex;
-      opacity: 1;
-      transform: translateY(0);
-      z-index: 10;
-    }
-
-    /* Slide Header */
-    .slide-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 16px;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 12px;
-    }
-
-    .slide-title-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .slide-category {
-      font-size: 11.5px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--primary);
-    }
-
-    .slide-title {
-      font-size: 23px;
-      font-weight: 800;
-      color: var(--text-main);
-      line-height: 1.25;
-      letter-spacing: -0.4px;
-    }
-
-    .slide-subtitle {
-      font-size: 13.5px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .slide-tag {
-      background: var(--bg-page);
-      border: 1px solid var(--border-color);
-      padding: 4px 10px;
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-sub);
-      white-space: nowrap;
-    }
-
-    .slide-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      justify-content: center;
-    }
-
-    .slide-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 14px;
-      padding-top: 10px;
-      border-top: 1px solid var(--border-subtle);
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    /* Grids & Cards */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
+    /* ── Layout & Minimalist Cards ── */
+    .grid { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
 
     .card {
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 16px 18px;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 22px;
+      display: flex; flex-direction: column; gap: 8px;
     }
 
-    .card-primary {
-      background: var(--primary-light);
-      border-color: var(--primary-border);
-    }
+    .card-title { font-size: 13.5px; font-weight: 700; color: var(--text); display: flex; align-items: center; justify-content: space-between; }
+    .card-body { font-size: 12.5px; color: var(--text-sub); line-height: 1.6; }
 
-    .card-success {
-      background: var(--success-light);
-      border-color: var(--success-border);
+    /* Callout Box */
+    .callout {
+      border-left: 3px solid var(--border-dark);
+      background: #fafafa;
+      padding: 12px 18px;
+      border-radius: 0 4px 4px 0;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text);
     }
+    .callout strong { font-weight: 700; }
 
-    .card-warning {
-      background: var(--warning-light);
-      border-color: var(--warning-border);
-    }
-
-    .card-danger {
-      background: var(--danger-light);
-      border-color: var(--danger-border);
-    }
-
-    .card-purple {
-      background: var(--purple-light);
-      border-color: var(--purple-border);
-    }
-
-    .card-title {
-      font-size: 14.5px;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .card-desc {
-      font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.55;
-    }
-
-    /* Journey Flow Steps */
-    .journey-container {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .journey-steps {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
+    /* Steps Flow */
+    .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; position: relative; }
+    .flow-step {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 16px;
+      display: flex; flex-direction: column; gap: 8px;
+      background: #fff;
       position: relative;
     }
-
-    .journey-step {
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 14px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      position: relative;
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -11px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      font-size: 13px; font-weight: 700;
+      z-index: 2;
     }
-
-    .journey-step-num {
-      width: 26px;
-      height: 26px;
-      border-radius: 9999px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 2px;
+    .step-num {
+      width: 22px; height: 22px; border-radius: 4px;
+      background: var(--text); color: #fff;
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
     }
+    .flow-title { font-size: 13px; font-weight: 700; color: var(--text); }
+    .flow-desc { font-size: 12px; color: var(--text-sub); line-height: 1.55; }
 
-    .journey-step-num.purple {
-      background: var(--purple);
-    }
-
-    .journey-step-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .journey-step-desc {
-      font-size: 11.5px;
-      color: var(--text-sub);
-      line-height: 1.45;
-    }
-
-    /* Funnel / Pass-Fail Calculation */
-    .funnel-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .funnel-stage {
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .funnel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 8px;
-    }
-
-    .funnel-title {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    /* Friendly Code / Command Snippets */
-    .cmd-friendly {
-      background: #0f172a;
-      color: #f8fafc;
-      padding: 10px 14px;
-      border-radius: var(--radius-sm);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12.5px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 4px 0;
-    }
-
-    .cmd-prompt {
-      color: #38bdf8;
-      font-weight: 700;
-      user-select: none;
-    }
-
-    .cmd-note {
-      font-size: 11px;
-      color: #94a3b8;
-      margin-left: auto;
-    }
-
-    /* Tables */
-    .table-custom {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12.5px;
-      background: #ffffff;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      border: 1px solid var(--border-color);
-    }
-
-    .table-custom th, .table-custom td {
-      padding: 9px 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .table-custom th {
-      background: #f8fafc;
-      font-weight: 700;
-      color: var(--text-main);
-      font-size: 12px;
-    }
-
-    .table-custom tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* Badges */
+    /* Badge */
     .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 2px 8px;
-      border-radius: 9999px;
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 2px 6px; border-radius: 3px; border: 1px solid var(--border);
     }
+    .badge-pass { border-color: var(--tag-pass); color: var(--tag-pass); }
 
-    .badge-blue { background: #dbeafe; color: #1e40af; }
-    .badge-green { background: #dcfce7; color: #166534; }
-    .badge-amber { background: #fef3c7; color: #92400e; }
-    .badge-red { background: #fee2e2; color: #991b1b; }
-    .badge-purple { background: #ede9fe; color: #5b21b6; }
+    /* Table */
+    .table { width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; }
+    .table th, .table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+    .table th { font-weight: 700; color: var(--text); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; background: #f9fafb; }
+    .table tr:last-child td { border-bottom: none; }
+    .table code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--accent); }
 
-    /* Bottom Controller */
-    .bottom-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 58px;
+    /* ── Controls ── */
+    .controls {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 52px;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(8px);
-      border-top: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 28px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
       z-index: 100;
     }
 
-    .controls-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .btn-nav {
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      padding: 8px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-main);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.15s ease;
-    }
-
-    .btn-nav:hover:not(:disabled) {
-      background: var(--bg-page);
-      border-color: var(--primary-border);
-      color: var(--primary);
-    }
-
-    .btn-nav:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-
-    .btn-nav-primary {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-    }
-
-    .btn-nav-primary:hover:not(:disabled) {
-      background: #1d4ed8;
-      color: #ffffff;
-      border-color: #1d4ed8;
-    }
-
-    .progress-bar-container {
-      width: 260px;
-      height: 6px;
-      background: #e2e8f0;
-      border-radius: 9999px;
-      overflow: hidden;
-      margin: 0 16px;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--primary);
-      width: 9.09%;
-      transition: width 0.25s ease;
-    }
-
-    .shortcuts-hint {
-      font-size: 12px;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    kbd {
-      background: #f1f5f9;
-      border: 1px solid #cbd5e1;
+    .btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 2px 6px;
-      font-size: 11px;
-      font-family: monospace;
-      color: #334155;
+      padding: 6px 14px;
+      font-size: 12px; font-weight: 600; color: var(--text);
+      cursor: pointer; transition: all 0.15s;
     }
+    .btn:hover:not(:disabled) { border-color: var(--text); }
+    .btn:disabled { opacity: 0.3; cursor: default; }
 
-    /* Print Styles (Cmd+P) */
+    .btn-dark { background: var(--text); color: #fff; border-color: var(--text); }
+    .btn-dark:hover:not(:disabled) { background: #000; border-color: #000; }
+
+    .progress { width: 160px; height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; margin: 0 12px; }
+    .progress-bar { height: 100%; background: var(--text); width: 0%; transition: width 0.2s ease; }
+
+    .shortcut { font-size: 11px; color: var(--text-light); }
+    .shortcut kbd { background: #f3f4f6; border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; font-family: monospace; }
+
+    /* ── Print ── */
     @media print {
-      body {
-        background: #ffffff;
-        color: #000000;
-        padding: 0;
-        margin: 0;
-      }
-
-      .top-bar, .bottom-bar {
-        display: none !important;
-      }
-
-      .deck-container {
-        max-width: 100% !important;
-        height: auto !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        display: block !important;
-      }
-
+      .topbar, .controls { display: none !important; }
+      .deck { max-width: 100% !important; height: auto !important; margin: 0 !important; padding: 0 !important; display: block !important; }
       .slide {
-        display: flex !important;
-        opacity: 1 !important;
-        position: relative !important;
-        transform: none !important;
-        box-shadow: none !important;
-        border: 1px solid #cbd5e1 !important;
-        border-radius: 0 !important;
-        page-break-after: always !important;
-        page-break-inside: avoid !important;
-        height: 100vh !important;
-        max-height: 100vh !important;
-        margin-bottom: 0 !important;
-        padding: 28px 36px !important;
+        display: flex !important; opacity: 1 !important; position: relative !important;
+        border: 1px solid #ddd !important; border-radius: 0 !important;
+        page-break-after: always !important; height: 100vh !important; padding: 32px 40px !important;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation Bar -->
-  <header class="top-bar">
-    <div class="brand">
-      <span>AI SKILLS</span>
-      <span class="brand-badge">Sổ Tay Hướng Dẫn</span>
+<header class="topbar">
+  <div class="brand">AI Skills Handbook</div>
+  <div class="nav-tracker">
+    <select id="slideSelect" class="slide-select"></select>
+    <span id="slideCount">/ 6</span>
+  </div>
+  <div class="top-actions">
+    <button class="btn-top" onclick="toggleFullscreen()">Toàn màn hình</button>
+    <button class="btn-top" onclick="window.print()">In PDF</button>
+  </div>
+</header>
+
+<main class="deck">
+
+  <!-- ════ SLIDE 1: KHO AI SKILLS LÀ GÌ? ════ -->
+  <section class="slide active" data-title="Kho AI Skills là gì?">
+    <div class="header">
+      <div class="kicker">Tổng Quan Kho Dùng Chung</div>
+      <h1 class="title">Kho AI Skills của Team là gì?</h1>
+      <p class="subtitle">Nơi lưu trữ 20 kỹ năng AI đã được chuẩn hóa để toàn bộ thành viên sử dụng hàng ngày</p>
     </div>
 
-    <div class="top-center">
-      <span>Trang</span>
-      <select id="slideSelect" class="slide-jump-select" title="Nhảy đến trang"></select>
-      <span id="slideCounterText">/ 11</span>
-    </div>
-
-    <div class="top-actions">
-      <button class="btn-action" onclick="toggleFullscreen()" title="Toàn màn hình (F)">
-        <span>Toàn Màn Hình</span>
-      </button>
-      <button class="btn-action" onclick="window.print()" title="In ra PDF (Cmd+P)">
-        <span>In / Xuất PDF</span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Presentation Deck Viewport -->
-  <main class="deck-container">
-
-    <!-- SLIDE 1: COVER / INTRO -->
-    <section class="slide active" id="slide-1" data-title="Bìa: Hướng Dẫn Sử Dụng">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">Sổ Tay Hướng Dẫn Vận Hành</div>
-          <h1 class="slide-title">📖 Hướng Dẫn Sử Dụng Phân Hệ Đánh Giá AI Skills</h1>
-          <p class="slide-subtitle">Cẩm nang chuẩn hóa chất lượng kỹ năng dành riêng cho <strong>Repo Owner</strong> và <strong>Thành Viên Dùng Repo</strong></p>
-        </div>
-        <span class="slide-tag">2 Đối Tượng Sử Dụng</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="grid-2">
-          <div class="card card-primary" style="padding: 20px;">
-            <div class="card-title" style="color: var(--primary); font-size: 15.5px;">
-              Phân Định 2 Nhóm Người Dùng Trọng Tâm
-            </div>
-            <div class="card-desc" style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
-              <div>
-                <strong style="color: var(--primary);">1. Thành Viên Dùng Repo (Repo Users):</strong><br>
-                Sử dụng các kỹ năng AI trong công việc hàng ngày, tự kiểm tra xem output của AI đã đạt chuẩn chưa trước khi gửi đi và đóng góp kỹ năng mới kèm bài test mẫu.
-              </div>
-              <div>
-                <strong style="color: var(--purple);">2. Repo Owner (Chủ Sở Hữu / Quản Trị Kho):</strong><br>
-                Quản lý chất lượng tổng thể cả 20 skills, theo dõi báo cáo định kỳ (Health Matrix) và bảo vệ repo chống suy giảm chất lượng khi duyệt Pull Request.
-              </div>
-            </div>
-          </div>
-
-          <div class="card" style="padding: 20px; justify-content: space-between;">
-            <div>
-              <div class="card-title" style="font-size: 15.5px; margin-bottom: 8px;">
-                Nguyên Tắc Thiết Kế: Đơn Giản & Tập Trung Luồng Chính
-              </div>
-              <div class="card-desc" style="font-size: 13px; line-height: 1.6;">
-                Không cần học code phức tạp hay câu lệnh rối rắm. Phân hệ đóng vai trò như một <strong>Máy Kiểm Tra Chất Lượng Tự Động</strong> — gõ 1 câu lệnh kiểm tra duy nhất là có ngay kết quả đạt hay không đạt và chỉ rõ vị trí cần hoàn thiện.
-              </div>
-            </div>
-            <div style="background: var(--bg-page); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text-sub); border: 1px solid var(--border-color);">
-              Kho GitHub: <code>https://github.com/krystalnguyen594-maker/ai-skills</code>
-            </div>
+    <div class="content">
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-title">Vấn đề: Dùng prompt tự do</div>
+          <div class="card-body">
+            • Mỗi người tự viết prompt một kiểu theo cảm tính.<br>
+            • AI trả lời lúc hay, lúc dở, thường xuyên thiếu các mục quan trọng.<br>
+            • Mất nhiều thời gian đọc rà soát và chỉnh sửa lại thủ công trước khi nộp việc.
           </div>
         </div>
 
-        <div class="grid-3">
-          <div class="card">
-            <div class="card-title"><span class="badge badge-green">Tốc Độ Cao</span></div>
-            <div class="card-desc">Chỉ mất trung bình 1 đến 2 giây để nhận kết quả đánh giá chi tiết.</div>
-          </div>
-          <div class="card">
-            <div class="card-title"><span class="badge badge-blue">Định Lượng Rõ Ràng</span></div>
-            <div class="card-desc">Chỉ rõ thiếu phần nào, phát hiện lỗi ở đâu và cần bổ sung mục gì.</div>
-          </div>
-          <div class="card">
-            <div class="card-title"><span class="badge badge-purple">Bảo Mật Nội Bộ</span></div>
-            <div class="card-desc">Chạy 100% cục bộ, không gửi dữ liệu prompt nhạy cảm ra ngoài.</div>
+        <div class="card">
+          <div class="card-title">Giải pháp: Kho 20 kỹ năng chuẩn</div>
+          <div class="card-body">
+            • Đóng gói sẵn các kỹ năng chuyên môn: viết PRD, tạo PDF in ấn, phân rã WBS, review code...<br>
+            • Mỗi kỹ năng nằm trong 1 thư mục riêng với file <code>SKILL.md</code> chứa quy trình hướng dẫn cụ thể.<br>
+            • Toàn team cùng dùng chung một chuẩn mực chất lượng cao nhất.
           </div>
         </div>
       </div>
 
-      <div class="slide-footer">
-        <span>Tài liệu chuyển giao nội bộ • AI Skills Repository</span>
-        <span>Trang 1 / 11</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 2: ANALOGY - WHAT IS IT? -->
-    <section class="slide" id="slide-2" data-title="Khái niệm: Phân hệ là gì?">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">Khái Niệm Cốt Lõi</div>
-          <h1 class="slide-title">💡 Phân Hệ Evaluation Hoạt Động Như Thế Nào?</h1>
-          <p class="slide-subtitle">Hình dung đơn giản như một kỳ thi kiểm định chất lượng tự động cho mỗi kỹ năng AI</p>
-        </div>
-        <span class="slide-tag">Mô Hình Dễ Hiểu</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="grid-3">
-          <div class="card" style="padding: 18px;">
-            <div class="card-title">1. Phiếu Chấm Điểm (Rubric)</div>
-            <div class="card-desc">
-              Tương tự như đáp án chấm thi. Quy định sẵn: Bài làm bắt buộc phải có những phần nào? Có bị lỗi cấm kỵ không? Đạt từ bao nhiêu điểm trở lên thì được công nhận đạt chuẩn (PASS).
-            </div>
-            <div style="font-size: 11.5px; color: var(--primary); font-weight: 600; margin-top: auto;">
-              File tương ứng: <code>evaluation.yaml</code>
-            </div>
-          </div>
-
-          <div class="card" style="padding: 18px;">
-            <div class="card-title">2. Đề Thi & Bài Mẫu (Benchmark)</div>
-            <div class="card-desc">
-              Một đề bài thực tế kèm 2 bài làm mẫu: Một <strong>bài làm tốt</strong> để máy kiểm tra xem có đạt điểm cao không, và một <strong>bài làm lỗi cố tình</strong> để máy chứng minh khả năng bắt lỗi.
-            </div>
-            <div style="font-size: 11.5px; color: var(--primary); font-weight: 600; margin-top: auto;">
-              Thư mục tương ứng: <code>benchmarks/</code>
-            </div>
-          </div>
-
-          <div class="card" style="padding: 18px;">
-            <div class="card-title">3. Giám Thị Chấm Điểm (Runner)</div>
-            <div class="card-desc">
-              Bộ công cụ chấm tự động trong tích tắc. Lấy bài làm đối chiếu với phiếu chấm, tính ra điểm số (0 - 100), thông báo PASS hay FAIL và ghi nhận vào bảng theo dõi tuần.
-            </div>
-            <div style="font-size: 11.5px; color: var(--primary); font-weight: 600; margin-top: auto;">
-              Lệnh chạy: <code>npm run eval</code>
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-primary" style="padding: 14px 18px;">
-          <div class="card-title" style="font-size: 14px;">Giá Trị Mang Lại</div>
-          <div class="card-desc">
-            Xóa bỏ hoàn toàn việc tranh cãi cảm tính ("tôi thấy prompt này hay / dở"). Cả Repo Owner và Thành viên đều có chung một thước đo định lượng khách quan để nghiệm thu chất lượng công việc.
-          </div>
-        </div>
-      </div>
-
-      <div class="slide-footer">
-        <span>Quy chuẩn khách quan: Chấm điểm dựa trên cấu trúc và ma trận kiểm thử</span>
-        <span>Trang 2 / 11</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 3: YOUR ROLE (2 AUDIENCES) -->
-    <section class="slide" id="slide-3" data-title="Phân vai: 2 Đối Tượng">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">Phân Vai Nhiệm Vụ</div>
-          <h1 class="slide-title">👥 Hai Đối Tượng Sử Dụng: Bạn Cần Làm Gì?</h1>
-          <p class="slide-subtitle">Trách nhiệm, mục tiêu và phạm vi thao tác của từng nhóm trong dự án</p>
-        </div>
-        <span class="slide-tag">2 Đối Tượng</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="grid-2">
-          <!-- Cột 1: Thành Viên Dùng Repo -->
-          <div class="card card-primary" style="padding: 20px;">
-            <div class="card-title" style="color: var(--primary); font-size: 15.5px;">
-              1. Thành Viên Dùng Repo (Repo Users)
-            </div>
-            <div class="card-desc" style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
-              <div>
-                <strong>Mục tiêu:</strong> Tận dụng các AI skills trong công việc hằng ngày (phân tích tài liệu, vẽ kiến trúc, chia task...) và tự tin rằng output tạo ra luôn đạt chuẩn trước khi bàn giao.
-              </div>
-              <div style="background: #ffffff; padding: 10px 12px; border-radius: 6px; border: 1px solid var(--primary-border);">
-                <strong>Trách nhiệm & Thao tác:</strong><br>
-                • <em>Khi làm việc hằng ngày:</em> Chạy lệnh test nhanh xem sản phẩm AI vừa viết có đạt chuẩn không.<br>
-                • <em>Khi đóng góp skill mới:</em> Soạn 2 file (Rubric + Benchmark) để tự kiểm tra đạt chuẩn trước khi tạo Pull Request.
-              </div>
-              <div>
-                <strong>Lệnh chính cần nhớ:</strong><br>
-                <code>npm run eval &lt;tên-skill&gt;</code> (chạy offline chỉ mất 1 giây).
-              </div>
-            </div>
-            <div class="badge badge-blue" style="margin-top: auto; align-self: flex-start;">Người Dùng & Đóng Góp</div>
-          </div>
-
-          <!-- Cột 2: Repo Owner -->
-          <div class="card card-purple" style="padding: 20px;">
-            <div class="card-title" style="color: var(--purple); font-size: 15.5px;">
-              2. Repo Owner (Chủ Sở Hữu / Quản Trị Kho)
-            </div>
-            <div class="card-desc" style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
-              <div>
-                <strong>Mục tiêu:</strong> Nắm chắc bức tranh sức khỏe của cả 20 skills, ngăn ngừa tình trạng sửa skill này làm hỏng skill khác (chống hồi quy khi merge PR).
-              </div>
-              <div style="background: #ffffff; padding: 10px 12px; border-radius: 6px; border: 1px solid var(--purple-border);">
-                <strong>Trách nhiệm & Thao tác:</strong><br>
-                • <em>Khởi động hệ thống:</em> Bật máy chủ thu thập số liệu nền (<code>npm run server</code>).<br>
-                • <em>Định kỳ hàng tuần:</em> Xuất báo cáo HTML (<code>npm run report</code>) để họp giao ban và xem skill nào cần hỗ trợ.<br>
-                • <em>Khi duyệt PR:</em> Kiểm tra xem skill mới có đủ rubric và benchmark đạt chuẩn hay không.
-              </div>
-              <div>
-                <strong>Lệnh chính cần nhớ:</strong><br>
-                <code>npm run server</code> • <code>npm run report</code>
-              </div>
-            </div>
-            <div class="badge badge-purple" style="margin-top: auto; align-self: flex-start;">Người Quản Trị & Kiểm Soát</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide-footer">
-        <span>Rõ ràng, mạch lạc: Mỗi nhóm đối tượng chỉ cần nắm đúng những thao tác thuộc về mình</span>
-        <span>Trang 3 / 11</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 4: USER JOURNEY - REPO USER -->
-    <section class="slide" id="slide-4" data-title="User Journey: Thành Viên Dùng Repo">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">Hành Trình Người Dùng (User Journey)</div>
-          <h1 class="slide-title">🧭 Hành Trình Của Thành Viên Dùng Repo</h1>
-          <p class="slide-subtitle">Trực quan hóa từng chặng từ lúc nhận yêu cầu đến khi bàn giao sản phẩm AI đạt chuẩn</p>
-        </div>
-        <span class="slide-tag">Đối Tượng: Thành Viên</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="journey-container">
-          <div class="journey-steps">
-            <div class="journey-step">
-              <div class="journey-step-num">1</div>
-              <div class="journey-step-title">Nhận Task</div>
-              <div class="journey-step-desc">Nhận yêu cầu công việc (viết PRD/FRD, phân rã WBS, tạo test case...).</div>
-            </div>
-
-            <div class="journey-step">
-              <div class="journey-step-num">2</div>
-              <div class="journey-step-title">Gọi AI Skill</div>
-              <div class="journey-step-desc">Dùng AI Skill tương ứng trong kho để sinh bản thảo tài liệu đầu ra.</div>
-            </div>
-
-            <div class="journey-step" style="border-color: var(--primary-border); background: var(--primary-light);">
-              <div class="journey-step-num">3</div>
-              <div class="journey-step-title">Chạy Test Nhanh</div>
-              <div class="journey-step-desc">
-                Chạy lệnh kiểm tra offline:<br>
-                <code>npm run eval &lt;skill&gt;</code>
-              </div>
-            </div>
-
-            <div class="journey-step">
-              <div class="journey-step-num">4</div>
-              <div class="journey-step-title">Đọc Kết Quả</div>
-              <div class="journey-step-desc">
-                • <strong>PASS (≥80đ):</strong> Yên tâm bàn giao.<br>
-                • <strong>FAIL:</strong> Nhìn mã lỗi, nhắc AI bổ sung phần thiếu.
-              </div>
-            </div>
-
-            <div class="journey-step">
-              <div class="journey-step-num">5</div>
-              <div class="journey-step-title">Bàn Giao / PR</div>
-              <div class="journey-step-desc">Gửi kết quả cho team hoặc tạo Pull Request đóng góp skill mới.</div>
-            </div>
-          </div>
-
-          <div class="card card-primary" style="padding: 14px 18px; margin-top: 6px;">
-            <div class="card-title" style="font-size: 13.5px; color: var(--primary);">Quy Tắc Vàng Cho Thành Viên:</div>
-            <div class="card-desc" style="font-size: 12.5px;">
-              Chỉ mất <strong>1 giây chạy lệnh <code>npm run eval</code></strong> trước khi gửi bài cho khách hàng hoặc sếp, bạn sẽ loại bỏ được 100% rủi ro bị phản hồi vì thiếu mục bắt buộc hoặc sai quy cách!
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide-footer">
-        <span>Tối ưu trải nghiệm: Không làm thay đổi thói quen làm việc thường nhật của thành viên</span>
-        <span>Trang 4 / 11</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 5: USER JOURNEY - REPO OWNER -->
-    <section class="slide" id="slide-5" data-title="User Journey: Repo Owner">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">Hành Trình Người Dùng (User Journey)</div>
-          <h1 class="slide-title">🧭 Hành Trình Của Repo Owner</h1>
-          <p class="slide-subtitle">Trực quan hóa quy trình quản trị chất lượng, duyệt đóng góp và theo dõi báo cáo định kỳ</p>
-        </div>
-        <span class="slide-tag">Đối Tượng: Repo Owner</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="journey-container">
-          <div class="journey-steps">
-            <div class="journey-step">
-              <div class="journey-step-num purple">1</div>
-              <div class="journey-step-title">Khởi Động Trạm</div>
-              <div class="journey-step-desc">
-                Chạy máy chủ thu thập số liệu nền:<br>
-                <code>npm run server</code>
-              </div>
-            </div>
-
-            <div class="journey-step">
-              <div class="journey-step-num purple">2</div>
-              <div class="journey-step-title">Ban Hành Chuẩn</div>
-              <div class="journey-step-desc">Quy định rubric mẫu và ngưỡng đạt (≥80 điểm) cho từng kỹ năng trong kho.</div>
-            </div>
-
-            <div class="journey-step">
-              <div class="journey-step-num purple">3</div>
-              <div class="journey-step-title">Xem Báo Cáo Tuần</div>
-              <div class="journey-step-desc">
-                Chạy lệnh mở dashboard HTML:<br>
-                <code>npm run report</code>
-              </div>
-            </div>
-
-            <div class="journey-step" style="border-color: var(--purple-border); background: var(--purple-light);">
-              <div class="journey-step-num purple">4</div>
-              <div class="journey-step-title">Duyệt Pull Request</div>
-              <div class="journey-step-desc">Kiểm tra test case của skill mới đạt 100% trước khi bấm nút Merge PR.</div>
-            </div>
-
-            <div class="journey-step">
-              <div class="journey-step-num purple">5</div>
-              <div class="journey-step-title">Chuyển Giao Team</div>
-              <div class="journey-step-desc">Dùng báo cáo HTML và slide này để đào tạo và nhân rộng cho các team dự án.</div>
-            </div>
-          </div>
-
-          <div class="card card-purple" style="padding: 14px 18px; margin-top: 6px;">
-            <div class="card-title" style="font-size: 13.5px; color: var(--purple);">Lợi Thế Cho Repo Owner:</div>
-            <div class="card-desc" style="font-size: 12.5px;">
-              Không cần phải ngồi đọc từng dòng prompt hay test thủ công khi ai đó sửa skill. Hệ thống tự động cảnh báo ngay nếu tỷ lệ Pass Rate bị sụt giảm hoặc tỷ lệ Rework tăng cao.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide-footer">
-        <span>Tự động hóa quản trị: Báo cáo số liệu minh bạch phục vụ các buổi họp giao ban</span>
-        <span>Trang 5 / 11</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 6: PASS / FAIL CALCULATION BY BENCHMARK -->
-    <section class="slide" id="slide-6" data-title="Cơ chế tính Pass / Fail theo Benchmark">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">Quy Chế Chấm Điểm</div>
-          <h1 class="slide-title">🎯 Cách Tính PASS Hoặc FAIL Theo Benchmark</h1>
-          <p class="slide-subtitle">Trực quan hóa phễu thẩm định 3 tầng và cơ chế đối chiếu kép giữa mẫu chuẩn và mẫu lỗi</p>
-        </div>
-        <span class="slide-tag">Thuật Toán Chấm Điểm</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="funnel-container">
-          <!-- Tầng 1: Cấu trúc & Lỗi cấm -->
-          <div class="funnel-stage">
-            <div class="funnel-header">
-              <span class="funnel-title">Tầng 1: Kiểm Tra Cấu Trúc</span>
-              <span class="badge badge-red">Chốt Chặn</span>
-            </div>
-            <div class="card-desc" style="font-size: 12.5px;">
-              <strong>1. Các mục bắt buộc:</strong> Kiểm tra tài liệu có đủ các phần thiết yếu theo quy định rubric.<br><br>
-              <strong>2. Lỗi cấm kỵ (Instant Fail):</strong> Nếu phát hiện lỗi nghiêm trọng (như rò rỉ mã code vào tài liệu kinh doanh) thì bài làm <strong>bị đánh trượt ngay lập tức</strong>, bất kể điểm số các phần khác cao bao nhiêu.
-            </div>
-          </div>
-
-          <!-- Tầng 2: Điểm số 4 chiều -->
-          <div class="funnel-stage">
-            <div class="funnel-header">
-              <span class="funnel-title">Tầng 2: Điểm Số 4 Chiều</span>
-              <span class="badge badge-blue">Trọng Số</span>
-            </div>
-            <div class="card-desc" style="font-size: 12.5px;">
-              Điểm tổng hợp (0 - 100) được tính từ 4 khía cạnh nghiệp vụ:
-              <br>• <strong>Độ đầy đủ (25-30%):</strong> Bao quát các kịch bản.
-              <br>• <strong>Độ chặt chẽ (35%):</strong> Logic kinh doanh đúng.
-              <br>• <strong>Chuẩn nghiệm thu (20-25%):</strong> Đúng format Gherkin/Traceability.
-              <br>• <strong>Định dạng (15%):</strong> Trình bày rõ ràng.
-            </div>
-          </div>
-
-          <!-- Tầng 3: Ngưỡng đạt & Đối chiếu kép -->
-          <div class="funnel-stage">
-            <div class="funnel-header">
-              <span class="funnel-title">Tầng 3: Ngưỡng Đạt Benchmark</span>
-              <span class="badge badge-green">Nghiệm Thu</span>
-            </div>
-            <div class="card-desc" style="font-size: 12.5px;">
-              <strong>Ngưỡng đỗ: Điểm tổng ≥ 80/100.</strong><br><br>
-              <strong>Cơ chế đối chiếu kép trong Benchmark:</strong><br>
-              • <code>sample_good_output</code>: Mẫu chuẩn phải đạt <span style="color: var(--success); font-weight: bold;">PASS (≥80đ)</span>.<br>
-              • <code>sample_flawed_output</code>: Mẫu lỗi cố tình bắt buộc phải bị bắt <span style="color: var(--danger); font-weight: bold;">FAIL (&lt;80đ)</span> để chứng minh máy chấm có độ nhạy!
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-warning" style="padding: 12px 16px;">
-          <div class="card-desc" style="font-size: 12.5px;">
-            <strong>Chỉ số Rework (Cần sửa lại):</strong> Khi bài làm bị FAIL hoặc có điểm từ 80 đến 84 điểm, hệ thống sẽ gắn nhãn cảnh báo cần tối ưu thêm (Rework Required) để người dùng tinh chỉnh output đạt chất lượng hoàn hảo.
-          </div>
-        </div>
-      </div>
-
-      <div class="slide-footer">
-        <span>Minh bạch 100%: Mọi điểm số và nhãn kết quả đều truy vết được nguồn gốc quy tắc</span>
-        <span>Trang 6 / 11</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 7: CORE ACTIONS - RUNNING EVAL -->
-    <section class="slide" id="slide-7" data-title="Thao tác chính: Chạy kiểm tra kỹ năng">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">Thao Tác Trọng Tâm</div>
-          <h1 class="slide-title">⚡ Thao Tác 1: Cách Chạy Kiểm Tra Một Kỹ Năng</h1>
-          <p class="slide-subtitle">Câu lệnh thực thi trực tiếp trên Terminal dành cho Thành viên dùng repo</p>
-        </div>
-        <span class="slide-tag">Luồng Thường Nhật</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="grid-2">
-          <div class="card card-primary" style="padding: 18px;">
-            <div class="card-title" style="color: var(--primary);">Cú Pháp Lệnh Duy Nhất Cần Nhớ</div>
-            <div class="card-desc">Gõ lệnh sau vào Terminal khi muốn thẩm định kỹ năng bất kỳ:</div>
-            <div class="cmd-friendly">
-              <span class="cmd-prompt">$</span>
-              <span>npm run eval &lt;tên-kỹ-năng&gt;</span>
-            </div>
-            <div class="card-desc" style="font-size: 12.5px; color: var(--text-muted); margin-top: 6px;">
-              Ví dụ kiểm tra kỹ năng phân rã công việc:<br>
-              <code>npm run eval work-breakdown</code><br><br>
-              Hoặc kiểm tra kỹ năng phân tích tài liệu mặc định:<br>
-              <code>npm run eval</code>
-            </div>
-          </div>
-
-          <div class="card" style="padding: 18px;">
-            <div class="card-title">Kết Quả In Ra Trên Terminal Trong 1 Giây</div>
-            <div class="card-desc" style="font-size: 12px;">Màn hình sẽ hiển thị bảng kết quả rõ ràng:</div>
-            <div style="background: #0f172a; color: #f8fafc; padding: 10px 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.6; margin-top: 4px;">
-              <div>tc-01  User Onboarding [Good]    <span style="color: #4ade80; font-weight: bold;">PASS</span>  <span style="color: #4ade80;">94/100</span>  None</div>
-              <div>tc-01  User Onboarding [Flawed]  <span style="color: #f87171; font-weight: bold;">FAIL</span>  <span style="color: #f87171;">45/100</span>  <span style="color: #facc15;">missing_epic_scope</span></div>
-            </div>
-            <div class="card-desc" style="font-size: 12px; margin-top: 6px; color: var(--text-sub);">
-              • Nếu thấy dòng chữ xanh <span style="color: var(--success); font-weight: bold;">PASS</span>: Bạn đã hoàn thành xuất sắc!<br>
-              • Nếu thấy chữ đỏ <span style="color: var(--danger); font-weight: bold;">FAIL</span>: Đọc danh sách lỗi màu vàng bên cạnh để bổ sung.
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-success" style="padding: 12px 16px;">
-          <div class="card-desc" style="font-size: 12.5px;">
-            <strong>Chạy 100% Cục Bộ (Offline):</strong> Bạn không cần kết nối mạng hay bật bất kỳ máy chủ nào. Lệnh chạy trực tiếp trên máy bạn với tốc độ tức thì.
-          </div>
-        </div>
-      </div>
-
-      <div class="slide-footer">
-        <span>Đơn giản tối đa: 1 câu lệnh duy nhất là đủ cho 90% nhu cầu hằng ngày</span>
-        <span>Trang 7 / 11</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 8: CORE ACTIONS - WEEKLY REPORT -->
-    <section class="slide" id="slide-8" data-title="Thao tác chính: Xem báo cáo tuần">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">Thao Tác Trọng Tâm</div>
-          <h1 class="slide-title">📊 Thao Tác 2: Mở Báo Cáo Sức Khỏe Tuần (Dashboard)</h1>
-          <p class="slide-subtitle">Trình bày số liệu trực quan dạng website dành cho <strong>Repo Owner</strong></p>
-        </div>
-        <span class="slide-tag">Dành Cho Repo Owner</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="grid-2">
-          <div class="card card-purple" style="padding: 18px;">
-            <div class="card-title" style="color: var(--purple);">Bước 1: Bật Trạm Thu Thập Số Liệu Nền</div>
-            <div class="card-desc">Chạy lệnh khởi động trạm đo lường nội bộ tại một cửa sổ Terminal:</div>
-            <div class="cmd-friendly">
-              <span class="cmd-prompt">$</span>
-              <span>npm run server</span>
-            </div>
-            <div class="card-desc" style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
-              Server sẽ lắng nghe tại <code>http://localhost:3456</code> để tự động tích lũy kết quả đo lường.
-            </div>
-          </div>
-
-          <div class="card card-purple" style="padding: 18px;">
-            <div class="card-title" style="color: var(--purple);">Bước 2: Xuất & Mở Báo Cáo HTML Tuần</div>
-            <div class="card-desc">Gõ 2 lệnh sau để tạo và mở dashboard HTML:</div>
-            <div class="cmd-friendly">
-              <span class="cmd-prompt">$</span>
-              <span>npm run report</span>
-            </div>
-            <div class="cmd-friendly">
-              <span class="cmd-prompt">$</span>
-              <span>open reports/weekly-2026-10-23.html</span>
-            </div>
-            <div class="card-desc" style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
-              Trình duyệt sẽ tự động mở trang web báo cáo với đầy đủ biểu đồ và ma trận sức khỏe 20 skills.
-            </div>
-          </div>
-        </div>
-
-        <div class="card" style="padding: 14px 18px;">
-          <div class="card-title" style="font-size: 13.5px;">Nội Dung Trọng Tâm Trong Báo Cáo Tuần:</div>
-          <div class="grid-3" style="font-size: 12.5px; margin-top: 4px;">
-            <div>• <strong>Tỷ lệ đạt (Pass Rate):</strong> Cho biết % tác vụ đạt chất lượng ngay từ lần đầu.</div>
-            <div>• <strong>Tỷ lệ sửa lại (Rework Rate):</strong> Đo lường mức độ người dùng phải nhắc AI viết lại.</div>
-            <div>• <strong>Top 3 lỗi phổ biến:</strong> Chỉ rõ kỹ năng nào hay mắc lỗi gì để kịp thời tinh chỉnh prompt.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide-footer">
-        <span>Tiện lợi: File HTML hoàn toàn độc lập, dễ dàng gửi qua Slack, Email hoặc đính kèm báo cáo</span>
-        <span>Trang 8 / 11</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 9: ADDING A NEW SKILL TEST -->
-    <section class="slide" id="slide-9" data-title="Thêm kỹ năng mới vào repo">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">Đóng Góp Kỹ Năng Mới</div>
-          <h1 class="slide-title">🛠️ Cách Thêm Đánh Giá Cho Một Kỹ Năng Mới</h1>
-          <p class="slide-subtitle">Quy chuẩn cho Thành viên khi đóng góp skill mới và tiêu chuẩn để Repo Owner duyệt PR</p>
-        </div>
-        <span class="slide-tag">Đóng Góp & Duyệt PR</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="grid-2">
-          <div class="step-box" style="padding: 14px;">
-            <div class="step-badge">File 1</div>
-            <div class="step-content">
-              <div class="step-title">Phiếu Chấm Điểm: <code>evaluation.yaml</code></div>
-              <div class="step-desc">
-                Đặt ngay tại <code>skills/ten-skill-moi/evaluation.yaml</code>.<br>
-                Liệt kê 3 thông tin cơ bản:
-                <br>• Các mục bắt buộc phải có trong bài viết (tiêu đề, tóm tắt, tiêu chí nghiệm thu...).
-                <br>• Các lỗi cấm kỵ (như rò rỉ mã code vào tài liệu nghiệp vụ).
-                <br>• Ngưỡng điểm đỗ (mặc định 80 điểm).
-              </div>
-            </div>
-          </div>
-
-          <div class="step-box" style="padding: 14px;">
-            <div class="step-badge">File 2</div>
-            <div class="step-content">
-              <div class="step-title">Đề Thi Mẫu: <code>benchmarks/tc-01-baseline.json</code></div>
-              <div class="step-desc">
-                Đặt tại thư mục <code>skills/ten-skill-moi/benchmarks/</code>.<br>
-                Chứa đề bài thực tế cùng 2 bài làm mẫu:
-                <br>• <strong>sample_good_output:</strong> Bài viết mẫu chuẩn mực mà bạn kỳ vọng AI sinh ra.
-                <br>• <strong>sample_flawed_output:</strong> Bài viết ẩu để thử thách máy bắt lỗi.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-success" style="padding: 14px 18px;">
-          <div class="card-title" style="color: var(--success); font-size: 14px;">Tiêu Chuẩn Nghiệm Thu Của Repo Owner</div>
-          <div class="card-desc">
-            Khi Thành viên tạo Pull Request (PR) đóng góp kỹ năng mới, Repo Owner chỉ cần chạy lệnh:<br>
-            <code>npm run eval ten-skill-moi</code>. Nếu bài mẫu tốt đạt điểm xanh (<span style="color: var(--success); font-weight: bold;">PASS ≥ 80đ</span>) và bài mẫu ẩu bị bắt lỗi (<span style="color: var(--danger); font-weight: bold;">FAIL</span>) thì Repo Owner an tâm bấm nút Merge PR trong 30 giây!
-          </div>
-        </div>
-      </div>
-
-      <div class="slide-footer">
-        <span>Có sẵn 20 mẫu tương tự trong thư mục skills/ để bạn copy và chỉnh sửa nhanh</span>
-        <span>Trang 9 / 11</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 10: TROUBLESHOOTING & FAQ -->
-    <section class="slide" id="slide-10" data-title="Xử lý sự cố thường gặp (FAQ)">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">Giải Đáp Thắc Mắc</div>
-          <h1 class="slide-title">❓ Các Tình Huống Thường Gặp & Cách Xử Lý (FAQ)</h1>
-          <p class="slide-subtitle">Giải đáp nhanh các vướng mắc phổ biến nhất của cả Thành viên và Repo Owner</p>
-        </div>
-        <span class="slide-tag">Hỏi Đáp Nhanh</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-title" style="font-size: 13.5px; color: var(--danger);">
-              1. Thành viên: Tại sao bài làm tốt (Good Output) của tôi bị báo FAIL?
-            </div>
-            <div class="card-desc" style="font-size: 12.5px;">
-              <strong>Nguyên nhân:</strong> Có thể bạn viết thiếu một đề mục bắt buộc được quy định trong file <code>evaluation.yaml</code>, hoặc nội dung bài mẫu quá ngắn (dưới 50 ký tự).<br>
-              <strong>Cách sửa:</strong> Nhìn vào dòng lỗi màu vàng trên terminal, bổ sung đúng tiêu đề mục đó vào bài mẫu là sẽ đạt ngay.
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-title" style="font-size: 13.5px; color: var(--warning);">
-              2. Thành viên: Chạy lệnh bị báo lỗi "Connection Refused"?
-            </div>
-            <div class="card-desc" style="font-size: 12.5px;">
-              <strong>Nguyên nhân:</strong> Bạn chạy lệnh có đuôi <code>:send</code> nhưng trạm server chưa được bật.<br>
-              <strong>Cách sửa:</strong> Nếu chỉ muốn test cá nhân, chỉ cần gõ lệnh offline: <code>npm run eval &lt;tên-skill&gt;</code> (không có chữ <code>:send</code>).
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-title" style="font-size: 13.5px; color: var(--primary);">
-              3. Thành viên: Chạy kiểm tra có tốn phí token AI không?
-            </div>
-            <div class="card-desc" style="font-size: 12.5px;">
-              <strong>Hoàn toàn không tốn phí:</strong> Bộ đánh giá dùng thuật toán kiểm tra cấu trúc và ngữ nghĩa offline siêu tốc, chạy trực tiếp trên máy bạn mà không cần gọi API trả phí ra ngoài.
-            </div>
-          </div>
-
-          <div class="card card-purple">
-            <div class="card-title" style="font-size: 13.5px; color: var(--purple);">
-              4. Repo Owner: Dữ liệu của team có bị rò rỉ ra ngoài không?
-            </div>
-            <div class="card-desc" style="font-size: 12.5px;">
-              <strong>Bảo mật 100%:</strong> Trạm đo lường chạy nội bộ trên máy bạn. Dữ liệu chỉ ghi nhận điểm số và mã lỗi kỹ thuật, tuyệt đối không lưu trữ nội dung prompt bí mật hay thông tin của khách hàng.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slide-footer">
-        <span>Gặp khó khăn? Liên hệ ngay Repo Owner để được hướng dẫn trực tiếp</span>
-        <span>Trang 10 / 11</span>
-      </div>
-    </section>
-
-    <!-- SLIDE 11: APPENDIX (EXPANDED COMMANDS & CLI FLAGS) -->
-    <section class="slide" id="slide-11" data-title="Phụ Lục: Các Lệnh Mở Rộng & Cờ Tùy Biến">
-      <div class="slide-header">
-        <div class="slide-title-wrap">
-          <div class="slide-category">Phụ Lục Tham Khảo (Appendix)</div>
-          <h1 class="slide-title">📌 Phụ Lục: Các Lệnh Mở Rộng & Cờ Tùy Biến</h1>
-          <p class="slide-subtitle">Bảng tra cứu đầy đủ các lệnh nâng cao và cờ tham số dành cho người cần tùy biến sâu</p>
-        </div>
-        <span class="slide-tag">Dành Cho Tham Khảo</span>
-      </div>
-
-      <div class="slide-body">
-        <div class="grid-2">
-          <!-- Bảng 1: Lệnh mở rộng -->
-          <div class="card" style="padding: 14px;">
-            <div class="card-title" style="font-size: 14px;">1. Danh Mục Các Lệnh Mở Rộng</div>
-            <table class="table-custom" style="margin-top: 6px;">
-              <thead>
-                <tr>
-                  <th style="width: 48%;">Lệnh Thực Thi</th>
-                  <th>Mô Tả Chức Năng</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>npm run eval:send</code></td>
-                  <td>Kiểm tra 1 skill và gửi số liệu về server.</td>
-                </tr>
-                <tr>
-                  <td><code>npm run eval:all</code></td>
-                  <td>Quét toàn bộ 20 kỹ năng trong kho offline.</td>
-                </tr>
-                <tr>
-                  <td><code>npm run eval:all:send</code></td>
-                  <td>Quét cả 20 kỹ năng và đồng bộ lên server.</td>
-                </tr>
-                <tr>
-                  <td><code>npm run test:e2e</code></td>
-                  <td>Chạy kiểm thử end-to-end từ test đến xuất báo cáo.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Bảng 2: Cờ tham số CLI -->
-          <div class="card" style="padding: 14px;">
-            <div class="card-title" style="font-size: 14px;">2. Các Cờ Tùy Biến (CLI Flags)</div>
-            <table class="table-custom" style="margin-top: 6px;">
-              <thead>
-                <tr>
-                  <th style="width: 44%;">Cờ Tham Số</th>
-                  <th>Mục Đích Sử Dụng</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>--opt-in</code></td>
-                  <td>Bật gửi telemetry lên máy chủ đo lường.</td>
-                </tr>
-                <tr>
-                  <td><code>--benchmark=&lt;tên&gt;</code></td>
-                  <td>Chỉ chạy duy nhất 1 file test case cụ thể.</td>
-                </tr>
-                <tr>
-                  <td><code>--server-url=&lt;url&gt;</code></td>
-                  <td>Trỏ đến server từ xa (mặc định: port 3456).</td>
-                </tr>
-                <tr>
-                  <td><code>--all</code></td>
-                  <td>Chế độ chạy hàng loạt cho tất cả kỹ năng.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="card card-primary" style="text-align: center; padding: 12px; margin-top: 4px;">
-          <p style="font-size: 12.5px; color: var(--text-sub);">
-            <strong>Gợi ý:</strong> Trong công việc hằng ngày, bạn chỉ cần dùng lệnh chính <code>npm run eval &lt;tên-skill&gt;</code>. Hãy tham khảo trang Phụ Lục này khi cần tự động hóa nâng cao hoặc cấu hình CI/CD!
-          </p>
-        </div>
-      </div>
-
-      <div class="slide-footer">
-        <span>Chúc toàn thể đội ngũ vận hành và sử dụng kho AI Skills thật hiệu quả!</span>
-        <span>Trang 11 / 11</span>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Bottom Navigation & Controls -->
-  <footer class="bottom-bar">
-    <div class="controls-left">
-      <button id="btnPrev" class="btn-nav" onclick="prevSlide()" title="Trang trước (←)">
-        <span>← Trước</span>
-      </button>
-      <button id="btnNext" class="btn-nav btn-nav-primary" onclick="nextSlide()" title="Trang kế tiếp (→ / Space)">
-        <span>Tiếp Theo →</span>
-      </button>
-
-      <div class="progress-bar-container">
-        <div id="progressBar" class="progress-bar-fill"></div>
+      <div class="callout">
+        <strong>Tóm lại:</strong> Thay vì tự mò mẫm gõ prompt, bạn vào kho này lấy các kỹ năng đã được hoàn thiện sẵn để giao việc cho AI.
       </div>
     </div>
 
-    <div class="shortcuts-hint">
-      <span>Chuyển trang: <kbd>←</kbd> <kbd>→</kbd> <kbd>Space</kbd></span>
-      <span>Toàn màn hình: <kbd>F</kbd></span>
-      <span>In PDF: <kbd>Cmd</kbd> + <kbd>P</kbd></span>
+    <div class="footer">
+      <span>Cẩm nang sử dụng nội bộ</span>
+      <span>1 / 6</span>
     </div>
-  </footer>
+  </section>
 
-  <!-- Interactive Slide Controller Script -->
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    let currentSlide = 0;
+  <!-- ════ SLIDE 2: TEM KIỂM ĐỊNH CHẤT LƯỢNG ════ -->
+  <section class="slide" data-title="Tem kiểm định chất lượng">
+    <div class="header">
+      <div class="kicker">Bảo Chứng Độ Tin Cậy</div>
+      <h1 class="title">Tem kiểm định chất lượng (Evaluation) là gì?</h1>
+      <p class="subtitle">Cơ chế tự động giúp team phân biệt rõ skill nào đạt chuẩn xịn, skill nào chưa hoàn thiện</p>
+    </div>
 
-    const slideSelect = document.getElementById('slideSelect');
-    const slideCounterText = document.getElementById('slideCounterText');
-    const progressBar = document.getElementById('progressBar');
-    const btnPrev = document.getElementById('btnPrev');
-    const btnNext = document.getElementById('btnNext');
+    <div class="content">
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-title">1. Barem chuẩn</div>
+          <div class="card-body">
+            Mỗi skill có file <code>evaluation.yaml</code> quy định rõ: bài làm đạt phải có những phần nào, lỗi nào bị cấm kỵ, và tiêu chuẩn nghiệm thu là gì.
+          </div>
+        </div>
 
-    // Populate Jump-to-Slide Dropdown
-    slides.forEach((slide, idx) => {
-      const opt = document.createElement('option');
-      opt.value = idx;
-      opt.textContent = `${idx + 1}. ${slide.getAttribute('data-title') || 'Trang ' + (idx + 1)}`;
-      slideSelect.appendChild(opt);
-    });
+        <div class="card">
+          <div class="card-title">2. Bộ đôi Benchmarks</div>
+          <div class="card-body">
+            Kèm thư mục <code>benchmarks/</code> chứa tối thiểu 2 bộ đề: <code>tc-01-baseline</code> (nền tảng) và <code>tc-02-realistic</code> (thực chiến), mỗi bài có đủ mẫu Good (Đạt) và Flawed (Lỗi).
+          </div>
+        </div>
 
-    slideCounterText.textContent = `/ ${totalSlides}`;
+        <div class="card">
+          <div class="card-title">
+            3. Dán tem PASS
+            <span class="badge badge-pass">Đạt chuẩn</span>
+          </div>
+          <div class="card-body">
+            Khi máy chấm thấy: bài tốt được điểm cao (&ge;80) và bài làm ẩu bị bắt lỗi rớt &rarr; Kỹ năng chính thức được cấp tem <strong>PASS</strong> để toàn team an tâm dùng.
+          </div>
+        </div>
+      </div>
 
-    function updateSlideView() {
-      slides.forEach((slide, idx) => {
-        if (idx === currentSlide) {
-          slide.classList.add('active');
-        } else {
-          slide.classList.remove('active');
-        }
-      });
+      <div class="callout">
+        <strong>Vận hành 3 chặng khép kín:</strong> AI soạn thảo &rarr; Chấm điểm gắn Thẻ Chất Lượng (Quality Scorecard) &rarr; Hộp thoại tương tác 1-chạm (Modal UI) ghi nhận phản hồi.
+      </div>
+    </div>
 
-      slideSelect.value = currentSlide;
-      btnPrev.disabled = currentSlide === 0;
-      btnNext.disabled = currentSlide === totalSlides - 1;
+    <div class="footer">
+      <span>Đảm bảo chất lượng đồng đều cho toàn bộ 20 kỹ năng</span>
+      <span>2 / 6</span>
+    </div>
+  </section>
 
-      const progress = ((currentSlide + 1) / totalSlides) * 100;
-      progressBar.style.width = `${progress}%`;
-    }
+  <!-- ════ SLIDE 3: DÀNH CHO THÀNH VIÊN DÙNG REPO ════ -->
+  <section class="slide" data-title="Cách dùng cho Thành viên">
+    <div class="header">
+      <div class="kicker">Dành Cho Thành Viên</div>
+      <h1 class="title">Quy trình sử dụng & Phản hồi 1-chạm</h1>
+      <p class="subtitle">Trải nghiệm tương tác 3 chặng tiện lợi, chuẩn hóa và không cần gõ lệnh kỹ thuật</p>
+    </div>
 
-    function nextSlide() {
-      if (currentSlide < totalSlides - 1) {
-        currentSlide++;
-        updateSlideView();
-      }
-    }
+    <div class="content">
+      <div class="flow">
+        <div class="flow-step">
+          <div class="step-num">1</div>
+          <div class="flow-title">Ra đề tự nhiên</div>
+          <div class="flow-desc">Chat giao việc như bình thường trong IDE hoặc Web. AI tự động kích hoạt kỹ năng tương ứng từ kho <code>skills/</code>.</div>
+        </div>
 
-    function prevSlide() {
-      if (currentSlide > 0) {
-        currentSlide--;
-        updateSlideView();
-      }
-    }
+        <div class="flow-step">
+          <div class="step-num">2</div>
+          <div class="flow-title">Nhận bài & Thẻ điểm</div>
+          <div class="flow-desc">Nhận văn bản hoàn chỉnh kèm <strong>Thẻ Chất Lượng (Quality Scorecard)</strong> hiển thị điểm số 4 chiều và trạng thái PASS/FAIL tức thì.</div>
+        </div>
 
-    function goToSlide(idx) {
-      if (idx >= 0 && idx < totalSlides) {
-        currentSlide = idx;
-        updateSlideView();
-      }
-    }
+        <div class="flow-step">
+          <div class="step-num">3</div>
+          <div class="flow-title">Modal phản hồi 1-chạm</div>
+          <div class="flow-desc">Hộp thoại đồ họa (Modal Popup) tự động hiện ra: bấm chọn 1-click (Rất hài lòng / Cần chỉnh sửa) mà không cần gõ chữ.</div>
+        </div>
+      </div>
 
-    slideSelect.addEventListener('change', (e) => {
-      goToSlide(parseInt(e.target.value, 10));
-    });
+      <div class="callout">
+        <strong>Bảo mật tối đa:</strong> Phản hồi chỉ lưu metadata điểm số và mã lỗi vào SQLite cục bộ (<code>server/data/eval.db</code>); tuyệt đối không đẩy văn bản dự án ra ngoài.
+      </div>
+    </div>
 
-    // Keyboard Shortcuts
-    window.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+    <div class="footer">
+      <span>Áp dụng hàng ngày cho mọi tác vụ công việc</span>
+      <span>3 / 6</span>
+    </div>
+  </section>
 
-      if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'PageDown') {
-        e.preventDefault();
-        nextSlide();
-      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        e.preventDefault();
-        prevSlide();
-      } else if (e.key === 'Home') {
-        e.preventDefault();
-        goToSlide(0);
-      } else if (e.key === 'End') {
-        e.preventDefault();
-        goToSlide(totalSlides - 1);
-      } else if (e.key === 'f' || e.key === 'F') {
-        e.preventDefault();
-        toggleFullscreen();
-      }
-    });
+  <!-- ════ SLIDE 4: DÀNH CHO NGƯỜI ĐÓNG GÓP SKILL MỚI ════ -->
+  <section class="slide" data-title="Đóng góp skill mới">
+    <div class="header">
+      <div class="kicker">Dành Cho Người Đóng Góp</div>
+      <h1 class="title">Cách đóng góp một kỹ năng mới vào kho</h1>
+      <p class="subtitle">Khi bạn có một prompt hoặc quy trình hay muốn chia sẻ cho đồng nghiệp cùng sử dụng</p>
+    </div>
 
-    // Fullscreen Toggle
-    function toggleFullscreen() {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => {
-          console.warn(`Error attempting to enable fullscreen: ${err.message}`);
-        });
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
-      }
-    }
+    <div class="content">
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-title">Bộ hồ sơ bạn cần chuẩn bị</div>
+          <div class="card-body">
+            Tạo thư mục mới <code>skills/ten-skill-cua-ban/</code> với 3 thành phần:<br><br>
+            • <code>SKILL.md</code>: Bản hướng dẫn chi tiết quy trình thực hiện.<br>
+            • <code>evaluation.yaml</code>: Barem tiêu chí (mục bắt buộc, regex cấm, trọng số).<br>
+            • <code>benchmarks/</code>: Tối thiểu 2 bài test <code>tc-01-baseline.json</code> & <code>tc-02-realistic.json</code> (đều có mẫu Good và Flawed).
+          </div>
+        </div>
 
-    // Touch Swipe Support for Mobile/Tablet
-    let touchStartX = 0;
-    let touchEndX = 0;
+        <div class="card">
+          <div class="card-title">Quy chuẩn thẩm định Config-Driven</div>
+          <div class="card-body">
+            • Bộ máy chấm điểm động tự nạp <code>evaluation.yaml</code> của bạn để chấm điểm độc lập.<br>
+            • Chạy kiểm thử cục bộ: <code>npm run eval &lt;tên-skill&gt;</code>.<br>
+            • Điều kiện nghiệm thu: Cả 2 bài test đều đạt tỷ lệ đối chứng 50% (Good: PASS &ge;80, Flawed: FAIL &lt;80).
+          </div>
+        </div>
+      </div>
 
-    document.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, false);
+      <div class="callout">
+        <strong>Nguyên tắc chung:</strong> Bất kỳ ai cũng có thể đóng góp skill mới, miễn là trang bị đủ bộ đôi Benchmark để tự động thẩm định chất lượng.
+      </div>
+    </div>
 
-    document.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleGesture();
-    }, false);
+    <div class="footer">
+      <span>Khuyến khích chia sẻ kỹ năng làm việc tốt trong nội bộ</span>
+      <span>4 / 6</span>
+    </div>
+  </section>
 
-    function handleGesture() {
-      if (touchEndX < touchStartX - 50) {
-        nextSlide();
-      }
-      if (touchEndX > touchStartX + 50) {
-        prevSlide();
-      }
-    }
+  <!-- ════ SLIDE 5: DÀNH CHO REPO OWNER ════ -->
+  <section class="slide" data-title="Dành cho Repo Owner">
+    <div class="header">
+      <div class="kicker">Dành Cho Quản Trị Viên</div>
+      <h1 class="title">Cách Repo Owner duyệt đóng góp & Quản trị kho</h1>
+      <p class="subtitle">Kiểm soát chất lượng kho tự động dựa trên số liệu thực chứng định lượng</p>
+    </div>
 
-    // Initialize View
-    updateSlideView();
-  </script>
+    <div class="content">
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-title">Cách duyệt một Pull Request</div>
+          <div class="card-body">
+            Khi có thành viên gửi kỹ năng mới vào repo:<br><br>
+            • <strong>Không cần:</strong> Ngồi đọc từng dòng hướng dẫn dài dòng để đoán xem nó hay hay dở.<br>
+            • <strong>Chỉ cần:</strong> Xem kết quả chạy bài test mẫu tự động <code>npm run eval &lt;skill&gt;</code>.<br>
+            • Nếu mẫu Good đạt <strong>PASS</strong> và mẫu Flawed bị <strong>FAIL</strong> &rarr; Bấm <strong>Merge (Duyệt)</strong> ngay.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Độ phủ 100% & Báo cáo tuần</div>
+          <div class="card-body">
+            • Toàn bộ 20 kỹ năng đạt độ phủ kiểm thử <strong>100% với 82 bài test tự động</strong>.<br>
+            • Lệnh <code>npm run report</code> tự trích xuất Top lỗi thường gặp từ <code>server/data/eval.db</code> để quản trị viên sửa đúng câu chữ trong prompt.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Vòng lặp tối ưu:</strong> Báo cáo tuần &rarr; Bóc tách Top Lỗi &rarr; Cập nhật câu chữ trong SKILL.md &rarr; Test hồi quy &rarr; Phát hành.
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Tự động hóa hoàn toàn quy trình kiểm định chất lượng</span>
+      <span>5 / 6</span>
+    </div>
+  </section>
+
+  <!-- ════ SLIDE 6: APPENDIX CÁC LỆNH KỸ THUẬT ════ -->
+  <section class="slide" data-title="Phụ lục câu lệnh">
+    <div class="header">
+      <div class="kicker">Phụ Lục Tham Khảo</div>
+      <h1 class="title">Bảng tra cứu các câu lệnh kỹ thuật</h1>
+      <p class="subtitle">Dành cho người tạo bài test, Repo Owner hoặc tích hợp kiểm tra tự động trên CI/CD</p>
+    </div>
+
+    <div class="content">
+      <div class="card" style="padding: 16px 20px;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="width: 32%;">Câu lệnh</th>
+              <th style="width: 26%;">Ai sử dụng?</th>
+              <th>Ý nghĩa & Chức năng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>npm run eval &lt;tên-skill&gt;</code></td>
+              <td>Người đóng góp / Dev</td>
+              <td>Chấm thử bài mẫu (tc-01 & tc-02) của 1 kỹ năng theo file barem evaluation.yaml.</td>
+            </tr>
+            <tr>
+              <td><code>npm run eval:all</code></td>
+              <td>Repo Owner / CI-CD</td>
+              <td>Quét kiểm tra hồi quy 82 bài test trên toàn bộ 20 kỹ năng cùng lúc (offline, an toàn).</td>
+            </tr>
+            <tr>
+              <td><code>npm run eval:all:send</code></td>
+              <td>CI / Automation</td>
+              <td>Chạy kiểm thử 20 skills và đồng bộ telemetry vào SQLite DB (server/data/eval.db).</td>
+            </tr>
+            <tr>
+              <td><code>npm run server</code></td>
+              <td>DevOps / Owner</td>
+              <td>Khởi động Ingestion Server & SQLite DB tại cổng 3456 đón nhận telemetry.</td>
+            </tr>
+            <tr>
+              <td><code>npm run report</code></td>
+              <td>Repo Owner / Sếp</td>
+              <td>Tổng hợp số liệu từ database xuất Báo cáo tuần (Markdown & HTML Dashboard trực quan).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout" style="text-align: center;">
+        Thành viên lấy skill về dùng <strong>không bắt buộc</strong> phải chạy các lệnh này. Hệ thống tự động kích hoạt Modal UI để lấy feedback.
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Kết thúc cẩm nang hướng dẫn</span>
+      <span>6 / 6</span>
+    </div>
+  </section>
+
+</main>
+
+<!-- Bottom Controls -->
+<footer class="controls">
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <button id="btnPrev" class="btn" onclick="prevSlide()">Trước</button>
+    <button id="btnNext" class="btn btn-dark" onclick="nextSlide()">Tiếp theo</button>
+    <div class="progress"><div id="progressBar" class="progress-bar"></div></div>
+  </div>
+  <div class="shortcut">
+    Dùng phím <kbd>&larr;</kbd> <kbd>&rarr;</kbd> chuyển trang &bull; <kbd>F</kbd> toàn màn hình
+  </div>
+</footer>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let cur = 0;
+  const sel = document.getElementById('slideSelect');
+  const cnt = document.getElementById('slideCount');
+  const prog = document.getElementById('progressBar');
+  const prev = document.getElementById('btnPrev');
+  const next = document.getElementById('btnNext');
+
+  slides.forEach((s, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `${i + 1}. ${s.dataset.title || 'Slide ' + (i + 1)}`;
+    sel.appendChild(opt);
+  });
+  cnt.textContent = `/ ${total}`;
+
+  function update() {
+    slides.forEach((s, i) => s.classList.toggle('active', i === cur));
+    sel.value = cur;
+    prev.disabled = cur === 0;
+    next.disabled = cur === total - 1;
+    prog.style.width = `${((cur + 1) / total) * 100}%`;
+  }
+
+  function nextSlide() { if (cur < total - 1) { cur++; update(); } }
+  function prevSlide() { if (cur > 0) { cur--; update(); } }
+  function goTo(i) { if (i >= 0 && i < total) { cur = i; update(); } }
+
+  sel.addEventListener('change', e => goTo(+e.target.value));
+
+  window.addEventListener('keydown', e => {
+    if (['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); nextSlide(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prevSlide(); }
+    else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
+    else if (e.key === 'f' || e.key === 'F') { e.preventDefault(); toggleFullscreen(); }
+  });
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+    else document.exitFullscreen?.();
+  }
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].screenX - touchStartX;
+    if (diff < -50) nextSlide();
+    if (diff > 50) prevSlide();
+  });
+
+  update();
+</script>
 </body>
 </html>

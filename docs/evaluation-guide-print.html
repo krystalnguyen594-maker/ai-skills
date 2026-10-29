@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Tài Liệu Chuyển Giao: AI Skills Evaluation System (Khách Hàng)</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Rule 1 of pdf-creator: Zero-Glitch Vietnamese Font Stack */
+  html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: "Arial", "Helvetica", sans-serif !important;
+    color: #1e293b;
+    background: #ffffff;
+    font-size: 8.5pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    max-height: 297mm;
+    padding: 15mm 18mm 14mm 18mm;
+    page-break-after: always;
+    break-after: page;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* Running Header */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 7px;
+    border-bottom: 1.2px solid #cbd5e1;
+    font-size: 7.2pt;
+    color: #475569;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+  .page-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #0f3d6e;
+    font-weight: bold;
+  }
+  .brand-bar {
+    width: 4px;
+    height: 12px;
+    background: #0f3d6e;
+    display: inline-block;
+  }
+
+  /* Running Footer */
+  .page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 7px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 7.2pt;
+    color: #64748b;
+  }
+  .page-footer .footer-title {
+    color: #475569;
+    font-weight: 500;
+  }
+  .page-footer .page-number {
+    font-weight: bold;
+    color: #0f3d6e;
+    background: #f1f5f9;
+    padding: 2px 10px;
+    border-radius: 3px;
+    border: 1px solid #cbd5e1;
+  }
+
+  /* Spacious Page Content Area */
+  .page-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 14px 0 8px 0;
+    gap: 16px;
+  }
+
+  /* Executive Hero Document Banner */
+  .doc-hero {
+    background: #0f3d6e;
+    color: #ffffff;
+    padding: 18px 22px;
+    border-radius: 6px;
+    border-left: 5px solid #38bdf8;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 7pt;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.16);
+    color: #e0f2fe;
+    border: 1px solid rgba(224, 242, 254, 0.35);
+    padding: 2.5px 9px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .hero-title {
+    font-size: 15pt;
+    font-weight: bold;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+    margin-bottom: 6px;
+  }
+  .hero-subtitle {
+    font-size: 8.5pt;
+    color: #e2e8f0;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .meta-ribbon {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 7.5pt;
+    color: #cbd5e1;
+  }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .meta-item strong {
+    color: #ffffff;
+  }
+
+  /* Section Headings with generous breathing room */
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 9.8pt;
+    font-weight: bold;
+    color: #0f3d6e;
+    letter-spacing: -0.2px;
+    border-bottom: 1.5px solid #cbd5e1;
+    padding-bottom: 5px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .sec-id {
+    font-size: 7.6pt;
+    font-weight: bold;
+    color: #ffffff;
+    background: #0f3d6e;
+    padding: 2.5px 7px;
+    border-radius: 3px;
+  }
+
+  .sec-intro {
+    font-size: 8.1pt;
+    color: #475569;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  /* Spacious Callout Box */
+  .callout-box {
+    border-left: 4.5px solid #0f3d6e;
+    background: #f0f7ff;
+    border-top: 1px solid #cbd5e1;
+    border-right: 1px solid #cbd5e1;
+    border-bottom: 1px solid #cbd5e1;
+    border-radius: 0 5px 5px 0;
+    padding: 11px 16px;
+    font-size: 8.2pt;
+    line-height: 1.55;
+    color: #1e3a8a;
+  }
+  .callout-box strong {
+    color: #0f3d6e;
+    font-weight: bold;
+  }
+  .callout-slate {
+    border-left-color: #334155;
+    background: #f8fafc;
+    color: #1e293b;
+  }
+  .callout-slate strong {
+    color: #0f172a;
+  }
+
+  /* Tables with Generous Breathing Room & Strict Overflow Control */
+  table.doc-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: fixed !important;
+    border-collapse: collapse;
+    font-size: 7.9pt;
+    text-align: left;
+    border: 1px solid #cbd5e1;
+    margin-top: 4px;
+  }
+  table.doc-table thead {
+    display: table-header-group;
+  }
+  table.doc-table tr {
+    page-break-inside: avoid;
+  }
+  table.doc-table th {
+    background-color: #0f3d6e;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 7.6pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 9px 12px;
+    border-right: 1px solid #1e4b85;
+    vertical-align: middle;
+  }
+  table.doc-table th:last-child {
+    border-right: none;
+  }
+  table.doc-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
+    vertical-align: top;
+    line-height: 1.52;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+  }
+  table.doc-table td:last-child {
+    border-right: none;
+  }
+  table.doc-table tr:last-child td {
+    border-bottom: none;
+  }
+  table.doc-table tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+
+  .col-before {
+    background: #fafafa !important;
+    color: #475569;
+  }
+  .col-after {
+    background: #f0f7ff !important;
+    color: #0f172a;
+  }
+
+  /* Grids with generous gap */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  /* Executive Cards with Soft Airy Touch */
+  .card {
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 14px 16px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .card-header-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 5px;
+    margin-bottom: 4px;
+    gap: 8px;
+  }
+  .card-title {
+    font-size: 8.6pt;
+    font-weight: bold;
+    color: #0f3d6e;
+    white-space: nowrap;
+  }
+  .card-body {
+    font-size: 8pt;
+    color: #334155;
+    line-height: 1.52;
+  }
+  .card-body ul {
+    padding-left: 15px;
+    margin-top: 4px;
+  }
+  .card-body li {
+    margin-bottom: 4px;
+  }
+
+  /* =========================================================
+     REFINED EXECUTIVE BADGE SYSTEM (Zero Glitch / Zero Overflow)
+     ========================================================= */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6.8pt;
+    font-weight: bold;
+    line-height: 1.25;
+    letter-spacing: 0.2px;
+    padding: 2.5px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+    text-transform: none; /* No forced uppercase: preserves Vietnamese accents and natural casing */
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  .badge-pass {
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #86efac;
+  }
+  .badge-fail {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+  }
+  .badge-warn {
+    background: #fffbeb;
+    color: #b45309;
+    border: 1px solid #fcd34d;
+  }
+  .badge-blue {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #93c5fd;
+  }
+  .badge-navy {
+    background: #f8fafc;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+  }
+
+  /* Code Pills that Wrap Gracefully to Prevent Table Overlap */
+  code {
+    font-family: "Arial", "Helvetica", sans-serif !important;
+    font-size: 7.5pt;
+    font-weight: bold;
+    background: #f1f5f9;
+    color: #0f172a;
+    padding: 2px 5px;
+    border-radius: 3px;
+    border: 1px solid #cbd5e1;
+    display: inline-block;
+    word-break: break-all;
+    white-space: normal;
+  }
+
+  /* Flow Step Card for Users */
+  .user-step-card {
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 14px 16px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    position: relative;
+    border-top: 4px solid #0f3d6e;
+  }
+  .user-step-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .user-step-badge {
+    font-size: 7pt;
+    font-weight: bold;
+    color: #ffffff;
+    background: #0f3d6e;
+    padding: 2.5px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.6px;
+  }
+
+  /* Operational Pipeline Cards for Repo Owner */
+  .repo-stage-card {
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 13px 15px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-left: 4px solid #0f3d6e;
+  }
+  .repo-stage-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3px;
+    gap: 8px;
+  }
+  .repo-stage-title {
+    font-size: 8.4pt;
+    font-weight: bold;
+    color: #0f3d6e;
+  }
+
+  /* Takeaway Banner */
+  .takeaway-banner {
+    background: #f0f7ff;
+    border: 1px solid #cbd5e1;
+    border-left: 5px solid #0f3d6e;
+    border-radius: 6px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .takeaway-title {
+    font-size: 7.5pt;
+    font-weight: bold;
+    color: #0f3d6e;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+  .takeaway-text {
+    font-size: 8.2pt;
+    color: #0f172a;
+    line-height: 1.55;
+  }
+
+  /* Sign-Off Matrix */
+  .sign-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 12px;
+    margin-top: 6px;
+  }
+  .sign-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 86px;
+    font-size: 7.4pt;
+    color: #64748b;
+  }
+  .sign-title {
+    font-weight: bold;
+    color: #0f3d6e;
+    font-size: 7.7pt;
+    text-transform: uppercase;
+    line-height: 1.35;
+  }
+  .sign-line {
+    border-bottom: 1px solid #cbd5e1;
+    margin-top: 8px;
+    margin-bottom: 3px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== TRANG 1 ==================== -->
+<div class="page">
+  <header class="page-header">
+    <div class="brand"><span class="brand-bar"></span> KHO AI SKILLS — TÀI LIỆU CHUYỂN GIAO KỸ THUẬT</div>
+    <div>CLIENT TRANSFER MANUAL • PHIÊN BẢN 1.0</div>
+  </header>
+
+  <main class="page-content">
+    <!-- Hero Document Banner -->
+    <div class="doc-hero">
+      <span class="hero-tag">Tài Liệu Bàn Giao Cho Khách Hàng (Client Handover)</span>
+      <h1 class="hero-title">Hệ Thống Đánh Giá Chất Lượng Kỹ Năng AI</h1>
+      <p class="hero-subtitle">Cẩm nang chuyển giao kiến trúc kiểm định tự động, quy chuẩn nghiệm thu tài liệu và quy trình bảo trì tối ưu cho toàn bộ 20 AI Skills.</p>
+      <div class="meta-ribbon">
+        <div class="meta-item"><span>Phiên bản:</span> <strong>v1.0.0 Production</strong></div>
+        <div class="meta-item"><span>Ngày ban hành:</span> <strong>26/10/2026</strong></div>
+        <div class="meta-item"><span>Đối tượng tiếp nhận:</span> <strong>End-users (PM/BA/QC/Dev) & Technical Admins</strong></div>
+        <div class="meta-item"><span>Cổng kiểm định:</span> <strong>Pass Rate ≥ 80% • 0 Lỗi cấm kỵ</strong></div>
+      </div>
+    </div>
+
+    <!-- Executive Purpose Callout -->
+    <div class="callout-box">
+      <strong>Mục tiêu chuyển giao:</strong> Cung cấp tài liệu vận hành chính thức cho đối tác/khách hàng. Tài liệu giải thích chi tiết cơ chế đối soát tài liệu tự động (Quality Gate) ngay tại phiên chat, hướng dẫn người dùng khai thác kỹ năng đạt chuẩn, và bàn giao quy trình quản trị kho kỹ năng định lượng cho đội ngũ kỹ thuật của khách hàng.
+    </div>
+
+    <!-- Section 1: Comparison Table with Generous Padding -->
+    <div>
+      <h2 class="section-heading"><span class="sec-id">01</span> So Sánh Toàn Diện: Trước Và Sau Khi Có Hệ Thống Evaluation</h2>
+      <p class="sec-intro">
+        Chuyển dịch từ cơ chế sinh văn bản tự do sang mô hình kiểm soát chất lượng khép kín, minh bạch và định lượng:
+      </p>
+
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">Tiêu chí</th>
+            <th style="width: 41%;">Trước đây (Mô hình Prompt tĩnh)</th>
+            <th style="width: 41%;">Hiện tại (Tích hợp Hệ Thống Evaluation)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cơ chế tạo tài liệu</strong></td>
+            <td class="col-before">AI sinh văn bản theo cảm tính dựa vào hướng dẫn tĩnh (<code>SKILL.md</code>), hoàn toàn không có khâu tự kiểm duyệt.</td>
+            <td class="col-after">AI tạo văn bản và <strong>tự động đối soát ngay lập tức</strong> với Bộ tiêu chuẩn chất lượng (<code>evaluation.yaml</code>) trước khi trả kết quả.</td>
+          </tr>
+          <tr>
+            <td><strong>Độ đồng đều đầu ra</strong></td>
+            <td class="col-before">Chất lượng thất thường; thường xuyên thiếu kịch bản kiểm thử (Gherkin) hoặc ma trận truy vết yêu cầu (Traceability Matrix).</td>
+            <td class="col-after"><strong>Cam kết bởi Cổng Chất Lượng (Quality Gate)</strong>: Chỉ xác nhận ĐẠT (<code>PASS</code>) khi đủ 100% mục bắt buộc và đạt từ 80/100 điểm.</td>
+          </tr>
+          <tr>
+            <td><strong>Phát hiện lỗi rò rỉ</strong></td>
+            <td class="col-before">Người đọc phải tự soi từng dòng xem AI có viết nhầm mã code hoặc SQL kỹ thuật vào tài liệu nghiệp vụ (PRD/FRD) không.</td>
+            <td class="col-after"><strong>Quét mã cấm tức thời</strong>: Tự động phát hiện lỗi cấm kỵ (như rò rỉ SQL vào FRD) và kích hoạt cơ chế đánh trượt ngay (<em>Instant Fail</em>).</td>
+          </tr>
+          <tr>
+            <td><strong>Đo lường & Phản hồi</strong></td>
+            <td class="col-before">Mù số liệu: Không có dữ liệu đo lường chất lượng, người dùng gặp lỗi chỉ biết tự sửa tay trong âm thầm.</td>
+            <td class="col-after"><strong>Minh bạch 100%</strong>: Tự động ghi nhận tỷ lệ Đạt chuẩn (Pass Rate), tỷ lệ phải làm lại (Rework Rate) và danh mục lỗi thường gặp.</td>
+          </tr>
+          <tr>
+            <td><strong>Quy trình bảo trì</strong></td>
+            <td class="col-before">Quản trị viên sửa prompt theo phán đoán chủ quan, không đo lường được hiệu quả can thiệp.</td>
+            <td class="col-after"><strong>Tối ưu hóa dựa trên số liệu thực chứng</strong>: Dựa vào Báo Cáo Tuần để xác định chính xác câu chữ prompt cần hiệu chỉnh.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Paradigm Shift Summary Banner -->
+    <div class="callout-box callout-slate" style="margin-top: 4px;">
+      <strong style="color: #0f172a;">Ý nghĩa chuyển đổi:</strong> Thay vì kỳ vọng người dùng tự phát hiện sai sót của AI, hệ thống Evaluation thiết lập hàng rào kiểm soát tự động tại chỗ. Mọi văn bản xuất xưởng đều được đảm bảo đạt chuẩn nghiệm thu trước khi đến tay người đọc.
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="footer-title">Tài liệu chuyển giao kỹ thuật — Dự án AI Skills Ecosystem (2026)</div>
+    <div class="page-number">Trang 1 / 5</div>
+  </footer>
+</div>
+
+<!-- ==================== TRANG 2 ==================== -->
+<div class="page">
+  <header class="page-header">
+    <div class="brand"><span class="brand-bar"></span> KHO AI SKILLS — TÀI LIỆU CHUYỂN GIAO KỸ THUẬT</div>
+    <div>GIÁ TRỊ CỐT LÕI & TIÊU CHUẨN ĐỊNH LƯỢNG</div>
+  </header>
+
+  <main class="page-content">
+    <!-- Section 2: Core Values with Clean One-Line Card Headers -->
+    <div>
+      <h2 class="section-heading"><span class="sec-id">02</span> Giá Trị Cốt Lõi Mang Lại Cho Khách Hàng</h2>
+      <p class="sec-intro">
+        Lợi ích cụ thể được phân bổ rõ ràng cho từng nhóm đối tượng tiếp nhận trong dự án:
+      </p>
+
+      <div class="grid-3" style="margin-top: 6px;">
+        <div class="card" style="border-top: 3.5px solid #0f3d6e;">
+          <div class="card-header-line">
+            <span class="card-title">Đội Ngũ Sản Phẩm</span>
+            <span class="badge badge-blue">PM • BA • QC • Dev</span>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><strong>Tiết kiệm thời gian rà soát:</strong> Loại bỏ việc phải đọc lại để kiểm tra các mục hình thức bắt buộc.</li>
+              <li><strong>Đầu ra sẵn sàng sử dụng:</strong> Mọi tài liệu (PRD, BRD, WBS, Test Specs) đồng nhất và đạt chuẩn nghiệm thu.</li>
+              <li><strong>Góp ý tức thời:</strong> Tương tác trực tiếp qua nút Feedback để phản ánh chất lượng cho quản trị viên.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="border-top: 3.5px solid #334155;">
+          <div class="card-header-line">
+            <span class="card-title">Bộ Phận Kỹ Thuật</span>
+            <span class="badge badge-navy">Tech Lead • Admin</span>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><strong>Quản trị dựa trên dữ liệu:</strong> Báo cáo tuần định lượng chính xác hiệu năng của từng kỹ năng trong kho 20 skills.</li>
+              <li><strong>Can thiệp trúng đích:</strong> Bảng lỗi chỉ rõ nguyên nhân cụ thể để sửa đúng câu chữ trong prompt.</li>
+              <li><strong>An toàn khi phát hành:</strong> Bộ Benchmark kiểm tra đối chứng trước tại máy, chống phát sinh lỗi cũ.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="border-top: 3.5px solid #059669;">
+          <div class="card-header-line">
+            <span class="card-title">Tổ Chức & Dự Án</span>
+            <span class="badge badge-pass">SDLC Governance</span>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><strong>Chuẩn hóa toàn diện SDLC:</strong> Toàn bộ tài liệu nghiệp vụ và kỹ thuật tuân thủ ngôn ngữ chung.</li>
+              <li><strong>Bảo mật tối đa:</strong> Nguyên tắc <em>Strict Data Minimization</em> đảm bảo không gửi dữ liệu dự án mật ra ngoài.</li>
+              <li><strong>Chống suy giảm chất lượng:</strong> Duy trì chất lượng AI ổn định và cải tiến liên tục theo thời gian.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: 4 Metrics Grid with Iconic Clean Badges -->
+    <div style="margin-top: 4px;">
+      <h2 class="section-heading"><span class="sec-id">03</span> Bộ 4 Thước Đo Định Lượng Chất Lượng Kỹ Năng</h2>
+      <p class="sec-intro">
+        Thay thế hoàn toàn nhận định cảm tính bằng <strong>4 chỉ số định lượng khách quan</strong>, cho phép đo lường chính xác từ từng phiên làm việc đến chất lượng tổng thể:
+      </p>
+
+      <div class="grid-2" style="margin-top: 6px;">
+        <!-- Metric 1 -->
+        <div class="card" style="border-left: 4px solid #0f3d6e;">
+          <div class="card-header-line">
+            <span class="card-title">1. Điểm Bài Làm Tức Thì</span>
+            <span class="badge badge-blue">Chat Session</span>
+          </div>
+          <div class="card-body">
+            <p>Mỗi tài liệu sinh ra đều được chấm điểm trên thang 100 và quét lỗi cấm kỵ ngay trong phiên chat:</p>
+            <div style="display: flex; gap: 8px; margin-top: 8px; align-items: center;">
+              <span class="badge badge-pass">PASS</span>
+              <span style="font-size: 7.4pt; color: #334155;"><strong>≥ 80 điểm:</strong> Đạt chuẩn, đủ điều kiện nghiệm thu</span>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 6px; align-items: center;">
+              <span class="badge badge-fail">FAIL</span>
+              <span style="font-size: 7.4pt; color: #334155;"><strong>&lt; 80 điểm:</strong> Thiếu mục bắt buộc hoặc dính lỗi cấm kỵ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric 2 -->
+        <div class="card" style="border-left: 4px solid #059669;">
+          <div class="card-header-line">
+            <span class="card-title">2. Tỷ Lệ Đạt Chuẩn Tuần</span>
+            <span class="badge badge-pass">Weekly Pass Rate</span>
+          </div>
+          <div class="card-body">
+            <p>Đo lường độ ổn định tổng thể của từng kỹ năng qua Báo Cáo Tuần:</p>
+            <ul style="margin-top: 6px;">
+              <li><strong>Pass Rate ≥ 80%:</strong> Kỹ năng hoạt động xuất sắc & ổn định cao.</li>
+              <li><strong>Pass Rate 50% - 79%:</strong> Mức khá, cần quan sát và tinh chỉnh thêm.</li>
+              <li><strong>Pass Rate &lt; 50%:</strong> Chưa đạt chuẩn, người dùng hay gặp lỗi thiếu mục.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Metric 3 -->
+        <div class="card" style="border-left: 4px solid #d97706;">
+          <div class="card-header-line">
+            <span class="card-title">3. Tỷ Lệ Phải Chỉnh Sửa</span>
+            <span class="badge badge-warn">Rework Rate &lt; 20%</span>
+          </div>
+          <div class="card-body">
+            <p>Đo lường mức độ hài lòng thực tế của người dùng thông qua nút Feedback:</p>
+            <ul style="margin-top: 6px;">
+              <li><strong>Rework Rate thấp (&lt; 15 - 20%):</strong> Đa số người dùng đánh giá hài lòng, tài liệu đáp ứng đúng nhu cầu.</li>
+              <li><strong>Rework Rate cao (&gt; 40%):</strong> Người dùng liên tục yêu cầu bổ sung ➔ Prompt đang thiếu hướng dẫn cụ thể.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Metric 4 -->
+        <div class="card" style="border-left: 4px solid #334155;">
+          <div class="card-header-line">
+            <span class="card-title">4. Kiểm Thử Đối Chứng</span>
+            <span class="badge badge-navy">Benchmark Test</span>
+          </div>
+          <div class="card-body">
+            <p>Chạy kiểm thử trước tại máy trạm bằng lệnh:</p>
+            <div style="margin: 6px 0;"><code>npm run eval &lt;tên-skill&gt;</code></div>
+            <ul style="margin-top: 4px;">
+              <li>Mẫu chuẩn (<code>Good</code>): Bắt buộc đạt <strong>≥ 80 điểm</strong>.</li>
+              <li>Mẫu ẩu (<code>Flawed</code>): Bị máy bắt đúng mã lỗi kỹ thuật.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Identification Box with Refined Badges -->
+    <div class="callout-box callout-slate" style="margin-top: 4px;">
+      <strong style="color: #0f172a;">Cơ chế định danh lỗi kỹ thuật chính xác:</strong> Khi bài viết chưa đạt, hệ thống <strong>chỉ đích danh mã lỗi kỹ thuật cụ thể</strong>:
+      <div style="display: flex; gap: 14px; margin-top: 6px; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <code>missing_traceability_matrix</code>
+          <span class="badge badge-warn">Thiếu mục</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <code>forbidden_sql_in_frd</code>
+          <span class="badge badge-fail">Lỗi cấm kỵ</span>
+        </div>
+      </div>
+      <p style="margin-top: 5px; font-size: 7.7pt; color: #475569;">
+        Nhờ đó, quản trị viên <strong>biết chính xác câu chữ nào cần can thiệp trong <code>SKILL.md</code></strong> mà không cần mất thời gian đoán mò.
+      </p>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="footer-title">Tài liệu chuyển giao kỹ thuật — Dự án AI Skills Ecosystem (2026)</div>
+    <div class="page-number">Trang 2 / 5</div>
+  </footer>
+</div>
+
+<!-- ==================== TRANG 3 ==================== -->
+<div class="page">
+  <header class="page-header">
+    <div class="brand"><span class="brand-bar"></span> KHO AI SKILLS — TÀI LIỆU CHUYỂN GIAO KỸ THUẬT</div>
+    <div>BẢN CHẤT BENCHMARKS & BẢO ĐẢM TÍNH KHÁCH QUAN</div>
+  </header>
+
+  <main class="page-content">
+    <div>
+      <h2 class="section-heading"><span class="sec-id">04</span> Kiến Trúc Bộ Máy Đánh Giá Động & Bản Chất Benchmarks</h2>
+      <p class="sec-intro">
+        Hệ thống vận hành theo kiến trúc <strong>Config-Driven Universal Evaluator</strong>: Một Engine đánh giá dùng chung (<code>rubric-evaluator.ts</code>) tự động nạp thông số chất lượng từ từng tệp <code>evaluation.yaml</code> độc lập, kết hợp cùng thư mục <code>benchmarks/</code> đối chứng chuẩn mực:
+      </p>
+
+      <!-- Origin & Architecture Clarification Box -->
+      <div class="callout-box" style="margin-top: 6px; margin-bottom: 11px;">
+        <strong style="font-size: 8.5pt;">Kiến trúc Chấm Điểm Động (Config-Driven Engine):</strong>
+        <p style="margin-top: 5px; color: #1e3a8a; line-height: 1.55;">
+          Bộ máy đánh giá hoàn toàn <strong>KHÔNG HARDCODE NGHIỆP VỤ</strong>. Khi kiểm thử bất kỳ skill nào, engine tự động đọc các mục bắt buộc, từ khóa cấm, và trọng số riêng từ file <code>evaluation.yaml</code> của skill đó. Các bài mẫu <code>Good</code> và <code>Flawed</code> là kịch bản đối chứng chuẩn mực (<em>Ground Truth</em>) được thiết kế độc lập nhằm kiểm tra bộ máy không bị quá khắt khe hay quá lỏng lẻo.
+        </p>
+      </div>
+
+      <!-- 3-Part Component Architecture with Clean Single-Line Headers -->
+      <div class="grid-3" style="gap: 12px; margin-top: 6px;">
+        <div style="background: #ffffff; padding: 11px 13px; border-radius: 6px; border: 1px solid #cbd5e1; border-top: 3.5px solid #0f3d6e;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; padding-bottom: 4px; border-bottom: 1px solid #f1f5f9;">
+            <strong style="color: #0f3d6e; font-size: 8.1pt;">1. evaluation.yaml</strong>
+            <span class="badge badge-navy">Cấu hình chuẩn</span>
+          </div>
+          <p style="font-size: 7.5pt; color: #475569; line-height: 1.48;">
+            Đặc tả mục bắt buộc (<code>required_sections</code>), từ cấm kỵ (<code>prohibited_patterns</code>), và trọng số các chiều chất lượng riêng của từng kỹ năng.
+          </p>
+        </div>
+
+        <div style="background: #ffffff; padding: 11px 13px; border-radius: 6px; border: 1px solid #cbd5e1; border-top: 3.5px solid #059669;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; padding-bottom: 4px; border-bottom: 1px solid #f1f5f9;">
+            <strong style="color: #059669; font-size: 8.1pt;">2. sample_good</strong>
+            <span class="badge badge-pass">PASS ≥ 80đ</span>
+          </div>
+          <p style="font-size: 7.5pt; color: #475569; line-height: 1.48;">
+            Bài mẫu chuẩn mực thỏa mãn 100% tiêu chí. Dùng để kiểm chứng xem máy chấm điểm có bị quá khắt khe hay đánh trượt oan bài viết tốt không.
+          </p>
+        </div>
+
+        <div style="background: #ffffff; padding: 11px 13px; border-radius: 6px; border: 1px solid #cbd5e1; border-top: 3.5px solid #dc2626;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; padding-bottom: 4px; border-bottom: 1px solid #f1f5f9;">
+            <strong style="color: #dc2626; font-size: 8.1pt;">3. sample_flawed</strong>
+            <span class="badge badge-fail">FAIL &lt; 80đ</span>
+          </div>
+          <p style="font-size: 7.5pt; color: #475569; line-height: 1.48;">
+            Bài viết cố tình làm thiếu mục hoặc chứa mã cấm. Dùng để kiểm chứng xem máy chấm điểm có bị lỏng lẻo hay bỏ lọt lỗi vi phạm hay không.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2 Strategic Values with generous breathing room -->
+      <div class="grid-2" style="margin-top: 12px;">
+        <div class="card" style="border-top: 3.5px solid #0f3d6e; padding: 12px 15px;">
+          <span class="card-title">1. Chống Thoái Hóa Kỹ Năng (Anti-Regression)</span>
+          <div class="card-body">
+            <p>Khi quản trị viên chỉnh sửa prompt trong <code>SKILL.md</code> để khắc phục một lỗi phát sinh mới, chỉ cần gõ lệnh kiểm tra:</p>
+            <div style="margin: 5px 0;"><code>npm run eval &lt;tên-skill&gt;</code></div>
+            <p style="margin-top: 3px;">
+              ➔ Hệ thống tự động chấm lại toàn bộ các bài trong <code>benchmarks/</code>. Nếu tất cả đều đạt <code>PASS</code> ➔ Đảm bảo bản cập nhật mới không làm hỏng các tình huống cũ.
+            </p>
+          </div>
+        </div>
+
+        <div class="card" style="border-top: 3.5px solid #334155; padding: 12px 15px;">
+          <span class="card-title">2. Tài Liệu Tham Chiếu Chuẩn (Living Specs)</span>
+          <div class="card-body">
+            <p>Khi thành viên mới (BA/PM/QC mới) gia nhập dự án của khách hàng, không cần phải đọc qua hàng chục trang cẩm nang lý thuyết dài dòng:</p>
+            <p style="margin-top: 5px;">
+              ➔ Chỉ cần mở file <code>sample_good_output</code> trong thư mục benchmark là nắm được ngay định dạng và tiêu chuẩn văn bản thực tế mà tổ chức yêu cầu.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benchmark Structure Spec Callout -->
+      <div class="callout-box callout-slate" style="margin-top: 12px;">
+        <strong style="color: #0f172a;">Quy chuẩn lưu trữ & Độ phủ 100% trên toàn bộ 20 Skills:</strong> Mỗi kỹ năng được trang bị 2 bộ đề chuẩn (<code>tc-01-baseline.json</code> kiểm thử nền tảng và <code>tc-02-realistic.json</code> kịch bản thực chiến chuyên sâu). Toàn bộ kho kỹ năng đạt độ phủ kiểm thử tự động 100% với 82 bài test đối chứng khách quan.
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="footer-title">Tài liệu chuyển giao kỹ thuật — Dự án AI Skills Ecosystem (2026)</div>
+    <div class="page-number">Trang 3 / 5</div>
+  </footer>
+</div>
+
+<!-- ==================== TRANG 4 ==================== -->
+<div class="page">
+  <header class="page-header">
+    <div class="brand"><span class="brand-bar"></span> KHO AI SKILLS — TÀI LIỆU CHUYỂN GIAO KỸ THUẬT</div>
+    <div>QUY TRÌNH VẬN HÀNH THỰC TẾ & LUỒNG DỮ LIỆU TELEMETRY</div>
+  </header>
+
+  <main class="page-content">
+    <!-- Section 5: User Workflow -->
+    <div>
+      <h2 class="section-heading"><span class="sec-id">05</span> Quy Trình Tương Tác Dành Cho Người Dùng (End-User Workflow)</h2>
+      <p class="sec-intro">
+        Đội ngũ thành viên dự án (PM, BA, QC, Devs) <strong>hoàn toàn giữ nguyên thói quen làm việc hàng ngày, không cần học cú pháp phức tạp</strong>:
+      </p>
+
+      <div class="grid-3" style="gap: 12px; margin-top: 6px;">
+        <!-- Step 1 -->
+        <div class="user-step-card">
+          <div class="user-step-header">
+            <span class="user-step-badge">BƯỚC 01</span>
+            <span style="font-size: 7.2pt; color: #64748b; font-weight: bold;">Khởi Tạo</span>
+          </div>
+          <strong style="font-size: 8.3pt; color: #0f3d6e;">Nhập Yêu Cầu Tự Nhiên</strong>
+          <p style="font-size: 7.6pt; color: #475569; line-height: 1.45;">
+            Chat với Agent bằng ngôn ngữ nghiệp vụ thông thường trong phiên làm việc:
+          </p>
+          <div style="background: #f8fafc; padding: 6px 8px; border-radius: 3px; font-size: 7.2pt; color: #1e293b; border-left: 3px solid #0f3d6e; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+            <em>"Viết PRD cho tính năng Đổi mật khẩu"</em> hoặc <em>"Phân rã WBS cho tính năng Thanh toán MoMo"</em>.
+          </div>
+        </div>
+
+        <!-- Step 2 with Consistent Clean Badges -->
+        <div class="user-step-card">
+          <div class="user-step-header">
+            <span class="user-step-badge">BƯỚC 02</span>
+            <span style="font-size: 7.2pt; color: #64748b; font-weight: bold;">Kiểm Định</span>
+          </div>
+          <strong style="font-size: 8.3pt; color: #0f3d6e;">Nhận Bài & Thẻ Điểm</strong>
+          <p style="font-size: 7.6pt; color: #475569; line-height: 1.45;">
+            Agent trả về tài liệu kèm Thẻ Chất Lượng (Quality Badge) được đối soát tức thì:
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 4px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="badge badge-pass">PASS</span>
+              <span style="font-size: 7.3pt; color: #15803d;"><strong>92/100 điểm:</strong> 100% mục đạt chuẩn</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="badge badge-fail">FAIL</span>
+              <span style="font-size: 7.3pt; color: #b91c1c;">Thiếu mục bắt buộc hoặc dính lỗi cấm</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="user-step-card">
+          <div class="user-step-header">
+            <span class="user-step-badge">BƯỚC 03</span>
+            <span style="font-size: 7.2pt; color: #64748b; font-weight: bold;">Đánh Giá</span>
+          </div>
+          <strong style="font-size: 8.3pt; color: #0f3d6e;">Phản Hồi 1-Chạm (Modal UI)</strong>
+          <p style="font-size: 7.6pt; color: #475569; line-height: 1.45;">
+            Hộp thoại tương tác Popup hiển thị các nút bấm chọn 1-chạm tiện lợi:
+          </p>
+          <ul style="padding-left: 14px; font-size: 7.4pt; color: #334155; line-height: 1.45;">
+            <li><strong>Rất hài lòng:</strong> Bấm 1 nút xác nhận chuẩn chỉ (rework=0).</li>
+            <li><strong>Cần bổ sung:</strong> Chọn nút yêu cầu hoặc gõ ô Write-in tùy ý.</li>
+          </ul>
+          <p style="font-size: 7pt; color: #64748b; margin-top: 1px;">➔ Tự động lưu SQLite & cập nhật bài tức thời.</p>
+        </div>
+      </div>
+
+      <!-- Feedback Data Flow Clarification Box -->
+      <div class="callout-box callout-slate" style="margin-top: 10px;">
+        <strong style="color: #0f172a;">Làm rõ luồng dữ liệu Feedback của người dùng:</strong> Khi người dùng bấm gửi phản hồi, dữ liệu feedback <strong>TUYỆT ĐỐI KHÔNG TỰ ĐỘNG GIT PUSH LÊN REPOSITORY</strong>. Dữ liệu chỉ được gửi qua HTTP REST API (<code>POST /api/v1/events</code>) về Ingestion Server và lưu vào cơ sở dữ liệu SQLite cục bộ (<code>server/data/eval.db</code>). Toàn bộ mã nguồn và branch của repo hoàn toàn không bị can thiệp.
+      </div>
+    </div>
+
+    <!-- Section 6: Repo Owner Pipeline -->
+    <div style="margin-top: 4px;">
+      <h2 class="section-heading"><span class="sec-id">06</span> Quy Trình Vận Hành Của Bộ Phận Quản Trị (Repo Owner Pipeline)</h2>
+      <p class="sec-intro">
+        Bộ phận kỹ thuật phía khách hàng (Repo Owner / Tech Lead) tiếp nhận feedback và tối ưu định kỳ theo chu trình 4 chặng khép kín:
+      </p>
+
+      <div class="grid-2" style="gap: 12px; margin-top: 6px;">
+        <!-- Stage 1 -->
+        <div class="repo-stage-card">
+          <div class="repo-stage-header">
+            <span class="repo-stage-title">Chặng 01: Tiếp Nhận Feedback Qua Báo Cáo Tuần</span>
+            <span class="badge badge-blue">Executive Audit</span>
+          </div>
+          <div class="card-body">
+            <p>Quản trị viên tiếp nhận phản hồi bằng cách chạy lệnh xuất báo cáo định kỳ:</p>
+            <div style="margin: 4px 0;"><code>npm run report</code></div>
+            <p style="font-size: 7.4pt; color: #475569;">Hệ thống tự động đọc SQLite DB và xuất Dashboard trực quan tại: <code>reports/weekly-YYYY-MM-DD.html</code>.</p>
+          </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="repo-stage-card">
+          <div class="repo-stage-header">
+            <span class="repo-stage-title">Chặng 02: Phân Tích Ma Trận & Nguồn Gốc Top Issues</span>
+            <span class="badge badge-navy">Root-Cause Analysis</span>
+          </div>
+          <div class="card-body">
+            <p><strong>Nguồn gốc danh mục Top Issues:</strong> Được trích xuất trực tiếp từ bảng <code>event_issues</code> trong SQLite DB, tổng hợp từ các lần rubric quét phát hiện thiếu mục hoặc dính lỗi cấm kỵ (ví dụ: <code>missing_traceability_matrix</code>).</p>
+          </div>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="repo-stage-card">
+          <div class="repo-stage-header">
+            <span class="repo-stage-title">Chặng 03: Hiệu Chỉnh Câu Lệnh Prompt Trong SKILL.md</span>
+            <span class="badge badge-warn">Prompt Engineering</span>
+          </div>
+          <div class="card-body">
+            <p>Mở file hướng dẫn kỹ năng tương ứng, bổ sung quy tắc mang tính bắt buộc:</p>
+            <div style="background: #fffbeb; border: 1px solid #fde68a; padding: 4px 7px; border-radius: 3px; font-size: 7.2pt; color: #92400e; margin-top: 3px;">
+              <em>"BẮT BUỘC: Luôn luôn tạo bảng Ma trận truy vết yêu cầu (Traceability Matrix) ở cuối tài liệu."</em>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="repo-stage-card">
+          <div class="repo-stage-header">
+            <span class="repo-stage-title">Chặng 04: Kiểm Thử Đối Chứng & Release Phiên Bản</span>
+            <span class="badge badge-pass">Regression Check</span>
+          </div>
+          <div class="card-body">
+            <p>Chạy kiểm thử lại toàn bộ benchmark tại máy trạm:</p>
+            <div style="margin: 4px 0;"><code>npm run eval &lt;tên-skill&gt;</code></div>
+            <p style="font-size: 7.4pt; color: #475569;">Thấy điểm số phục hồi ≥ 80 và sạch cảnh báo lỗi ➔ Tiến hành Commit code phiên bản mới.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="footer-title">Tài liệu chuyển giao kỹ thuật — Dự án AI Skills Ecosystem (2026)</div>
+    <div class="page-number">Trang 4 / 5</div>
+  </footer>
+</div>
+
+<!-- ==================== TRANG 5 ==================== -->
+<div class="page">
+  <header class="page-header">
+    <div class="brand"><span class="brand-bar"></span> KHO AI SKILLS — TÀI LIỆU CHUYỂN GIAO KỸ THUẬT</div>
+    <div>BẢNG LỆNH VẬN HÀNH, BẢO MẬT & BIÊN BẢN BÀN GIAO</div>
+  </header>
+
+  <main class="page-content">
+    <!-- Section 7: Command Table with balanced column ratios and guaranteed zero badge overflow -->
+    <div>
+      <h2 class="section-heading"><span class="sec-id">07</span> Bảng Tra Cứu Câu Lệnh Vận Hành & Thời Điểm Sử Dụng</h2>
+      <p class="sec-intro">
+        Các câu lệnh CLI phục vụ kiểm định, đồng bộ dữ liệu và vận hành hệ thống:
+      </p>
+
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Tác vụ & Mục đích</th>
+            <th style="width: 27%;">Cú pháp câu lệnh (CLI)</th>
+            <th style="width: 32%;">Thời điểm & Tần suất sử dụng</th>
+            <th style="width: 19%; text-align: center;">Vai trò</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Kiểm tra 1 kỹ năng</strong></td>
+            <td><code>npm run eval &lt;tên-skill&gt;</code></td>
+            <td>Chạy ngay khi vừa chỉnh sửa prompt trong <code>SKILL.md</code> để test nhanh tại chỗ.</td>
+            <td style="text-align: center; vertical-align: middle;"><span class="badge badge-blue">Dev / Contributor</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kiểm tra toàn bộ 20 kỹ năng</strong></td>
+            <td><code>npm run eval:all</code></td>
+            <td>Chạy định kỳ hoặc trước khi bàn giao để quét chất lượng tổng thể kho skills.</td>
+            <td style="text-align: center; vertical-align: middle;"><span class="badge badge-navy">Repo Owner</span></td>
+          </tr>
+          <tr>
+            <td><strong>Khởi động máy chủ Ingestion</strong></td>
+            <td><code>npm run server</code></td>
+            <td>Bật chạy nền liên tục (daemon / CI server / cổng 3456) trước khi team làm việc để đón nhận telemetry.</td>
+            <td style="text-align: center; vertical-align: middle;"><span class="badge badge-navy">DevOps / Admin</span></td>
+          </tr>
+          <tr>
+            <td><strong>Đồng bộ kết quả lên Database</strong></td>
+            <td><code>npm run eval:all:send</code></td>
+            <td>Chạy định kỳ hàng tuần trước khi xuất báo cáo hoặc tích hợp vào pipeline CI/CD trước release.</td>
+            <td style="text-align: center; vertical-align: middle;"><span class="badge badge-pass">Automation / CI</span></td>
+          </tr>
+          <tr>
+            <td><strong>Xuất Báo Cáo Tuần mới</strong></td>
+            <td><code>npm run report</code></td>
+            <td>Chạy định kỳ cuối tuần (thứ Sáu / thứ Hai) hoặc sau đợt test để tổng hợp file MD & HTML.</td>
+            <td style="text-align: center; vertical-align: middle;"><span class="badge badge-warn">Weekly Audit</span></td>
+          </tr>
+          <tr>
+            <td><strong>Xem Dashboard trên trình duyệt</strong></td>
+            <td><code>open reports/<wbr>weekly-YYYY-MM-DD.html</code></td>
+            <td>Mở xem giao diện báo cáo trực quan có biểu đồ, phục vụ họp báo cáo ban giám đốc.</td>
+            <td style="text-align: center; vertical-align: middle;"><span class="badge badge-blue">Management</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 8: Security & Privacy -->
+    <div>
+      <h2 class="section-heading"><span class="sec-id">08</span> Nguyên Tắc Bảo Mật & Quản Trị Dữ Liệu Khách Hàng</h2>
+      <div class="grid-2" style="margin-top: 6px;">
+        <div class="card" style="border-left: 4px solid #059669; padding: 12px 15px;">
+          <span class="card-title">1. Thu Thập Dữ Liệu Tối Thiểu (Strict Minimization)</span>
+          <div class="card-body">
+            <p>Hệ thống telemetry chỉ lưu trữ metadata kỹ thuật: <em>tên kỹ năng, điểm số tổng, mã lỗi kỹ thuật và trạng thái Pass/Fail</em>.</p>
+            <p style="margin-top: 4px; font-weight: bold; color: #166534;">
+              Tuyệt đối KHÔNG lưu trữ, không truyền tải nội dung prompt, thông tin dự án mật hay mã nguồn khách hàng ra bên ngoài.
+            </p>
+          </div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #0f3d6e; padding: 12px 15px;">
+          <span class="card-title">2. Thực Thi Cục Bộ Hoàn Toàn (100% On-Premise)</span>
+          <div class="card-body">
+            <p>Bộ máy đánh giá Rubric chạy trực tiếp tại máy trạm thông qua Node.js nội bộ, không phụ thuộc bất kỳ API bên thứ ba nào.</p>
+            <p style="margin-top: 4px; font-size: 7.4pt; color: #475569;">
+              Dữ liệu telemetry được lưu trữ an toàn trong tệp tin SQLite cục bộ tại <code>server/data/eval.db</code> thuộc hạ tầng của khách hàng.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Takeaway Banner -->
+    <div class="takeaway-banner">
+      <span class="takeaway-title">Thông Điệp Cốt Lõi Khi Chuyển Giao Hệ Thống</span>
+      <p class="takeaway-text">
+        "Hệ thống Evaluation không làm tăng thêm bất kỳ gánh nặng quy trình nào cho người dùng, mà đóng vai trò như một người trợ lý kiểm duyệt vô hình, bảo đảm mọi tài liệu bàn giao từ AI luôn đạt chuẩn chuyên nghiệp cao nhất ngay từ lần đầu tiên!"
+      </p>
+    </div>
+
+    <!-- Sign-off Matrix -->
+    <div>
+      <h3 style="font-size: 8.2pt; font-weight: bold; color: #0f3d6e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
+        Biên Bản Tiếp Nhận & Ký Nghiệm Thu Kỹ Thuật (Sign-Off Handover)
+      </h3>
+      <div class="sign-grid">
+        <div class="sign-col">
+          <div>
+            <div class="sign-title">Đại diện Bên Chuyển Giao</div>
+            <div style="margin-top: 3px;">AI Solution Architect / Delivery Lead</div>
+          </div>
+          <div>
+            <div class="sign-line"></div>
+            <div style="font-size: 7pt; color: #64748b;">Họ tên & Chữ ký</div>
+          </div>
+        </div>
+
+        <div class="sign-col">
+          <div>
+            <div class="sign-title">Đại diện Quản Lý Dự Án Khách Hàng</div>
+            <div style="margin-top: 3px;">Project Director / PM Lead</div>
+          </div>
+          <div>
+            <div class="sign-line"></div>
+            <div style="font-size: 7pt; color: #64748b;">Họ tên & Chữ ký</div>
+          </div>
+        </div>
+
+        <div class="sign-col">
+          <div>
+            <div class="sign-title">Đại diện Kỹ Thuật Khách Hàng</div>
+            <div style="margin-top: 3px;">Technical Director / Lead Engineer</div>
+          </div>
+          <div>
+            <div class="sign-line"></div>
+            <div style="font-size: 7pt; color: #64748b;">Họ tên & Chữ ký</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="footer-title">Tài liệu chuyển giao kỹ thuật — Dự án AI Skills Ecosystem (2026)</div>
+    <div class="page-number">Trang 5 / 5</div>
+  </footer>
+</div>
+
+</body>
+</html>

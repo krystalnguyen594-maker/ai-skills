@@ -1,0 +1,16 @@
+{
+  "id": "tc-02",
+  "name": "Payment 3D-Secure Webhook Race Condition Bug Report",
+  "task_type": "bug_report",
+  "prompt": "Báo cáo lỗi race condition giữa webhook ngân hàng và redirect URL khiến trạng thái đơn hàng bị kẹt 'Pending Payment'.",
+  "expected_sections": [
+    "Severity Header",
+    "Environment Details",
+    "Steps to Reproduce",
+    "Expected Behavior",
+    "Actual Behavior",
+    "Evidence / Logs / Screenshots"
+  ],
+  "sample_good_output": "### [SEV-1] Race Condition giữa Webhook VNPay và Return URL dẫn đến kẹt trạng thái đơn hàng 'Pending'\n\n**Environment:** Production K8s cluster, iOS Safari 17.4 & Chrome 124, Gateway: VNPay Sandbox/Live v2.1\n\n**Steps to reproduce:**\n1. Tạo đơn hàng giá trị 1.500.000đ với phương thức thanh toán VNPay QR.\n2. Quét mã QR trên app ngân hàng và xác thực OTP 3D-Secure thành công.\n3. Ngay khi app ngân hàng báo thành công, nhấn lập tức nút 'Quay lại Merchant' trước khi IPN webhook kịp gửi tới server (độ trễ mạng ~800ms).\n4. Kiểm tra trang Lịch sử đơn hàng `/orders/me`.\n\n**Expected:** Đơn hàng hiển thị trạng thái `PAID` và kích hoạt luồng xuất kho tự động.\n**Actual:** Giao diện hiển thị đơn hàng `PENDING_PAYMENT`, khách hàng bị trừ tiền trong tài khoản ngân hàng nhưng hệ thống không ghi nhận giao dịch thành công.\n\n**Evidence:** Log server: `DB deadlock on Order #94821: Transaction rolled back while executing updateOrderStatus(PAID)`. Trả về HTTP 500 cho Webhook retry.\n**Scope:** Tần suất ~4.2% các giao dịch thanh toán QR giờ cao điểm.",
+  "sample_flawed_output": "# Lỗi thanh toán\nKhách bảo bị trừ tiền mà đơn không nhận. Hệ thống bị lỗi không chạy đúng."
+}

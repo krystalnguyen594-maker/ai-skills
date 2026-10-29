@@ -7,7 +7,7 @@ task_types:
   - id: ui_ux_spec
     name: UI/UX Design Specification
     required_sections:
-      - pattern: design tokens|color palette|bảng màu
+      - pattern: color token|design token|color palette|bảng màu
         name: Curated Design Tokens & Palette
         severity: critical
       - pattern: typography|phông chữ|font
